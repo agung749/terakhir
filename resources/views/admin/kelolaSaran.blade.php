@@ -1,0 +1,32 @@
+<?php
+$model="Saran";
+$url="kelolaSaran";
+$role="admin";
+$print="true";
+$columns=['no','nama','email','kategori','saran','aksi'];
+?>
+@extends('layouts.app')
+
+@section('var')
+form=['judul','isi','kategori'];
+data = [
+    {
+    'data':'id','name':'id'    
+    },
+    {
+        'data':'nama','name':'nama'
+    },
+    {
+        'data':'email','name':'email'
+    },
+    {
+        'data':'kategori','name':'kategori'
+    },
+    {
+        'data':'saran','name':'saran'
+    },
+    {
+        'data':'aksi','name':'aksi'
+    }
+]
+@endsection
