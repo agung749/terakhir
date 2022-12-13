@@ -135,7 +135,7 @@ route::post('/berubah',function (Request $req)
    
 
 });
-Route::get('berita', function (Request $req) {
+Route::get('/berita', function (Request $req) {
     $kategori=[];
   
     for($i=1;$i<=11;$i++){
@@ -151,7 +151,7 @@ Route::get('berita', function (Request $req) {
     }
     return view('daftar-berita',['cari'=>$cari,'kategori'=>$kategori]);
 });
-Route::get('staff', function (Request $req) {
+Route::get('/staff', function (Request $req) {
     $kategori=[];
     $staff=[ 'Guru',
     'Caraka',

@@ -5,8 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sept - StratUp Landing Page</title>
-
+	<title>SMK PLUS ASHABULYAMIN</title>
+	<link rel="icon" href="/images/logo" type="image/png">
+	<meta name="keywords" content="SMK PLUS ASHABULYAMIN">
+	<meta name="description" content="SMK PLUS ASHABULYAMIN adalah sekolah berbasikan agama namun tetap up to date dalam dunia Informatika . Menciptakan lulusan-lulusan unggul dalam dunia IT">
 	<link
 		href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,400italic,600,300italic,300|Oswald:400,300,700'
 		rel='stylesheet' type='text/css'>
