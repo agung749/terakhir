@@ -624,7 +624,7 @@
 				<div class="col-md-4 box " style="margin-top:2%; padding:2%;  " data-aos="flip-right">
 					<center><h3>MUSIK</h3>
 					<audio controls  autoplay>
-					<source src="/mars.mp3" type="audio/mpeg">
+					<source src="/images/mars.mp3" type="audio/mpeg">
 					</audio>
 				</center>
 				</div>
