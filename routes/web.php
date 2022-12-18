@@ -40,7 +40,7 @@ Route::get('/berita/{judul}', function ($judul) {
     
     $judul = str_replace("-"," ",$judul);
     $rekomen=Berita::get();
-    $beritas = Berita::where('judul',$judul)->with('komentar')->get();
+    $beritas = Berita::where('judul','LIKE','%'.$judul.'%')->with('komentar')->get();
     return view('berita',['berita'=>$beritas[0],'rekomen'=>$rekomen,'kategori'=>$kategori]);
     
 })->name('berita');
@@ -201,7 +201,7 @@ Route::get('/berita/like/{judul}', function ($judul) {
     $judul = str_replace("-"," ",$judul);
  
     $berita = Berita::where('judul','LIKE','%'.$judul.'%');
-    $like = Berita::where('judul',$judul)->get('suka');
+    $like = Berita::where('judul','LIKE','%'.$judul.'%')->('suka');
     $berita->update([
         'suka'=>$like[0]->suka+1
     ]);
@@ -212,7 +212,7 @@ Route::get('/berita/dislike/{judul}', function ($judul) {
     $judul = str_replace("-"," ",$judul);
  
     $berita = Berita::where('judul',$judul);
-    $like = Berita::where('judul',$judul)->get('tidak_suka');
+    $like = Berita::where('judul','LIKE','%'.$judul.'%')->('tidak_suka');
     $berita->update([
         'tidak_suka'=>$like[0]->suka+1
     ]);
@@ -221,7 +221,7 @@ Route::get('/berita/dislike/{judul}', function ($judul) {
 Route::post('/komentar/{judul}',function (Request $req,$judul)
 {
     $judul = str_replace("-"," ",$judul);
-    $berita = Berita::where('judul',$judul)->get('id');
+    $berita = Berita::where('judul','LIKE','%'.$judul.'%')->('id');
    $komentar = new komentar;
    $komentar->create([
     'nama'=>$req->nama,
