@@ -124,7 +124,7 @@
 		<div class="row">
 		<div class="col-md-12 col-xs-4 col-sm-4"><img  class="img-thumb" style="display: inline-block" width="100%" src="/images/berita/{{ $rekomens->foto }}"  alt=""></div>	
 		<div class="col-md-12 col-xs-7 col-sm-7 ">
-		<div class="col-md-12 col-xs-12 col-sm-12"><h4 class="tulisan"><a href="/berita/{{ $berita->id }}">{{ $berita->judul }}</a></h4></div>
+		<div class="col-md-12 col-xs-12 col-sm-12"><h4 class="tulisan"><a href="/berita/{{ str_replace(' ' , '-',$berita->id )}}">{{ $berita->judul }}</a></h4></div>
 		<div class="col-md-12 col-xs-12 col-sm-12"><h5><i class="fa fa-user"></i>&nbsp;{{ $berita->user->name}}</h5></div>
 		<div class="col-md-12 col-xs-12 col-sm-12">	<h5> <i class="fa fa-calendar"></i>&nbsp;{{ $rekomens->created_at }}</h5></div>
 		</div>
