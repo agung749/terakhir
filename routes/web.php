@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is whereLike you can register web routes for your application. These
+| Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
@@ -28,19 +28,19 @@ Route::get('/', function () {
     $fotos = Gallery::get();
     $kategori=[];
     for($i=1;$i<=11;$i++){
-    $kategori[$i-1]=  Berita::whereLike('kategori',$i)->get()->count();
+    $kategori[$i-1]=  Berita::where('kategori',$i)->get()->count();
     }
     return view('welcome',['beritas'=>$beritas,'sekolah'=>$sekolah[0],'fotos'=>$fotos,'kategori'=>$kategori]);
 })->name('home');
 Route::get('/berita/{judul}', function ($judul) {
     $kategori=[];
     for($i=1;$i<=11;$i++){
-    $kategori[$i-1]= $beritas = Berita::whereLike('kategori',$i)->get()->count();
+    $kategori[$i-1]= $beritas = Berita::where('kategori',$i)->get()->count();
     }
     
     $judul = str_replace("-"," ",$judul);
     $rekomen=Berita::get();
-    $beritas = Berita::whereLike('judul',$judul)->with('komentar')->get();
+    $beritas = Berita::where('judul',$judul)->with('komentar')->get();
     return view('berita',['berita'=>$beritas[0],'rekomen'=>$rekomen,'kategori'=>$kategori]);
     
 })->name('berita');
@@ -57,7 +57,7 @@ Route::get('/staff/{judul}', function ($judul) {
     'TU',
     'Struktural'];
     for($i=0;$i<=3;$i++){
-    $kategori[$i]=  Staff::whereLike('jenis',$staff[$i])->get()->count();
+    $kategori[$i]=  Staff::where('jenis',$staff[$i])->get()->count();
     }
  
     
@@ -70,7 +70,7 @@ Route::post('/saran', [App\Http\Controllers\SaranController::class,'tambah']);
 Route::get('/berita/kategori/{judul}', function ($kategori1) {
     $kategori=[];
     for($i=1;$i<=11;$i++){
-    $kategori[$i-1]= $beritas = Berita::whereLike('kategori',$i)->get()->count();
+    $kategori[$i-1]= $beritas = Berita::where('kategori',$i)->get()->count();
     }
     switch($kategori1){
         case 1:
@@ -108,7 +108,7 @@ Route::get('/berita/kategori/{judul}', function ($kategori1) {
         break;
 
     }
-    $beritas = Berita::whereLike('kategori',$kategori1)->paginate(3);
+    $beritas = Berita::where('kategori',$kategori1)->paginate(3);
     return view('profile',['cari'=>$beritas,'judul'=>$judul,'kategori'=>$kategori,]);
     
 });
@@ -116,7 +116,7 @@ route::post('/berubah',function (Request $req)
 {
     $isi = '';
     if(isset($req->kecamatan)){
-        $kelurahans=Kelurahan::whereLike('district_id',$req->kecamatan)->get();
+        $kelurahans=Kelurahan::where('district_id',$req->kecamatan)->get();
     
         for($i=0;$i<count($kelurahans);$i++) {
             $isi .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
@@ -125,7 +125,7 @@ route::post('/berubah',function (Request $req)
     }
     else if(isset($req->kabupaten)){
     
-        $kelurahans=Kecamatan::whereLike('regency_id',$req->kabupaten)->get();
+        $kelurahans=Kecamatan::where('regency_id',$req->kabupaten)->get();
     
         for($i=0;$i<count($kelurahans);$i++) {
             $isi .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
@@ -139,11 +139,11 @@ Route::get('/berita', function (Request $req) {
     $kategori=[];
   
     for($i=1;$i<=11;$i++){
-    $kategori[$i-1]= Berita::whereLike('kategori',$i)->get()->count();
+    $kategori[$i-1]= Berita::where('kategori',$i)->get()->count();
     }
  
     if(isset($req->cari)){
-    $cari = Berita::whereLike('judul','like','%'.$req->cari.'%')->paginate(5);
+    $cari = Berita::where('judul','like','%'.$req->cari.'%')->paginate(5);
    
     }
     else{
@@ -158,11 +158,11 @@ Route::get('/staff', function (Request $req) {
     'TU',
     'Struktural'];
     for($i=0;$i<=3;$i++){
-    $kategori[$i]=  Staff::whereLike('jenis',$staff[$i])->get()->count();
+    $kategori[$i]=  Staff::where('jenis',$staff[$i])->get()->count();
     }
  
     if(isset($req->cari)){
-    $cari = Staff::whereLike('judul','like','%'.$req->cari.'%')->paginate(5);
+    $cari = Staff::where('judul','like','%'.$req->cari.'%')->paginate(5);
    
     }
     else{
@@ -177,7 +177,7 @@ Route::get('/staff/kategori/{judul}', function ($kategori1) {
     'TU',
     'Struktural'];
     for($i=0;$i<=3;$i++){
-    $kategori[$i]=  Staff::whereLike('jenis',$staff[$i])->get()->count();
+    $kategori[$i]=  Staff::where('jenis',$staff[$i])->get()->count();
     }
     switch($kategori1){
         case 'Guru':
@@ -193,15 +193,15 @@ Route::get('/staff/kategori/{judul}', function ($kategori1) {
             $judul="Data Struktural";
         break;
     }
-    $beritas = Staff::whereLike('jenis',$kategori1)->get();
+    $beritas = Staff::where('jenis',$kategori1)->get();
     return view('staff',['cari'=>$beritas,'judul'=>$judul,'kategori'=>$kategori,]);
     
 });
 Route::get('/berita/like/{judul}', function ($judul) {
     $judul = str_replace("-"," ",$judul);
  
-    $berita = Berita::whereLike('judul',$judul);
-    $like = Berita::whereLike('judul',$judul)->get('suka');
+    $berita = Berita::where('judul','LIKE','%'.$judul.'%');
+    $like = Berita::where('judul',$judul)->get('suka');
     $berita->update([
         'suka'=>$like[0]->suka+1
     ]);
@@ -211,8 +211,8 @@ Route::get('/berita/like/{judul}', function ($judul) {
 Route::get('/berita/dislike/{judul}', function ($judul) {
     $judul = str_replace("-"," ",$judul);
  
-    $berita = Berita::whereLike('judul',$judul);
-    $like = Berita::whereLike('judul',$judul)->get('tidak_suka');
+    $berita = Berita::where('judul',$judul);
+    $like = Berita::where('judul',$judul)->get('tidak_suka');
     $berita->update([
         'tidak_suka'=>$like[0]->suka+1
     ]);
@@ -221,7 +221,7 @@ Route::get('/berita/dislike/{judul}', function ($judul) {
 Route::post('/komentar/{judul}',function (Request $req,$judul)
 {
     $judul = str_replace("-"," ",$judul);
-    $berita = Berita::whereLike('judul',$judul)->get('id');
+    $berita = Berita::where('judul',$judul)->get('id');
    $komentar = new komentar;
    $komentar->create([
     'nama'=>$req->nama,
@@ -237,7 +237,7 @@ Route::get('/prestasi', function () {
     return view('prestasi');
 })->name('home');
 Route::get('/pendaftaran', function () {
-    $kabupatens=Kabupaten::whereLike('province_id','32')->get(['name','id']);
+    $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
     for($i=0; $i<count($kabupatens);$i++){
         $kabname[]=$kabupatens[$i]->name;
         $kabid[]=$kabupatens[$i]->id;
