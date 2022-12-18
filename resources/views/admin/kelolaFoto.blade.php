@@ -66,9 +66,12 @@ $selects=[
 @section('var')
 form=['judul','deskripsi','kategori'];
 data = [
-    {
-    'data':'id','name':'id'    
-    },
+  {
+    'data':'1',
+    render: function (data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+    }
+},
     {
         'data':'nama','name':'nama'
     },

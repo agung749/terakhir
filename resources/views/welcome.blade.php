@@ -2,7 +2,14 @@
 @extends('layouts.user')
 @section('isi')
 <style>
-	 #success_tic .page-body{
+	body{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		vertical-align: middle;
+		overflow-x: hidden;
+	}
+ #success_tic .page-body{
   max-width:300px;
   background-color:#FFFFFF;
   margin:10% auto;
@@ -147,14 +154,14 @@
 }
 @media only screen and (max-width:600px)
 {
-.
-.frame{
-	width:516px;
-	height:400px
-}
-h3{
+	.frame{
+	align-items: center;
+	width:100%;
+	height:500px
+	}
+	h3{
 	font-size: 12px
-}
+	}
 	.portfolio-item{
 		height: 150px;
 	}
@@ -192,10 +199,10 @@ h3{
 		padding:4%;
 		height:100%;
 	}
-.frame{
+	.frame{
 	width:516px;
 	height: 400px;
-}	
+	}	
 	.program{
 		padding-left:14%;
 		margin-top:3%;
@@ -416,8 +423,8 @@ h3{
 			<div class="row">
 				<div class="col-md-12 no-padding ">
 					<div class="section-title st-center">
-						<h3>What we have done</h3>
-						<p>Avocent deditum long</p>
+						<h3>Gallery Foto</h3>
+						<p>Kegiatan Kami </p>
 					</div>
 					<div class="filter mb40">
 						<form id="filter">
@@ -494,7 +501,7 @@ h3{
 				<div class="col-md-2" data-aos="flip-left" data-aos-duration="3000">
 					<div class="pricing-table ">
 						<div class="pricing-header">
-							<center><H5>Teknik Jaringan Komputer dan Telekouniasi</H5>
+							<center><H5>Teknik Komputer Jaringan dan Telekomuniasi</H5>
 								<img src="/images/tkj.png" width="100%" alt="">
 								</center>
 								<div class="pt-name">TJKT</div>
@@ -523,10 +530,10 @@ h3{
 				<div class="col-md-2" data-aos="flip-left" data-aos-duration="4000">
 					<div class="pricing-table">
 						<div class="pricing-header">
-							<center><H4>Produksi <br>Grafika</H4>
+							<center><H4>Desain Komunikasi<br>Visual</H4>
 								<img src="/images/design-graphic.png" width="100%" alt="">
 								</center>
-								<div class="pt-name">Grafika</div>
+								<div class="pt-name">DKV</div>
 						
 							</div>
 						<div class="pricing-footer">
@@ -542,8 +549,8 @@ h3{
 			<div class="row" data-aos="fade-up" data-aos-duration="2000">
 				<div class="col-md-12">
 					<div class="section-title st-center">
-						<h3>Recent News</h3>
-						<p>Some Recent News from Blog</p>
+						<h3>Berita Kami</h3>
+						<p>Berita Terbaru</p>
 					</div>
 				</div>
 			</div>
@@ -617,7 +624,7 @@ h3{
 				<div class="col-md-4 box " style="margin-top:2%; padding:2%;  " data-aos="flip-right">
 					<center><h3>MUSIK</h3>
 					<audio controls  autoplay>
-					<source src="/images/musik.mp3" type="audio/mpeg">
+					<source src="/mars.mp3" type="audio/mpeg">
 					</audio>
 				</center>
 				</div>
@@ -627,7 +634,8 @@ h3{
 			</div>
 		</div>
 	</section>
-
+	
+	</section>
 	<section class="subscribe">
 		<div class="container">
 			<div class="row">
@@ -719,7 +727,7 @@ h3{
 						<h3>0263267740</h3>
 				</div>
 			</div>
-		<div id="googleMap" style="width:100%;height:500px;"></div>
+		
 	</section>
 	@endsection
 	@section('script')

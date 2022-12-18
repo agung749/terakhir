@@ -286,18 +286,28 @@ Route::group(['prefix'=>'/admin','middleware'=>'user'],function(){
     route::get('/kelolaSaran/tampil',[App\Http\Controllers\SaranController::class,'tampil']);
     route::get('/kelolaSaran/detail/{detail}',[App\Http\Controllers\SaranController::class,'detail']);
     route::get('/kelolaAdmin/tampil',[App\Http\Controllers\userControllers::class,'tampil']);
-
+    route::post('/kelolaBerkas/ubah/{ubah}',[App\Http\Controllers\BerkasController::class,'ubah']);
+    route::get('/kelolaBerkas/hapus/{hapus}',[App\Http\Controllers\BerkasController::class,'hapus']);
+    route::get('/kelolaBerkas/tampil',[App\Http\Controllers\BerkasController::class,'tampil']);
+    route::get('/kelolaBerkas/detail/{detail}',[App\Http\Controllers\BerkasController::class,'detail']);
+    route::post('/kelolaBerkas/tambah/',[App\Http\Controllers\BerkasController::class,'tambah']);
     route::post('/kelolaAdmin/tambah/',[App\Http\Controllers\userControllers::class,'tambah']);
     route::post('/kelolaAdmin/ubah/{ubah}',[App\Http\Controllers\userControllers::class,'ubah']);
     route::get('/kelolaAdmin/hapus/{hapus}',[App\Http\Controllers\userControllers::class,'hapus']);
     route::get('/kelolaAdmin/reset/{ubah}',[App\Http\Controllers\userControllers::class,'reset']);
+  
     route::get('/kelolaSaran/print',[App\Http\Controllers\SaranController::class,'print']);
     route::get('/kelolaSaran/hapus/{data}',[App\Http\Controllers\SaranController::class,'hapus']);
     route::get('/kelolaSaran/detail/{detail} ',[App\Http\Controllers\SaranController::class,'detail']);
     
 });
+route::get('/berkas/download/{ubah}',[App\Http\Controllers\berkasController::class,'download']);
 route::get('/form',function(){
     return view('admin.form');
 });
+route::get('/berkas-data',function(){
+    return view('berkas');
+});
+route::get('/berkas/tampil',[App\Http\Controllers\berkasController::class,'tampil_user']);
 Auth::routes();
 

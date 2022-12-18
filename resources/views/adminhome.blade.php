@@ -53,6 +53,9 @@
 }
 </style>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="row">
+    <button class="btn btn-md btn-primary"> Tambah Info </button>
+</div>
 <div class="container wapper p-5">
     <div class="row">
         <div class="col-md-4 col-xl-3">

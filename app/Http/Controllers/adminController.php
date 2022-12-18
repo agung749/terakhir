@@ -100,4 +100,7 @@ class adminController extends Controller
     public function kelolaAdmin(){
         return view('admin.kelolaAdmin');
     }
+    public function kelolaBerkas(){
+        return view('admin.kelolaBerkas');
+    }
 }

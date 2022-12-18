@@ -318,6 +318,11 @@ return [
             'icon'    => 'fas fa-fw fa-school',
         ],
         [
+            'text' => 'Kelola Berkas',
+            'url'  => 'admin/kelolaBerkas',   
+            'icon'    => 'fas fa-fw fa-file',
+        ],
+        [
             'text' => 'Saran',
             'url'  => 'admin/kelolaSaran',   
             'icon'    => 'fas fa-fw fa-comments',

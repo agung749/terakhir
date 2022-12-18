@@ -93,7 +93,7 @@ box-shadow:  20px 20px 40px #cec7cf,
 }
 		.content{
 			min-height: 700px;
-			padding-top: 30px;
+			padding-top: 15%;
 			background:#fefe
 			font-size: 14px;
 		}
@@ -110,10 +110,22 @@ box-shadow:  20px 20px 40px #cec7cf,
 		}
 	}
 	@media only screen and (min-width:601px){
+		.content{
+			min-height: 700px;
+			padding-top: 5%;
+			background:#fefe
+			font-size: 14px;
+		}
 		.img-thumb{
 			
 			height:200px;
 		}
+		.box{
+    border-radius: 14px;
+background: #ffffff;
+box-shadow:  20px 20px 40px #cec7cf,
+             -20px -20px 60px #ffffff;
+}
 		.row1{
 			margin-top: 10%;
 		}
@@ -150,6 +162,7 @@ box-shadow:  20px 20px 40px #cec7cf,
 					<ul class="nav navbar-nav navbar-right">
 						<li class="i"><a href="/#home"> Beranda</a></li>
                         <li><a href="/pendaftaran">Pendaftaran</a></li>
+						<li><a href="/berkas-data">berkas</a></li>
 						<li><a href="/berita">Berita</a></li>
 						<li><a href="/staff">Data Staff</a></li>
 						<li><a href="/login">Login</a></li>
