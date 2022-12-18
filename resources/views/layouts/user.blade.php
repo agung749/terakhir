@@ -77,12 +77,9 @@
 			text-align: center;
 		}
 	
-		@media only screen and (min-width:601px){
+		@media only screen and (max-width:600px){
 		
-		.img-thumb{
-			
-			height:200px;
-		}
+		
 		.box{
     border-radius: 14px;
 background: #ffffff;
@@ -103,8 +100,20 @@ box-shadow:  20px 20px 40px #cec7cf,
 		tr{
 			margin: 10px
 		}
-	}6
-	@media only screen and (max-width:600px){
+		.img-thumb{
+			
+			height:100px;
+		}
+		.rekom{
+			margin-bottom:1%; 
+			border-bottom:0.5px solid black;
+		}
+	}
+	@media only screen and (min-width:601px){
+		.img-thumb{
+			
+			height:200px;
+		}
 		.row1{
 			margin-top: 10%;
 		}
@@ -113,15 +122,14 @@ box-shadow:  20px 20px 40px #cec7cf,
 			height: 250px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-		.img-thumb{
-			height: 100px;
-
-		}
+	
 		.tulisan{
 			font-size: 13px;
 		}
+		
 	
 	}
+
 	</style>
 	<header class="st-navbar">
 		<nav class="navbar navbar-default navbar-fixed-top clearfix" role="navigation">

@@ -9,10 +9,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<marquee behavior="" direction=""><h4>Selamat Datang Di SMK Plus Ashabulyamin</h4></marquee>
+				<marquee ><h4 style="color:white">Selamat Datang Di SMK Plus Ashabulyamin</h4></marquee>
 				<h3 style="color:white" class="post-title">Judul</h3>
 				<div>
-					<h1  style="color:white; display:inline-block"class="post-title"><a href="/berita/{{ $berita->id }}">{{ $berita->judul }}</a></h1><h2 style="float:right" id="timestamp"></h2>
+					<h1  style="color:white; display:inline-block"class="post-title"><a style="color:white; "href="/berita/{{ $berita->id }}">{{ $berita->judul }}</a></h1><h2 style="float:right" id="timestamp"></h2>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 							<span class="author"><a href="#"><img  src="photos/author.jpg" alt=""> {{ $berita->user->name}}</a></span>,						
 							<span>on <strong>{{ $berita->created_at }}</strong></span>
 						</div>
-						<div class="post-thumb"><a href="#"><img class="img-gambar" src="/images/berita/{{ $berita->foto }}" alt="" width="30%"></a>
+						<div class="post-thumb"><a href="#"><img class="img-gambar" src="/images/berita/{{ $berita->foto }}" alt="" width="100%"></a>
 						</div>
 						<div class="post-content">
 							<p >
@@ -120,12 +120,16 @@
 <div class="row">
 @foreach ( $rekomen as $rekomens )
 @php($i++)
-	<div class="col-md-3 col-sm-3 col-xs-3" style="background: #fefefe; margin-right:4%">
-		<img  class="img-thumb" src="/images/berita/{{ $rekomens->foto }}"  alt="">
-		<h4 class="tulisan">{{ $rekomens->judul }}</h4>
-		<h5>{{ $berita->user->name}}</h5>
-		<h5>{{ $rekomens->created_at }}</h5>
+	<div class="col-md-3 col-sm-12 col-xs-12 rekom" style="background: #fefefe; margin-right:4%;">
+		<div class="row">
+		<div class="col-md-12 col-xs-4 col-sm-4"><img  class="img-thumb" style="display: inline-block" width="100%" src="/images/berita/{{ $rekomens->foto }}"  alt=""></div>	
+		<div class="col-md-12 col-xs-7 col-sm-7 ">
+		<div class="col-md-12 col-xs-12 col-sm-12"><h4 class="tulisan"><a href="/berita/{{ $berita->id }}">{{ $berita->judul }}</a></h4></div>
+		<div class="col-md-12 col-xs-12 col-sm-12"><h5><i class="fa fa-user"></i>&nbsp;{{ $berita->user->name}}</h5></div>
+		<div class="col-md-12 col-xs-12 col-sm-12">	<h5> <i class="fa fa-calendar"></i>&nbsp;{{ $rekomens->created_at }}</h5></div>
+		</div>
 	</div>
+</div>
 @if($i==3)
 <div class="container">
 </div>

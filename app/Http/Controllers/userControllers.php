@@ -16,7 +16,13 @@ class userControllers extends Controller
       $btn = '<a href="/admin/kelolaAdmin/reset/'.$row->id.'" class="btn btn-warning btn-sm">Reset</a>&nbsp;&nbsp;<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm">Hapus</a>&nbsp;&nbsp;';
     return $btn;
 
-})
+})/
+
+
+
+
+
+
 ->rawColumns(['aksi'])
 
 ->make(true);

@@ -143,15 +143,18 @@
     width: 37.5px;
     opacity: 1;
   }
-  .img-responsive{
-		height:200px;
-		padding:4%;
 
-	}
 }
 @media only screen and (max-width:600px)
 {
-
+.
+.frame{
+	width:516px;
+	height:400px
+}
+h3{
+	font-size: 12px
+}
 	.portfolio-item{
 		height: 150px;
 	}
@@ -160,7 +163,7 @@
 		margin: 0px;
 	}
 	p{
-		font-size: 14px;
+		font-size: 10px;
 		margin: 0px;
 	}
 	.hero-work{
@@ -184,6 +187,15 @@
 }
 @media only screen and (min-width:601px)
 {
+	.img-responsive{
+		height:200px;
+		padding:4%;
+		height:100%;
+	}
+.frame{
+	width:516px;
+	height: 400px;
+}	
 	.program{
 		padding-left:14%;
 		margin-top:3%;
@@ -243,7 +255,7 @@
                        
 						<div class="col-md-6"  data-aos="fade-right" 
 						data-aos-duration="1000">
-						<iframe width="560" height="315" src="{{ $sekolah->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<iframe class="frame"  src="{{ $sekolah->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
