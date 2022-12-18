@@ -68,7 +68,7 @@
                         <div class="col-md-12" style="margin-top:2%; margin-left:1%; padding:2%;  " data-aos="flip-right">
                             <center><h3>MUSIK</h3>
                             <audio controls  autoplay>
-                            <source src="/images/musik.mp3" type="audio/mpeg">
+                            <source src="mars.mp3" type="audio/mpeg">
                             </audio>
                         </center>
                         </div>
