@@ -28,10 +28,12 @@ $selects=[
     "isi"=>[
       'admin',
       'eskul',
+      'spw'
 ],
 'value'=>[
   '1',
   '2',
+  '3'
 ],
 'required'=>'required'
   ]

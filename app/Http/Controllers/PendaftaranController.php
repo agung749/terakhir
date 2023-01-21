@@ -3,46 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Exports\Pendaftaran;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Siswa;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Yajra\DataTables\Facades\DataTables;
 class PendaftaranController extends Controller
 {
    public function tambah(Request $req){
-    $req->validate([
-        "nama"=>'required',
-        "tempat_lahir"=>'required',
-        "tgl_lahir"=>'required',
-        "tinggi"=>'required|numeric',
-        "berat"=>'required|numeric',
-        "sd"=>"required" ,
-        "smp"=>"required" ,
-        "no_tel"=>"required|digits_between:11,14", 
-        "email"=>'required|email',
-        "un_smp"=>'nullable|numeric|digits:14|unique:siswa',
-        "nisn"=>'nullable|numeric|digits:10|unique:siswa',
-        "nik"=>'required|numeric|digits:16|unique:siswa',
-        "foto"=>"nullable|mimes:jpg,png" ,
-        "foto_ijazah"=>"nullable|mimes:jpg,png" ,
-        "foto_skhu"=>"nullable|mimes:jpg,png", 
-        "kps"=>'nullable|numeric',
-        "kph"=>'nullable|numeric',
-        "kip"=>'nullable|numeric',
-        "nama_ayah"=>'required',
-        "nama_ibu"=>'required',
-        "pekerjaan_ibu"=>"required",
-        "pekerjaan_ayah"=>"required",
-        "pengasilan_ibu"=>"required",
-        "penghasilan_ayah"=>"required",
-        "rt"=>"required|numeric",
-        "rw"=>"required|numeric",
-        'jalan'=>"required",
-    ]);
     $foto="";
     $foto_ijazah="";
     $foto_skhu="";
-   
+    $req->validate([
+        "nama"=>"required",
+        "kelurahan"=>"required",
+        "kecamatan"=>"required",
+        "no_hp"=>"required",
+        "tgl_lahir"=>"required",
+        "nisn"=>"required|numeric|digits_between:10,11",
+        "jenis_tempat_tinggal"=>"required",
+        "nik"=>"required|numeric|digits_between:16",
+        "foto"=>"required|mimes:jpg,png",
+        "jk"=>"required",
+        "Ijazah"=>"nullable",
+     
+    ]);
         if($req->file('foto_ijazah')){
             $file= $req->file('foto_ijazah');
             $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
@@ -61,13 +50,19 @@ class PendaftaranController extends Controller
             $foto_skhu=date('YmdHi').$file->getClientOriginalName();
             $file-> move('images/data_siswa',  $foto_skhu);
         }
+    $kelurahan=Kelurahan::where('id',$req->kelurahan)->get();
+    $kecamatan= Kecamatan::where('id',$req->kecamatan)->get();
+    $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
+    $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
+    
+    $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
     Siswa::create([
         "nama"=>$req->nama,
         "kelurahan"=>$req->kelurahan,
         "kecamatan"=>$req->kecamatan,
-        "alamat"=>$req->jalan.' '.'RT  '.$req->rt.'RW '.$req->rw.' '.$req->kelurahan.' '.$req->kecamatan.' '.$req->kabupaten,
+        "alamat"=>$req->jalan.' '.'RT  '.$req->rt.'RW '.$req->rw.' '.$kelurahan[0]->name.' '.$kecamatan[0]->name.$kabupaten[0]->name.' Jawa Barat',
         "no_hp"=>$req->no_hp,
-        "jenis_tempat_tinggal"=>$req->jenis_tempat_tinggal,
+        "jenis_tempat_tinggal"=>$req->Jenis_tempat_tinggal,
         "tgl_lahir"=>$req->tgl_lahir,
         "nisn"=>$req->nisn,
         "nik"=>$req->nik,
@@ -120,14 +115,35 @@ class PendaftaranController extends Controller
         "rt"=>$req->rt,
         "rw"=>$req->rw,
         "Jalan"=>$req->jalan,
-        'status'=>0
-    ]);
-   }
+        'status'=>0,
+        'tahun_ajaran'=>$thn_ajaran,
+        'kode_pos'=>$req->kode_pos,
+        'kode_unik'=>$kode_unik]
+    );
+   $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
+   $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F y');
+   $C['0']['tgl_lahir'] = $data;
+   $data = Carbon::parse($C[0]['tanggal_lahir_ayah'])->translatedFormat('d F y');
+   $C[0]['tanggal_lahir_ayah']=$data;
+   $data = Carbon::parse($C[0]['tanggal_lahir_ibu'])->translatedFormat('d F y');
+   $C[0]['tanggal_lahir_ibu']=$data;
+   if($C[0]['tanggal_lahir_wali']!=null){
+   $data = Carbon::parse($C[0]['tanggal_lahir_wali'])->translatedFormat('d F y');
+   $C[0]['tanggal_lahir_wali']=$data;
+   
+   
+    }
+      
+    $tanggal=carbon::parse(date(now()))->translatedFormat('d F y');
+     $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
+    return $pdf->download($req->nama.'.pdf');
+   
+}
    public function hapus(Request $req,$hapus){
     
     }
     public function ubah(Request $req,$ubah){
-    
+   
     }
     public function print(){
         return Excel::download(new Pendaftaran,'Pendaftaran Siswa Tahun '.date('Y').'.xlsx');
@@ -136,6 +152,123 @@ class PendaftaranController extends Controller
     
     }
     public function detail($print){
-    
+        $print = Siswa::where('id',$print)->get(["nama",
+        "kelurahan",
+        "kecamatan",
+        "alamat",
+        "no_hp",
+        "tgl_lahir",
+        "nisn",
+        'kode_unik',
+        'tahun_ajaran',
+        "jenis_tempat_tinggal",
+        "nik",
+        "jk",
+        "Ijazah",
+        "skhu",
+        "un_smp",
+        "tempat_lahir",
+        "agama",
+        "sd",
+        "smp",
+        "transportasi",
+        "no_tel",
+        "email",
+        "kps",
+        "kph",
+        "kip",
+        "tinggi",
+        "berat",
+        "status",
+        "jarak",
+        "penghasilan_ayah",
+        "penghasilan_wali",
+        "penghasilan_ibu",
+        "nama_ayah",
+        "nama_ibu",
+        "nama_wali",
+        "keadaan_ayah",
+        "keadaan_ibu",
+        "keadaan_wali",
+        "pekerjaan_ibu",
+        "pekerjaan_ayah",
+        "pekerjaan_wali",
+        "kabupaten",
+        "waktu",
+        "saudara",
+        "kode_pos",
+        "kebutuhan_khusus_wali",
+        "kebutuhan_khusus_ibu",
+        "kebutuhan_khusus_ayah",
+        "jurusan",
+        "pendidikan_ayah",
+        "pendidikan_ibu",
+        "pendidikan_wali",
+        "tanggal_lahir_ibu",
+        "tanggal_lahir_ayah",
+        "tanggal_lahir_wali",
+        "rt",
+        "rw",
+        "Jalan"]);
+        $kelurahans=Kecamatan::where('regency_id',$print[0]->kabupaten)->get();
+            for($i=0;$i<count($kelurahans);$i++) {
+                $print[0]->kec .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
+            }
+           
+        
+            $kelurahans=Kelurahan::where('district_id',$print[0]->kecamatan)->get();
+        
+            for($i=0;$i<count($kelurahans);$i++) {
+                $print[0]->kel .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
+            } 
+        return $print;
+    }
+    public function tampil()
+    {
+        $data = Siswa::latest()->get();
+
+        return DataTables::of($data)
+              ->addIndexColumn()
+               ->addColumn('aksi', function($row){
+                       $btn = '<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a data-id="'.$row->id.'" class="terima btn btn-primary btn-sm"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a data-id="'.$row->id.'" class="print btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                     return $btn;
+
+                })->addColumn('jurusan', function($row){
+                   switch($row->jurusan){
+                    case 1 :
+                        return "OTKP";
+                        break;
+                    case 2 :
+                            return "AKL";
+                            break;
+                    case 3 :
+                            return "BDP";
+                            break;
+                    case 4 :
+                            return "DKV";
+                            break;
+                            case 5 :
+                                return "TKJT";
+                                break;
+                   } 
+               
+
+             })->addColumn('created_at',function($row){
+                return $row->created_at->format('d M y');
+             })->addColumn('keterangan',function($row){
+                $foto=" ";
+                if($row->foto!=""){
+                    $foto="Foto <i class='fa fa-check'><i><br>";
+                }
+                if($row->foto_skhu!=""){
+                    $foto.="SKHU <i class='fa fa-check'><i><br>";
+                }
+             
+                if($row->foto_ijazah!=""){
+                    $foto.="Ijazah <i class='fa fa-check'><i>";
+                }
+                return $foto;
+             })->rawColumns(['aksi','keterangan'])
+                ->make(true);
     }
 }

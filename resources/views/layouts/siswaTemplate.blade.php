@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('content')
-<div class="col-12 wrapper p-5 " style="background:#ddeedd">
-<div class="row mt-3">
+<div class="col-12 wrapper p-5 "  style="background:#ddeedd;overflow:scroll; height:100%">
+<div class="row mt-3" >
 <div class="col-5">
 
 @if(isset($tambah))
@@ -31,7 +31,7 @@
   </div>
 </div>
 @if(!isset($table))
-<table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
+<table id="tabel-data" class="table table-striped table-bordered"  cellspacing="0">
     <thead>
       @foreach($columns as $column )
             <th>{{$column}}</th>
@@ -105,18 +105,18 @@
      @endif
      @if($k==2)
      <div class="row mt-3">
-      <div class="col-3">RT</div>
-      <div class="col-1">:</div>
-      <div class="col-2"><input type="text" name="rt" class="form-control"></div>
-      <div class="col-3">RW</div>
-      <div class="col-1">:</div>
-      <div class="col-2"><input type="text" name="rw" class="form-control"></div>
+      <div class="col-2">RT</div>
+      <div class="col-2"><input type="text" name="rt" class="rt form-control"></div>
+      <div class="col-1">RW</div>
+      <div class="col-2"><input type="text" name="rw" class=" rw form-control"></div>
+       <div class="col-2">Kode Pos</div>
+      <div class="col-2"><input type="text" name="kode_pos" class="kode_pos form-control"></div>
     </div>
     <div class="row mt-3 mb-3">
       <div class="col-3">Jalan/Kampung</div>
       <div class="col-1">:</div>
       <div class="col-8">
-        <input type="text" name="jalan" class="form-control">
+        <input type="text" name="jalan" class="jalan form-control">
       </div>
     </div>
     
@@ -132,27 +132,27 @@
   </div>
 <div class="row mt-3">
   <div class="col-3">Jarak Rumah Ke sekolah:</div>
-  <div class="col-3"><input type="text" name="jarak" placeholder="Km" id="jarak" class="form-control"></div>
+  <div class="col-3"><input type="text" name="jarak" placeholder="Km" id="jarak" class="jarak form-control"></div>
   <div class="col-3">Waktu Rumah Ke sekolah:</div>
-  <div class="col-3"><input type="text" name="waktu" placeholder="Km" id="jarak" class="form-control"></div>
+  <div class="col-3"><input type="text" name="waktu" placeholder="Km" id="waktu" class="waktu form-control"></div>
 
 </div>
 
 <div class="row mt-3">
 <div class="col-3">Jumlah Saudara Kandung:</div>
-<div class="col-3"><input type="text" name="saudara" placeholder="orang" id="tinggi" class="form-control"></div>
+<div class="col-3"><input type="text" name="saudara" placeholder="orang" id="tinggi" class="saudara form-control"></div>
 <div class="col-3">Tinggi Badan:</div>
-<div class="col-3"><input type="number" name="tinggi" placeholder="tinggi/cm" id="tinggi" class="form-control"></div>
+<div class="col-3"><input type="number" name="tinggi" placeholder="tinggi/cm" id="tinggi" class="tinggi form-control"></div>
 </div>
 <div class="row mt-3 mb-4">
 <div class="col-3">Berat Badan:</div>
-<div class="col-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class="form-control"></div>
+<div class="col-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class="berat form-control"></div>
 <div class="col-3">Jurusan:</div>
-<div class="col-3"><select name="jurusan" id="jurusan" class="form-control">
+<div class="col-3"><select name="jurusan" id="jurusan" class="jurusan form-control">
 <option value="1">OTKP</option>  
 <option value="2">AKL</option>
 <option value="3">BDP</option>
-<option value="4">GRAFIKA</option> 
+<option value="4">DKV</option> 
 <option value="5">TKJT</option>       
 </select> </div>
 </div>
@@ -168,7 +168,7 @@
     Nomor Hp/Tel Rumah/Ayah/Ibu/Wali
   </div>
   <div class="col-6">
-    <input type="number" placeholder="piih salah satu  nomer hp saja (ibu/ayah/wali)" name="no_tel" id="no_tel" class="form-control" >
+    <input type="number" placeholder="piih salah satu  nomer hp saja (ibu/ayah/wali)" name="no_tel" id="no_tel" class=" no_tel form-control" >
   </div>
 </div>
  <div class="row mt-3 muncul2">
@@ -359,6 +359,7 @@ headers: {
 $('#tabel-data').DataTable( {
 processing: true,
 serverSide: true,
+scrollX: true,
 ajax: "/{{$role}}/{{$url}}/tampil",
 columns: data
 });
@@ -391,13 +392,12 @@ $('.slide2').click(function(){
 });
 }
 $('body').on('click','.ubah',function(){
-  alert('halo');
   data=$(this).data('id');
+  $('.modal-footer1').html('  <button type="button" class="btn btn-primary slide1">Selanjutnya</button>');
   $('.l1').html('Ubah Data {{$model}}')
   $('#form').attr('action','/{{$role}}/{{$url}}/ubah/'+data);
   $('#form').attr('method','POST');
   $('#form').attr('enctype','multipart/form-data');
-  $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim">Kirim</button>');
 detail(data,1);
 $('#linkUbah').attr('action','/{{$role}}/{{$url}}/ubah/')
 });
@@ -426,15 +426,19 @@ $('body').on('click','.detail',function(){
   
 })
 function detail(data,klik){
-  
+
 $.ajax({
 url: "/{{$role}}/{{$url}}/detail/"+data,
 cache:false,
 contentType: false,
 processData: false,
 success: (data) => {
-for(i=0; i<form.length; i++){
+  $('.kecamatan').html(data[0]['kec']);
+  console.log(data[0]['kec']);
+  $('.kelurahan').html(data[0]['kel']);
   
+for(i=0; i<form.length; i++){
+  console.log([form[i]]+ data[0][form[i]]);
     $('.'+form[i]).val(data[0][form[i]]);
     if(klik==1){
     $('.'+form[i]).removeAttr('disabled');
@@ -444,10 +448,10 @@ for(i=0; i<form.length; i++){
       $('.kirim').attr('disabled',true);
      }
      $('.modal1').modal('show');
-    
-   
+      
 }
-
+$('.modal-footer1').html('  <button type="button" class="btn btn-primary slide1">Selanjutnya</button>');
+slide1();
 },
 error: function(data){
 console.log(data);

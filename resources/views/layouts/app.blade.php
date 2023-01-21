@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('content')
-<div class="col-12 wrapper p-5 " style="background:#ddeedd">
+<div class="col-12 wrapper p-5 " style="background:#ddeedd; height:100%; overflow:scroll">
 <div class="row">
 <div class="col-5">
 
@@ -28,7 +28,10 @@
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
 </div>
-<table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
+<style>
+
+</style>
+<table id="tabel-data" class="table table-striped table-bordered" width="100%"  cellspacing="0">
     <thead>
       @foreach($columns as $column )
             <th>{{$column}}</th>

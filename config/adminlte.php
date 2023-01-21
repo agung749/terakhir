@@ -295,42 +295,72 @@ return [
             'text' => 'Beranda',
             'url'  => 'admin/home',   
             'icon'    => 'fas fa-fw fa-home',
+            'can'=>'admin'
+        ],
+        [
+            'text' => 'Beranda',
+            'url'  => 'wirausaha/home',   
+            'icon' => 'fas fa-fw fa-home',
+            'can'=>'spw'
+        ],
+        [
+            'text' => 'Toko',
+            'url'  => 'wirausaha/toko',   
+            'icon' => 'fas fa-fw fa-shopping-cart',
+            'can'=>'spw'
+        ],
+        [
+            'text' => 'Data Pribadi',
+            'url'  => 'user/ubah',   
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Pemasukan',
+            'url'  => 'wirausaha/pemasukan',   
+            'icon' => 'fas fa-fw fa-dollar-sign',
+            'can'=>'spw'
         ],
         [
             'text' => 'Pendaftaran',
             'url'  => 'admin/kelolaPendaftaran',   
             'icon'    => 'fas fa-fw fa-pen',
+            'can'=>'admin'
         ],
  
         [
             'text' => 'Berita',
             'url'  => 'admin/kelolaBerita',   
             'icon'    => 'fas fa-fw fa-newspaper',
+            'can'=>'admin'
         ],
         [
             'text' => 'Gallery',
             'url'  => 'admin/kelolaFoto',   
             'icon'    => 'fas fa-fw fa-image',
+            'can'=>'admin'
         ],
         [
             'text' => 'Profil Sekolah',
             'url'  => 'admin/kelolaProfil',   
             'icon'    => 'fas fa-fw fa-school',
+            'can'=>'admin'
         ],
         [
             'text' => 'Kelola Berkas',
             'url'  => 'admin/kelolaBerkas',   
             'icon'    => 'fas fa-fw fa-file',
+            'can'=>'admin'
         ],
         [
             'text' => 'Saran',
             'url'  => 'admin/kelolaSaran',   
             'icon'    => 'fas fa-fw fa-comments',
+            'can'=>'admin'
         ],
         [
             'text'    => 'Administrasi',
             'icon'    => 'fas fa-fw fa-users',
-            
+            'can'=>'admin',
             'submenu' => [
     
         [

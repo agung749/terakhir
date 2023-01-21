@@ -153,7 +153,7 @@
 	</section>
 
 @endsection
-	@section('script')
+@section('script')
 	<script>
 		AOS.init();
 	  </script>

@@ -38,8 +38,9 @@ class userControllers extends Controller
   }
   public function tambah(Request $user)
   {
-    $user = new User;
-    $user->update(['email'=>$user->email,'name'=>$user->name,'role'=>$user->role,'password'=>Hash::make("12345678")]);  
+    $user1 = new User;
+  
+    $user1->create(['email'=>$user->email,'name'=>$user->nama,'role'=>$user->role,'password'=>Hash::make("12345678")]);  
     return redirect()->back()->with(['success'=>'data berhasil ditambah']);
   }
 }

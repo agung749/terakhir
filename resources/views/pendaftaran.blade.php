@@ -50,15 +50,15 @@ $data=[
     'name'=>'transportasi',
     'value'=>[
       'Angkutan Umum',
-      'Mobi Pribadi',
+      'Mobil Pribadi',
       'Motor Pribadi',
       'Jalan Kaki'
     ],
 'isi'=>[
-      'Berita',
-      'Prestasi',
-      'Eskul',
-      'Bisnis'
+  'Angkutan Umum',
+      'Mobi Pribadi',
+      'Motor Pribadi',
+      'Jalan Kaki'
 ],
 'required'=>'true'
 ],
@@ -97,13 +97,13 @@ $data=[
         "number","number","number","file","text","text","file","file","number","number","text"
         ],
     'nama'=>[
-        "No UN SMP","No NISN","No NIK","Foto Diri ","Nomor Ijazah","No SKHU","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS","No KPH","No KIP" ],
+        "No UN SMP","No NISN","No NIK","Foto Diri (tidak wajib diisi) ","Nomor Ijazah (tidak wajib diisi)","No SKHU (tidak wajib diisi)","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS (tidak wajib diisi)","No KPH (tidak wajib diisi)","No KIP (tidak wajib diisi)" ],
     'placeholder'=>
     [
         "nomor smp","nisn","nik","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps","kph","kip"],
     'value'=>[
         "","","","","","","","","","",""],
-     'required'=>["required","required","required","","","","","","","",""]
+     'required'=>["","required","required","","","","","","","",""]
 ],
    
 ],
@@ -293,7 +293,7 @@ $data2=[
 ],
 'placeholder'=>
 [
-  "Nama ibu",'' ,'', ' '],
+  "Nama Wali",'' ,'', ' '],
 'value'=>["",'','',''],
 
 'required'=>[ "",'',"",''],
@@ -387,10 +387,10 @@ box-shadow:  20px 20px 60px #095b0f,
              -20px -20px 60px #0c7b15;
     }
 </style>
-<section class="home wrapper" style="background: green" id="daftar" data-stellar-background-ratio="0.4">
-   
-  <div class="container box">
-    <form id="form"  enctype="multipart/form-data">
+<section class="home wrapper p-3" style="background: green" id="daftar" data-stellar-background-ratio="0.4">
+
+  <div class="container box p-5">
+    <form id="form" enctype="multipart/form-data">
         @csrf
 @if(isset($data))
 <div class="row mt-3 muncul1">
@@ -438,18 +438,20 @@ box-shadow:  20px 20px 60px #095b0f,
    @endif
    @if($k==2)
    <div class="row " style="margin-top:4%">
-    <div class="col-md-3">RT</div>
+    <div class="col-md-1">RT</div>
   
-    <div class="col-md-2"><input type="text" name="rt" class="form-control"></div>
-    <div class="col-md-3">RW</div>
-  
-    <div class="col-md-2"><input type="text" name="rw" class="form-control"></div>
+    <div class="col-md-2"><input type="text" name="rt" class="rw form-control"></div>
+    <div class="col-md-1">RW</div>
+    <div class="col-md-2"><input type="text" name="rw" class="rt form-control"></div>
+       <div class="col-md-2">Kode Pos</div>
+       <div class="col-md-3"><input type="text" name="kode_pos" class=" kode_pos form-control"></div>
+
   </div>
   <div class="row mt-3 mb-3" style="margin-top:4%">
     <div class="col-md-3">Jalan/Kampung</div>
   
     <div class="col-md-8">
-      <input type="text" name="jalan" class="form-control" >
+      <input type="text" name="jalan" class="jalan form-control" >
     </div>
   </div>
   
@@ -458,35 +460,96 @@ box-shadow:  20px 20px 60px #095b0f,
   
   </div>
 @endfor
-<div class="col-md-12 muncul2">
+
+<div class="col-md-12 muncul1">
 <div class="row" style="margin-top:4%">
   <div class="col-md-12">
     <h3>Data Periodik</h3>(<h5 style="color:red; display:inline">Wajib Diisi</h5>)
   </div>
 </div>
-<div class="row mt-3">
+<div class="row mb-3">
+    <div class="col-md-3">
+      Jenis Tempat Tinggal
+    </div>
+    <div class="col-md-9">
+      <select name="Jenis_tempat_tinggal" id="Jenis_tempat_tinggal" class=" Jenis_tempat_tinggal form-control">
+
+        <option value="kosan">kosan</option>
+        <option value="kontrakan">kontrakan</option>
+         <option value="pesantren">pesantren</option>
+              <option value="pesantren">rumah pribadi</option>
+      </select>
+  </div>
+</div>
+<div class="row" style="margin-top:2%">
 <div class="col-md-3">Jarak Rumah Ke sekolah:</div>
-<div class="col-md-3"><input type="text" name="jarak" placeholder="Km" id="jarak" class="form-control"></div>
+<div class="col-md-3"><input type="text" name="jarak" placeholder="Km" id="jarak" class="jarak form-control"></div>
 <div class="col-md-3">Waktu Rumah Ke sekolah:</div>
-<div class="col-md-3"><input type="text" name="waktu" placeholder="Km" id="jarak" class="form-control"></div>
+<div class="col-md-3"><input type="text" name="waktu" placeholder="Menit" id="jarak" class="waktu form-control"></div>
 
 </div>
+
+@if($errors->any())
+
+<div class="modal modalE" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pesan Kesalahan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @foreach($errors->all() as $error)
+        <h5 style="color:red">{{ $error }}</h5>
+        @endforeach
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Mengerti</button>
+      </div>
+    </div>
+  </div>
+</div>
+@else
+<div class="modal modalE" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mekanisme Pendaftaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="color:black">
+      Calon Siswa mengisi data dengan benar <br>
+        Melakukan konfirmasi pendaftaran di sekolah dengan membawa dokumen ktp orangtua/wali dan kk serta memperlihatkan bukti pendaftaran
+       
+      </div>
+      <div class="modal-footer">
+       
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Mengerti</button>
+        </div>
+    </div>
+  </div>
+</div>
+@endif
 
 <div class="row mt-3" style="margin-top:4%">
 <div class="col-md-3">Jumlah Saudara Kandung:</div>
-<div class="col-md-3"><input type="text" name="saudara" placeholder="orang" id="tinggi" class="form-control"></div>
+<div class="col-md-3"><input type="text" name="saudara" placeholder="orang" id="tinggi" class="saudara form-control"></div>
 <div class="col-md-3">Tinggi Badan:</div>
-<div class="col-md-3"><input type="number" name="tinggi" placeholder="tinggi/cm" id="tinggi" class="form-control"></div>
+<div class="col-md-3"><input type="number" name="tinggi" placeholder="tinggi/cm" id="tinggi" class=" tinggi form-control"></div>
 </div>
 <div class="row mt-3 mb-4" style="margin-top:4%">
 <div class="col-md-3">Berat Badan:</div>
-<div class="col-md-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class="form-control"></div>
+<div class="col-md-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class=" berat form-control"></div>
 <div class="col-md-3">Jurusan:</div>
-<div class="col-md-3"><select name="jurusan" id="jurusan" class="form-control">
+<div class="col-md-3"><select name="jurusan" id="jurusan" class="jurusan form-control">
 <option value="1">OTKP</option>  
 <option value="2">AKL</option>
 <option value="3">BDP</option>
-<option value="4">GRAFIKA</option> 
+<option value="4">DKV</option> 
 <option value="5">TKJT</option>       
 </select> </div>
 </div>
@@ -502,7 +565,7 @@ box-shadow:  20px 20px 60px #095b0f,
   Nomor Hp/Tel Rumah/Ayah/Ibu/Wali
 </div>
 <div class="col-md-9">
-  <input type="number" placeholder="piih salah satu  nomer hp saja (ibu/ayah/wali)" name="no_tel" id="no_tel" class="form-control" >
+  <input type="number" placeholder="piih salah satu  nomer hp saja (ibu/ayah/wali)" name="no_tel" id="no_tel" class="no_tel form-control" >
 </div>
 </div>
 <div class="row mt-3 muncul2" style="margin-top:4%">
@@ -557,7 +620,7 @@ box-shadow:  20px 20px 60px #095b0f,
 
 @endif
   </div>
-  <div class="row mt-3 mb-3" style="margin-top:2%">
+  <div class="row mt-3 mb-3" style="margin-top:2%; margin-bottom:2%">
     <div class="col-md-9"></div>
     <div class="col-md-3 divi">
      <button class="btn btn-md-8 btn-primary slide1" >Selanjutnya</button>
@@ -569,7 +632,7 @@ box-shadow:  20px 20px 60px #095b0f,
 @section('script')
 <script>
 $(document).ready(function(){
- 
+  $('.modalE').modal('show'); 
 $('.muncul2').hide();
 if($('#check').val()==1){
 $('.modaledit').modal('show');
@@ -580,7 +643,7 @@ $('.modaledit').modal('show');
 
 $('.kabupaten').on('change', function(){
 var kabupaten = $(this).val();
-alert(kabupaten);
+
 if(kabupaten){
 $.ajax({
     type:'POST',
@@ -650,7 +713,7 @@ headers: {
 }
 });
 
-$('#form').attr('action','tambah');
+$('#form').attr('action','/pendaftaran/tambah');
 $('#form').attr('method','POST');
 $('#form').attr('enctype','multipart/form-data');
 slide1();
@@ -661,14 +724,26 @@ $('.muncul2').hide();
 $('.muncul1').show();
 $('.divi').html('  <button type="button" class="btn btn-primary slide1">Selanjutnya</button>');
 $('.slide1').click(function(){
-$('.muncul1').hide();
+  nama = false
+ $('.nama, .tempat_lahir, .tgl_lahir, .sd , .smp , .no_hp , .jk , .agama , .transportasi , .kabupaten , .kecamatan , .kelurahan , .nik , .rt , .rw , .kode_pos   ').each(function() {
+  if ($(this).val() == '') {
+    nama +="jojo";
+  }
+});
+if(nama==false){
+ $('.muncul1').hide();
 $('.muncul2').show();
 $('.divi').html('  <button type="button" class="btn btn-primary slide2">Sebelumnya</button><button type="submit" class="btn btn-primary slide3">Kirim</button>');
 $('.slide2').click(function(){
 slide1();
 });
+}
+else{
+  alert("periksa data kembali");
+}
 });
 }
+
 });
 </script>
 @endsection

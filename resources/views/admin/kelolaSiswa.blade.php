@@ -7,7 +7,7 @@ $model="Pendafatran";
 $url="kelolaPendaftaran";
 $role="admin";
 $print="true";
-$columns=['no','nama','aksi'];
+$columns=['no','kode unik','nama','jurusan','tanggal','keterangan','aksi'];
 $data=[
 ['label'=>'Data Diri Siswa'],
 [
@@ -55,13 +55,13 @@ $data=[
     'kosan',
     'kontrakan',
     'pesantren',
-    'rumah sendiri'
+    'rumah pribadi'
 ],
 'isi'=>[
     'kosan',
     'kontrakan',
     'pesantren',
-    'rumah sendiri'
+    'rumah pribadi'
 ],
   'required'=>'required'
 ],
@@ -69,16 +69,16 @@ $data=[
     'nama'=>'Transportasi',
     'name'=>'transportasi',
     'value'=>[
-      'Angkutan Umum',
-      'Mobi Pribadi',
+         'Angkutan Umum',
+      'Mobil Pribadi',
       'Motor Pribadi',
       'Jalan Kaki'
     ],
 'isi'=>[
-      'Berita',
-      'Prestasi',
-      'Eskul',
-      'Bisnis'
+           'Angkutan Umum',
+      'Mobil Pribadi',
+      'Motor Pribadi',
+      'Jalan Kaki'
 ],
 'required'=>'true'
 ],
@@ -392,7 +392,64 @@ $data2=[
 ?>
 @extends('layouts.siswaTemplate')
 @section('var')
-form=['nama','berita'];
+form=[  "nama",
+        "kelurahan",
+        "kecamatan",
+        "alamat",
+        "no_hp",
+        "tgl_lahir",
+        "nisn",
+        'kode_unik',
+        'tahun_ajaran',
+        "jenis_tempat_tinggal",
+        "nik",
+        "jk",
+        "Ijazah",
+        "skhu",
+        "un_smp",
+        "tempat_lahir",
+        "agama",
+        "sd",
+        "smp",
+        "transportasi",
+        "no_tel",
+        "email",
+        "kps",
+        "kph",
+        "kip",
+        "tinggi",
+        "berat",
+        "status",
+        "jarak",
+        "penghasilan_ayah",
+        "penghasilan_wali",
+        "penghasilan_ibu",
+        "nama_ayah",
+        "nama_ibu",
+        "nama_wali",
+        "keadaan_ayah",
+        "keadaan_ibu",
+        "keadaan_wali",
+        "pekerjaan_ibu",
+        "pekerjaan_ayah",
+        "pekerjaan_wali",
+        "kabupaten",
+        "waktu",
+        "saudara",
+        "kode_pos",
+        "kebutuhan_khusus_wali",
+        "kebutuhan_khusus_ibu",
+        "kebutuhan_khusus_ayah",
+        "jurusan",
+        "pendidikan_ayah",
+        "pendidikan_ibu",
+        "pendidikan_wali",
+        "tanggal_lahir_ibu",
+        "tanggal_lahir_ayah",
+        "tanggal_lahir_wali",
+        "rt",
+        "rw",
+        "Jalan"];
 data = [
   {
     'data':'1',
@@ -400,8 +457,21 @@ data = [
         return meta.row + meta.settings._iDisplayStart + 1;
     }
 },
+  {
+        'data':'kode_unik','name':'kode_unik'
+    },
     {
         'data':'nama','name':'nama'
+    },
+   
+     {
+        'data':'jurusan','name':'jurusan'
+    },
+     {
+        'data':'created_at','name':'created_at'
+    },
+    {
+        'data':'keterangan','name':'keterangan'
     },
     {
         'data':'aksi','name':'aksi'

@@ -127,7 +127,7 @@
 		<div class="col-md-12 col-xs-12 col-sm-12"><h4 class="tulisan"><a href="/berita/{{ str_replace(' ' , '-',$rekomens->judul)}}">{{ $rekomens->judul }}</a></h4></div>
 		<div class="col-md-12 col-xs-12 col-sm-12"><h5><i class="fa fa-user"></i>&nbsp;{{ $rekomens->user->name}}</h5></div>
 		<div class="col-md-12 col-xs-12 col-sm-12">	<h5> <i class="fa fa-calendar"></i>&nbsp;{{ $rekomens->created_at }}</h5></div>
-		</div>
+	</div>
 	</div>
 </div>
 @if($i==3)

@@ -8,8 +8,13 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\komentar;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use App\Models\Staff;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +26,28 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+route::get('/data/2', function(){
+    $req=Siswa::get()->toArray();
+  
+    $bulan=Carbon::now()->locale('id');
+    $data = Carbon::parse($req[0]['tgl_lahir'])->translatedFormat(' d F Y');
+    
+    $req[0]['tgl_lahir']=$data;
+    $data = Carbon::parse($req[0]['tanggal_lahir_ayah'])->translatedFormat('d F Y');
+    $req[0]['tanggal_lahir_ayah']=$data;
+    $data = Carbon::parse($req[0]['tanggal_lahir_ibu'])->translatedFormat('d F Y');
+    $req[0]['tanggal_lahir_ibu']=$data;
+    if(  $req[0]['tanggal_lahir_wali']!=null){
+    $data = Carbon::parse($req[0]['tanggal_lahir_wali'])->translatedFormat('d F Y');
+    $req[0]['tanggal_lahir_wali']=$data;
+    }
+    $tanggal = $bulan->dayName.' '.$bulan->monthName.' '. $bulan->year;
+    $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$req[0],'tanggal'=>$tanggal]);
+   
+    $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
+	
+    return $pdf->download('a.pdf');
+});
 Route::get('/', function () {
     $beritas = Berita::latest()->paginate(2);
     $sekolah = Sekolah::get();
@@ -233,6 +259,8 @@ Route::post('/komentar/{judul}',function (Request $req,$judul)
 Route::get('/home', function () {
     return view('welcome');
 })->name('home');
+route::get('/spw',[App\Http\Controllers\SpwController::class,'tampil']);
+route::get('/spw/{data}',[App\Http\Controllers\SpwController::class,'data']);
 Route::get('/prestasi', function () {
     return view('prestasi');
 })->name('home');
@@ -245,6 +273,43 @@ Route::get('/pendaftaran', function () {
     
         return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid]);
 });
+
+Route::group(['prefix'=>'/wirausaha','middleware'=>'spw'],function(){
+    route::get('/home',function(){
+        return view('spw.spwHome');
+    });
+    route::post('/spwHome/tampil',[App\Http\Controllers\PemasukanController::class,'tampil2']);
+ 
+    route::post('/toko/tambah',[App\Http\Controllers\TokoController::class,'tambah']);
+    route::post('/toko/ubah/{tambah}',[App\Http\Controllers\TokoController::class,'ubah']);
+    route::get('/toko/hapus/{tambah}',[App\Http\Controllers\TokoController::class,'hapus']);
+    route::get('/toko/detail/{tambah}',[App\Http\Controllers\TokoController::class,'detail']);
+    route::get('/toko/tampil',[App\Http\Controllers\TokoController::class,'tampil']);
+    route::get('/toko',[App\Http\Controllers\TokoController::class,'show']);
+    route::post('/pemasukan/tambah',[App\Http\Controllers\PemasukanController::class,'tambah']);
+    route::post('/pemasukan/ubah/{tambah}',[App\Http\Controllers\PemasukanController::class,'ubah']);
+    route::get('/pemasukan/hapus/{tambah}',[App\Http\Controllers\PemasukanController::class,'hapus']);
+    route::get('/pemasukan/detail/{tambah}',[App\Http\Controllers\PemasukanController::class,'detail']);
+    route::get('/pemasukan/tampil',[App\Http\Controllers\PemasukanController::class,'tampil']);
+    route::get('/pemasukan',[App\Http\Controllers\PemasukanController::class,'show']);
+
+});
+route::get('/user/ubah',function(){
+    return view('ubah-password');
+});
+route::post('user/password-ubah',function(Request $req){
+   $user = User::where('id',Auth::user()->id);
+   if(Auth::attempt(['email'=>Auth::user()->email,'password'=>$req->password_lama])){
+    $req->validate([
+        'password'=>"min:8|confirmed"
+    ]);
+    $user->update(['password'=>Hash::make($req->password)]);
+    return redirect('/user/ubah')->with(['salah'=>true]);
+   }
+    
+
+});
+route::post('/pendaftaran/tambah/',[App\Http\Controllers\PendaftaranController::class,'tambah']);
 
 Route::group(['prefix'=>'/admin','middleware'=>'user'],function(){
     route::get('/{admin}',[App\Http\Controllers\adminController::class,'halaman']);
