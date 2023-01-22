@@ -266,12 +266,19 @@ Route::get('/prestasi', function () {
 })->name('home');
 Route::get('/pendaftaran', function () {
     $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
+    $tahun = tahun_ajaran::where('status',1)->exists();
+  
     for($i=0; $i<count($kabupatens);$i++){
         $kabname[]=$kabupatens[$i]->name;
         $kabid[]=$kabupatens[$i]->id;
     }
+      if($tahun){
+        return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid,'tahun_ajaran'=>1]);
+    }
+    else{
+         return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid]);
+         }
     
-        return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid]);
 });
 
 Route::group(['prefix'=>'/wirausaha','middleware'=>'spw'],function(){
