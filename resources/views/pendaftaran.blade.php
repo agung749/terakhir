@@ -391,8 +391,8 @@ box-shadow:  20px 20px 60px #095b0f,
 </style>
 
 <section class="home wrapper p-3" style="background: green" id="daftar" data-stellar-background-ratio="0.4">
-  
-  <div class="container box p-5">
+
+  <div class="container box p-5" style="min-height:100%; min-width:100%">
   @if(isset($tahun_ajaran))
 @if($tahun_ajaran==1)
    <a href="http://www.wa.me/+6289520019514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
@@ -636,11 +636,14 @@ box-shadow:  20px 20px 60px #095b0f,
     <div class="col-md-3 divi">
      <button class="btn btn-md-8 btn-primary slide1" >Selanjutnya</button>
     </div>
+ @endif
+ @else
+ <center><h1 style="margin-top:40%">Mohon Maaf pendaftaran Belum Dibuka</centr></h1>
+ @endif
   </div>
 </section>
   @endsection
- @endif
- @endif
+ 
 @section('script')
 <script>
 $(document).ready(function(){
