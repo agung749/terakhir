@@ -638,7 +638,7 @@ box-shadow:  20px 20px 60px #095b0f,
     </div>
  @endif
  @else
- <center><h1 style="margin-top:25%; color:white">Mohon Maaf pendaftaran Belum Dibuka</centr></h1>
+ <center><img src="/santri.png" width="30%"><h1 style="margin-top:15%; margin-bottom:20%; color:white">Mohon Maaf pendaftaran Belum Dibuka</centr></h1>
  @endif
   </div>
 </section>
