@@ -71,22 +71,7 @@ class PendaftaranController extends Controller
     $foto="";
     $foto_ijazah="";
     $foto_skhu="";
-    $req->validate([
-        "nama"=>"required",
-        "kelurahan"=>"required",
-        "kecamatan"=>"required",
-        "no_hp"=>"required",
-        "tgl_lahir"=>"required",
-        "nisn"=>"required|numeric|digits_between:10,11",
-        "jenis_tempat_tinggal"=>"required",
-        "nik"=>"required|numeric|digits_between:16,17",
-        "foto"=>"nullable|mimes:jpg,png|max:3000",
-        "jk"=>"required",
-        "foto_skhu"=>"nullable|mimes:jpg,png|max:3000",
-        "foto_ijazah"=>"nullable|mimes:jpg,png|max:3000",
-        "Ijazah"=>"nullable",
-     
-    ]);
+   
         if($req->file('foto_ijazah')){
             $file= $req->file('foto_ijazah');
             $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
