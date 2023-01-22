@@ -395,7 +395,7 @@ box-shadow:  20px 20px 60px #095b0f,
   <div class="container box p-5" style="min-height:100%; min-width:100%">
   @if(isset($tahun_ajaran))
 @if($tahun_ajaran==1)
-   <a href="http://www.wa.me/+6289520019514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
+   <a href="https://wa.me/+6289520018514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
       <i class="fa  fa-telephone"></i>Kontak Kami
     </button></a>
     <button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
@@ -638,7 +638,9 @@ box-shadow:  20px 20px 60px #095b0f,
     </div>
  @endif
  @else
- <center><img src="/images/santri.png" width="30%"><h1 style="margin-top:15%; margin-bottom:20%; color:white">Mohon Maaf pendaftaran Belum Dibuka</centr></h1>
+ <center><h1 style="margin-top:15%; margin-bottom:2%; color:white">Mohon Maaf pendaftaran Belum Dibuka  <a href="https://wa.me/+6289520018514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
+      <i class="fa  fa-telephone"></i>Kontak Kami
+    </button></a></h1><img src="/images/santri.png" width="30%"><button>/center>
  @endif
   </div>
 </section>
