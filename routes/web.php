@@ -10,6 +10,7 @@ use App\Models\komentar;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use App\Models\Staff;
+use App\\Models\tahun_ajaran;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
