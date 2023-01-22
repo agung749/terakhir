@@ -97,7 +97,7 @@ $data=[
         "number","number","number","file","text","text","file","file","number","number","text"
         ],
     'nama'=>[
-        "No UN SMP","No NISN","No NIK","Foto Diri (tidak wajib diisi) ","Nomor Ijazah (tidak wajib diisi)","No SKHU (tidak wajib diisi)","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS (tidak wajib diisi)","No KPH (tidak wajib diisi)","No KIP (tidak wajib diisi)" ],
+        "No UN SMP","No NISN Sepanjang 10 Digits","NIK Sepanjang 16 digits","Foto Diri (tidak wajib diisi) ","Nomor Ijazah (tidak wajib diisi)","No SKHU (tidak wajib diisi)","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS (tidak wajib diisi)","No KPH (tidak wajib diisi)","No KIP (tidak wajib diisi)" ],
     'placeholder'=>
     [
         "nomor smp","nisn","nik","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps","kph","kip"],
@@ -388,8 +388,14 @@ box-shadow:  20px 20px 60px #095b0f,
     }
 </style>
 <section class="home wrapper p-3" style="background: green" id="daftar" data-stellar-background-ratio="0.4">
-
+  
   <div class="container box p-5">
+   <a href="http://www.wa.me/+6289520019514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
+      <i class="fa  fa-telephone"></i>Kontak Kami
+    </button></a>
+    <button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
+      <i class="fa  fa-telephone"></i>Video Tutorial
+    </button>
     <form id="form" enctype="multipart/form-data">
         @csrf
 @if(isset($data))
