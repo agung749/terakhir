@@ -166,7 +166,7 @@ box-shadow:  20px 20px 40px #cec7cf,
 						<li><a href="/berita">Berita</a></li>
 						<li><a href="/spw">SPW Bos Ku</a></li>
 						<li><a href="/staff">Data Staff</a></li>
-						<li><a href="/login">Login</a></li>
+						
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
