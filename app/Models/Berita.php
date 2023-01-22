@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     use HasFactory;
-    public $table="Berita";
+    public $table="berita";
     protected $fillable=['judul','isi','foto','video','user_id','suka','kategori','tidak_suka'];
     public function komentar()
     {
@@ -17,6 +17,6 @@ class Berita extends Model
     } 
     public function user()
     {
-        return $this->hasOne('App\Models\user','id','user_id');
+        return $this->hasOne('App\Models\User','id','user_id');
     } 
 }
