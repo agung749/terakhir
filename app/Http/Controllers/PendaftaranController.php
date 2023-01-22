@@ -71,7 +71,12 @@ class PendaftaranController extends Controller
     $foto="";
     $foto_ijazah="";
     $foto_skhu="";
-   
+   $req->validate([
+       'foto'=>'nullable|max:300000|mimes:jpg,png,pdf',
+       'foto_skhu'=>'nullable|max:300000|mimes:jpg,png,pdf',
+       'foto_ijazah'=>'nullable|max:300000|mimes:jpg,png,pdf'
+       
+       ]);
         if($req->file('foto_ijazah')){
             $file= $req->file('foto_ijazah');
             $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
