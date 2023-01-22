@@ -638,9 +638,9 @@ box-shadow:  20px 20px 60px #095b0f,
     </div>
  @endif
  @else
- <center><h1 style="margin-top:15%; margin-bottom:2%; color:white">Mohon Maaf pendaftaran Belum Dibuka  <a href="https://wa.me/+6289520018514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
-      <i class="fa  fa-telephone"></i>Kontak Kami
-    </button></a></h1><img src="/images/santri.png" width="30%"><button>/center>
+ <center><h1 style="margin-top:5%; margin-bottom:2%; color:white">Mohon Maaf pendaftaran Belum Dibuka  <br><a href="https://wa.me/+6289520018514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
+      <<i class="fa  fa-telephone"></i>Kontak Kami
+    </button></a></h1><img src="/images/santri.png" width="30%"></center>
  @endif
   </div>
 </section>
