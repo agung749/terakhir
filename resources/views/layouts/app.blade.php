@@ -197,7 +197,6 @@ $('.modal1').modal('show');
 
 });
 $('body').on('click','.ubah',function(){
-  alert('halo');
   data=$(this).data('id');
   $('.l1').html('Ubah Data {{$model}}')
   $('#form').attr('action','/{{$role}}/{{$url}}/ubah/'+data);
@@ -242,9 +241,13 @@ success: (data) => {
 for(i=0; i<form.length; i++){
 
     $('.'+form[i]).val(data[0][form[i]]);
-    if(form[i]=="isi"){
-  myEditor.setData(data[0]['isi']);
+    if(form[i]=="isi"||form[i]=="deskripsi"){
+  myEditor.setData(data[0][form[i]]);
     }
+    if(form[i]=="foto"){
+      continue;
+    }
+    else{
     if(klik==1){
     $('.'+form[i]).removeAttr('disabled');
      }
@@ -253,7 +256,7 @@ for(i=0; i<form.length; i++){
       $('.kirim').attr('disabled',true);
      }
      $('.modal1').modal('show');
-    
+    }
    
 }
 

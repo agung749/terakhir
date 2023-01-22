@@ -20,24 +20,75 @@
 
 @if(isset($print))
    <a href="/{{$role}}/{{$url}}/print">
-    <button class="tambah btn col-3 bg-primary  mt-2 mb-4">
+    <button class=" btn col-3 bg-primary  mt-2 mb-4">
             print
     </button>
   </a>
 @endif
   </div>
-  <div class="col-7">
+  <div class="col-6">
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
+@if(isset($tahun))
+@if($tahun==0)
+  <div class="col-1">
+    <button class="kelas btn col-12 bg-warning mt-2 mb-4">
+    Mulai PPDB
+    </button>
+  </div>
 </div>
+<div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+      Apakah Anda Akan Memulai PPDB  {{ date('Y').'/'.date('Y',strtotime(' +1 year'))}}?
+      </div>
+      <div class="modal-footer">
+        <a href="/admin/kelolaPendaftaran/mulai" class="btn-primary btn-md-3">Mulai</a>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+@if($tahun==1)
+  <div class="col-1">
+    <button class="kelas btn col-12 bg-warning mt-2 mb-4">
+      STOP PPDB 
+    </button>
+  </div>
+</div>
+<div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog  ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+      Apakah Anda Yakin PPDB  {{ date('Y').'/'.date('Y',strtotime(' +1 year'))}} Telah Selesai?
+      </div>
+      <div class="modal-footer">
+        <a href="/admin/kelolaPendaftaran/berhenti" class="btn-primary btn-md-3">Berhenti</a>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+@endif
 @if(!isset($table))
-<table id="tabel-data" class="table table-striped table-bordered"  cellspacing="0">
+<div class="col-md-12">
+<table id="tabel-data" class="table table-striped table-bordered"  cellspacing="0" width="100%">
     <thead>
       @foreach($columns as $column )
             <th>{{$column}}</th>
       @endforeach
     </thead>
 </table>
+</div>
 @endif
 @if(isset($absen))
 <br>
@@ -130,6 +181,21 @@
       <h3>Data Periodik</h3>(<h5 style="color:red; display:inline">Wajib Diisi</h5>)
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-3">
+      Jenis Tempat Tinggal
+    </div>
+    <div class="col-md-9">
+      <select name="Jenis_tempat_tinggal" id="" class="form-control">
+        
+        <option value="kosan">kosan</option>
+        <option value="kontrakan">kontrakan</option>
+         <option value="pesantren">pesantren</option>
+              <option value="pesantren">rumah pribadi</option>
+
+      </select>
+    </div>
+  </div>
 <div class="row mt-3">
   <div class="col-3">Jarak Rumah Ke sekolah:</div>
   <div class="col-3"><input type="text" name="jarak" placeholder="Km" id="jarak" class="jarak form-control"></div>
@@ -148,14 +214,29 @@
 <div class="col-3">Berat Badan:</div>
 <div class="col-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class="berat form-control"></div>
 <div class="col-3">Jurusan:</div>
-<div class="col-3"><select name="jurusan" id="jurusan" class="jurusan form-control">
-<option value="1">OTKP</option>  
-<option value="2">AKL</option>
-<option value="3">BDP</option>
-<option value="4">DKV</option> 
-<option value="5">TKJT</option>       
-</select> </div>
+<div class="col-3">
+<select name="jurusan" id="jurusan" class="jurusan form-control">
+@foreach ($jurusan as $jurusans )
+<option value="{{ $jurusans['id'] }}">{{ $jurusans['jurusan'] }}</option> 
+@endforeach
+         
+</select>
 </div>
+</div>
+@if($model=="Siswa")
+<div class="row">
+  <div class="col-3">
+    Angkatan :
+  </div>
+  <div class="col-9">
+    <select name="tahun_ajaran" id="tahun_ajaran" class="form-control">
+      @foreach ($tahun_ajaran as $tahun_ajarans )
+        <option value="{{  $tahun_ajarans->tahun_ajaran }}">{{  $tahun_ajarans->tahun_ajaran }}</option>
+      @endforeach
+    </select>
+  </div>
+</div>
+@endif
 </div>
 </div>
 @endif
@@ -233,6 +314,8 @@
 </form>
 @endsection
 
+</div>
+</div>
 <div class="modal fade modaledit" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -280,6 +363,9 @@
     $(document).ready(function(){
       
         @yield('var')
+        $('.kelas').click(function(){
+          $('.modalKelas').modal('show');
+        });
         if($('#check').val()==1){
           $('.modaledit').modal('show');
         }

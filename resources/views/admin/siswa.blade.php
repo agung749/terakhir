@@ -3,8 +3,8 @@
 use App\Models\Berita;
 
 $tambah=true;
-$model="Pendafatran";
-$url="kelolaPendaftaran";
+$model="Siswa";
+$url="kelolaSiswa";
 $role="admin";
 $print="true";
 $columns=['no','kode unik','nama','jurusan','tanggal','keterangan','aksi'];

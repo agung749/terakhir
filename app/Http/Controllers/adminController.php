@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\jurusan;
 use Illuminate\Http\Request;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
@@ -12,6 +13,7 @@ use App\Models\Siswa;
 use App\Models\Staff;
 use App\Models\komentar;
 use App\Models\Saran;
+use App\Models\tahun_ajaran;
 
 class adminController extends Controller
 {
@@ -22,6 +24,19 @@ class adminController extends Controller
     public function kelolaBerita()
     {
         return view('admin.kelolaBerita');
+    }
+    public function kelolaSiswa()
+    {
+        $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
+        for($i=0; $i<count($kabupatens);$i++){
+            $kabname[]=$kabupatens[$i]->name;
+            $kabid[]=$kabupatens[$i]->id;
+        }
+
+        $jurusan = jurusan::get()->toArray();
+        $thn_ajaran= tahun_ajaran::where('status',0)->get();
+            return view('admin.siswa',['kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun_ajaran'=>$thn_ajaran]);
+     
     }
     public function kelolaFoto()
     {
@@ -54,15 +69,27 @@ class adminController extends Controller
         $staff['saran_matpel']= Saran::where('kategori','mata pelajaran')->get()->count();
         return view('adminhome',['staff'=>$staff]);
     }
+   
     public function kelolaPendaftaran()
     {
+        $jurusan = jurusan::get()->toArray();
+      
+            $thn_ajaran = tahun_ajaran::where('tahun_ajaran',date('Y').'/'.date('Y',strtotime(' +1 year')))->exists();
+            if($thn_ajaran==false){
+                $tahun = 0;           
+           
+            }
+            else{
+                $tahun = 1;  
+            }
+        
         $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
         for($i=0; $i<count($kabupatens);$i++){
             $kabname[]=$kabupatens[$i]->name;
             $kabid[]=$kabupatens[$i]->id;
         }
         
-            return view('admin.kelolaSiswa',['kabname'=>$kabname,'kabid'=>$kabid]);
+            return view('admin.kelolaSiswa',['kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun'=>$tahun]);
     }
     public function berubah(Request $req)
     {

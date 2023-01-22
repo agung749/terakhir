@@ -309,19 +309,24 @@ route::post('user/password-ubah',function(Request $req){
     
 
 });
+
 route::post('/pendaftaran/tambah/',[App\Http\Controllers\PendaftaranController::class,'tambah']);
 
 Route::group(['prefix'=>'/admin','middleware'=>'user'],function(){
     route::get('/{admin}',[App\Http\Controllers\adminController::class,'halaman']);
     route::post('/berubah',[App\Http\Controllers\adminController::class,'berubah']);
-
+    route::get('/kelolaPendaftaran/mulai',[App\Http\Controllers\PendaftaranController::class,'mulai']);
+    route::get('/kelolaPendaftaran/berhenti',[App\Http\Controllers\PendaftaranController::class,'berhenti']);
+ 
     route::get('/kelolaPendaftaran/tampil',[App\Http\Controllers\PendaftaranController::class,'tampil']);
     route::get('/kelolaPendaftaran/detail/{detail}',[App\Http\Controllers\PendaftaranController::class,'detail']);
     route::post('/kelolaPendaftaran/tambah/',[App\Http\Controllers\PendaftaranController::class,'tambah']);
     route::post('/kelolaPendaftaran/ubah/{ubah}',[App\Http\Controllers\PendaftaranController::class,'ubah']);
     route::get('/kelolaPendaftaran/hapus/{hapus}',[App\Http\Controllers\PendaftaranController::class,'hapus']);
     route::get('/kelolaPendaftaran/print',[App\Http\Controllers\PendaftaranController::class,'print']);
+    route::get('/kelolaPendaftaran/surat/{id}',[App\Http\Controllers\PendaftaranController::class,'surat']);
     route::get('/kelolaPendaftaran/rekap/',[App\Http\Controllers\PendaftaranController::class,'rekap']);
+    route::get('/kelolaPendaftaran/terima/{terima}',[App\Http\Controllers\PendaftaranController::class,'terima']);
     route::get('/kelolaBerita/tampil',[App\Http\Controllers\BeritaController::class,'tampil']);
     route::get('/kelolaBerita/detail/{detail}',[App\Http\Controllers\BeritaController::class,'detail']);
     route::post('/kelolaBerita/tambah/',[App\Http\Controllers\BeritaController::class,'tambah']);

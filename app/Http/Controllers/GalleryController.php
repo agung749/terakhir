@@ -25,6 +25,11 @@ class GalleryController extends Controller
                 ->make(true);
 
     }
+    public function detail($detail)
+    {
+        $foto = Gallery::where('id',$detail)->get();
+        return $foto;
+    }
     public function tambah(Request $req){
         $data = new Gallery();
         $req->validate([

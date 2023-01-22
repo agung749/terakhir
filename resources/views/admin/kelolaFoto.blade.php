@@ -3,6 +3,7 @@ use App\Models\Berita;
 $tambah=true;
 $model="foto";
 $url="kelolaGallery";
+$kelas="1";
 $role="admin";
 $columns=['no','nama','aksi','deskripsi'];
 $inputs=[
@@ -64,7 +65,7 @@ $selects=[
 ?>
 @extends('layouts.app')
 @section('var')
-form=['judul','deskripsi','kategori'];
+form=['nama','deskripsi','foto','kategori'];
 data = [
   {
     'data':'1',

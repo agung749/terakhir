@@ -57,6 +57,7 @@ class Siswa extends Model
         "pekerjaan_wali",
         "kabupaten",
         "waktu",
+        "kelas",
         "saudara",
         "kode_pos",
         "kebutuhan_khusus_wali",
