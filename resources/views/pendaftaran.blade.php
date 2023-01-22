@@ -1,8 +1,7 @@
 @extends('layouts.user')
 @section('isi')
 
-@if(isset($tahun_ajaran))
-@if($tahun_ajaran==1)
+
 <?php
 use App\Models\Berita;
 $data=[
@@ -375,8 +374,7 @@ $data2=[
 
 
 ?>
-@endif
-@endif
+
 <style>
     body{
         color:white;
