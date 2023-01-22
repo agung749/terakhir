@@ -1,6 +1,8 @@
 @extends('layouts.user')
 @section('isi')
 
+@if(isset($tahun_ajaran))
+@if($tahun_ajaran==1)
 <?php
 use App\Models\Berita;
 $data=[
@@ -373,6 +375,8 @@ $data2=[
 
 
 ?>
+@endif
+@endif
 <style>
     body{
         color:white;
@@ -387,9 +391,12 @@ box-shadow:  20px 20px 60px #095b0f,
              -20px -20px 60px #0c7b15;
     }
 </style>
+
 <section class="home wrapper p-3" style="background: green" id="daftar" data-stellar-background-ratio="0.4">
   
   <div class="container box p-5">
+  @if(isset($tahun_ajaran))
+@if($tahun_ajaran==1)
    <a href="http://www.wa.me/+6289520019514"><button class="btn btn-warning btn-md-3 btn-sm-3" style="margin-top:2%">
       <i class="fa  fa-telephone"></i>Kontak Kami
     </button></a>
@@ -634,7 +641,8 @@ box-shadow:  20px 20px 60px #095b0f,
   </div>
 </section>
   @endsection
- 
+ @endif
+ @endif
 @section('script')
 <script>
 $(document).ready(function(){
