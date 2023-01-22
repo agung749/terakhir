@@ -72,6 +72,9 @@ class PendaftaranController extends Controller
     $foto_ijazah="";
     $foto_skhu="";
    $req->validate([
+       'nama'=>'required',
+       'nisn'=>'required|unique:users',
+       'nik'=>'required|digits_between:16,17',
        'foto'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_skhu'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_ijazah'=>'nullable|max:300000|mimes:jpg,png,pdf'
