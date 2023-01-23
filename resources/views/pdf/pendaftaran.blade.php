@@ -41,10 +41,10 @@
 			<td colspan="3" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:105px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Tanggal</span></span></span></span></p>
 			</td>
-			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:19px">
+			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black;  height:21px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="6" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$tanggal}}</span></span></span></span></p>
 			</td>
 		</tr>
