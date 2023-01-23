@@ -1,5 +1,6 @@
  @extends('layouts.user')
  @section('isi')
+@php($ditunggu=2)
  <section class="blog" id="judul" style="background: green; padding-bottom:2%; ">
 	<div class="container">
 		<div class="row">
@@ -11,6 +12,8 @@
 		</div>
 	</div>
 </section>
+
+@if($ditunggu==1)
 <section class="content" id="berita" style="background: white; padding:4%">
 	<div class="container">
 <div class="row box col-md-12 col-xs-12 col-sm-12" style="padding-right: 4%;padding-top: 4%; margin-top:1%">
@@ -53,7 +56,21 @@
 	</div>
 	</div>
 	</div>
+
 	</section>
+	@else
+	<section class="content" id="berita" style="background: white; padding:4%">
+		<div class="container">
+	<div class="row box col-md-12 col-xs-12 col-sm-12" style="padding-right: 4%;padding-top: 4%; margin-top:1%">
+				<center>
+					<img src="/images/santri.png" width="50%" style="margin-top:5%" alt="">
+					<h1 style="margin-bottom:5%">Masih Dalam Pengerjaan</h1>
+				</center>
+	 </div>
+		</div>
+	</section>
+	@endif
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 @section('script')

@@ -555,7 +555,7 @@ box-shadow:  20px 20px 60px #095b0f,
 <div class="row mt-3 mb-4" style="margin-top:4%">
 <div class="col-md-3">Berat Badan:</div>
 <div class="col-md-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class=" berat form-control"></div>
-<div class="col-md-3">Program Kompentensi/div>
+<div class="col-md-3">Program Kompentensi</div>
 <div class="col-md-3"><select name="jurusan" id="jurusan" class="jurusan form-control">
 @foreach($jurusan as $jurusans)
   <option value="{{ $jurusans->id }}">{{ $jurusans->jurusan }}</option>     
