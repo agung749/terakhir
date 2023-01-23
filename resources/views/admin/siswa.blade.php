@@ -101,7 +101,7 @@ $data=[
         "number","number","number","file","text","text","file","file","number","number","text"
         ],
     'nama'=>[
-        "No UN SMP","No NISN","No NIK","Foto Diri ","Nomor Ijazah","No SKHU","Foto Ijazah","Foto SKHU","No KPS","No KPH","No KIP" ],
+        "No UN SMP","No NISN","No NIK","Foto Diri ","Nomor Ijazah","No SKHU","Foto Ijazah","Foto SKHU","No KPS","No PKH","No KIP" ],
     'placeholder'=>
     [
         "diisi untuk siswa tingkat 10 s.d 12","nisn","nik","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps (Kartu Perlindungan Sosial)","pkh (Program Keluarga Harapan)","kip"],
