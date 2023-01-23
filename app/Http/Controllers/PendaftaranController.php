@@ -184,6 +184,8 @@ class PendaftaranController extends Controller
    $C[0]['kecamatan']=$kecamatan[0]->name;
    $C[0]['kabupaten']=$kabupaten[0]->name;
    $C[0]['kelurahan']=$kelurahan[0]->name;
+   $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
+   $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan;
     }
       
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
@@ -337,6 +339,8 @@ class PendaftaranController extends Controller
         $C[0]['kabupaten']=$kabupaten[0]->name;
         $C[0]['kecamatan']=$kecamatan[0]->name;
         $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
+        $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
+        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan;
          $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
         return $pdf->download($req->nama.'.pdf');
        
@@ -387,6 +391,8 @@ class PendaftaranController extends Controller
         $C[0]['kelurahan']=$kelurahan[0]->name;
         $C[0]['kabupaten']=$kabupaten[0]->name;
         $C[0]['kecamatan']=$kecamatan[0]->name;
+        $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
+        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan;
          $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
           $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
          return $pdf->download($C[0]['nama'].'.pdf');
