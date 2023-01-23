@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Kabupaten;
 use App\Models\Berita;
 use App\Models\Gallery;
+use App\Models\jurusan;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\komentar;
@@ -268,16 +269,16 @@ Route::get('/prestasi', function () {
 Route::get('/pendaftaran', function () {
     $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
     $tahun = tahun_ajaran::where('status',1)->exists();
-  
+    $jurusan = jurusan::get();
     for($i=0; $i<count($kabupatens);$i++){
         $kabname[]=$kabupatens[$i]->name;
         $kabid[]=$kabupatens[$i]->id;
     }
       if($tahun){
-        return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid,'tahun_ajaran'=>1]);
+        return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid,'tahun_ajaran'=>1,'jurusan'=>$jurusan]);
     }
     else{
-         return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid]);
+         return view('pendaftaran',['kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan]);
          }
     
 });

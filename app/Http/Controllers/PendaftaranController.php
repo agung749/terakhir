@@ -181,8 +181,9 @@ class PendaftaranController extends Controller
    if($C[0]['tanggal_lahir_wali']!=null){
    $data = Carbon::parse($C[0]['tanggal_lahir_wali'])->translatedFormat('d F Y');
    $C[0]['tanggal_lahir_wali']=$data;
-   
-   
+   $C[0]['kecamatan']=$kecamatan[0]->name;
+   $C[0]['kabupaten']=$kabupaten[0]->name;
+   $C[0]['kelurahan']=$kelurahan[0]->name;
     }
       
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
