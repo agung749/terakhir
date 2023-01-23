@@ -98,10 +98,10 @@ $data=[
         "number","number","number","file","text","text","file","file","number","number","text"
         ],
     'nama'=>[
-        "No UN SMP","No NISN Sepanjang 10 Digits","NIK Sepanjang 16 digits","Foto Diri (tidak wajib diisi) ","Nomor Ijazah (tidak wajib diisi)","No SKHU (tidak wajib diisi)","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS (tidak wajib diisi)","No PKH (tidak wajib diisi)","No KIP (tidak wajib diisi)" ],
+        "No UN SMP　(Tidak wajib diisi)","No NISN Sepanjang 10 Digits","NIK Sepanjang 16 digits","Foto Diri (tidak wajib diisi) ","Nomor Ijazah (tidak wajib diisi)","No SKHU (tidak wajib diisi)","Foto Ijazah (tidak wajib diisi)","Foto SKHU (tidak wajib diisi)","No KPS (tidak wajib diisi)","No PKH (tidak wajib diisi)","No KIP (tidak wajib diisi)" ],
     'placeholder'=>
     [
-        "nomor smp","nisn","nik","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps","kph","kip"],
+        "nomor smp","nisn","nik　sepanjang 16 digits","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps","kph","kip"],
     'value'=>[
         "","","","","","","","","","",""],
      'required'=>["","required","required","","","","","","","",""]
