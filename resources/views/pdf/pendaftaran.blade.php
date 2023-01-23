@@ -28,32 +28,23 @@
        </thead>
 	<tbody>
 		<tr>
-			<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
-			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Kode<span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">
+			<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:85px">
+			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">
             </span></span></span></span></p>
 			</td>
-			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:28px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td colspan="7" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:396px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['kode_unik']}}</span></span></span></span></p>
 			</td>
-			<td style="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
-			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Program Kompetensi</span></span></span></span></p>
-			</td>
-			<td  style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
-				<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
-			</td>
-			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
-				<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{ $req['jurusan'] }}</span></span></span></span></p>
-			</td>
-			<td  style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td colspan="3" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:105px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Tanggal</span></span></span></span></p>
 			</td>
-			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td  colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
+			<td colspan="6" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$tanggal}}</span></span></span></span></p>
 			</td>
 		</tr>
@@ -94,13 +85,13 @@
 			<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; width:261px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['agama']}}</span></span></span></span></p>
 			</td>
-			<td colspan="7" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; ">
+			<td colspan="4" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Jenis Kelamin</span></span></span></span></p>
 			</td>
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; ">
+			<td colspan="8" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:20px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">@if($req['jk']==1)
 				Laki-Laki
 				@else
@@ -119,13 +110,13 @@
 			<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; width:261px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['Ijazah']}}</span></span></span></span></p>
 			</td>
-			<td colspan="7" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; ">
+			<td colspan="4" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">No SKHU</span></span></span></span></p>
 			</td>
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; ">
+			<td colspan="8" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:42px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['skhu']}}</span></span></span></span></p>
 			</td>
 		</tr>
@@ -139,13 +130,13 @@
 			<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; width:261px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['un_smp']}}</span></span></span></span></p>
 			</td>
-			<td colspan="7" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
+			<td colspan="4" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">No NISN</span></span></span></span></p>
 			</td>
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
+			<td colspan="8" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{$req['nisn']}}</span></span></span></span></p>
 			</td>
 		</tr>
@@ -192,13 +183,13 @@
 			<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; width:261px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{ucwords($req['kabupaten'])}}</span></span></span></span></p>
 			</td>
-			<td colspan="7" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
+			<td colspan="4" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Kecamatan</span></span></span></span></p>
 			</td>
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; width:19px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="5" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
+			<td colspan="8" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">{{ucwords($req['kecamatan'])}}</span></span></span></span></p>
 			</td>
 		</tr>
@@ -280,7 +271,7 @@
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; width:20px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
 			</td>
-			<td colspan="15" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
+			<td colspan="6" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">@if($req['keadaan_ayah']=='Meninggal'&& $req['keadaan_ibu']=='Meninggal' )</span></span></span></span></p>
 
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Yatim Piatu</span></span></span></span></p>
@@ -301,6 +292,9 @@
 
 			<p>&nbsp;</p>
 			</td>
+			<td colspan="5">Program Kompetensi</td>
+			<td>:</td>
+			<td colspan="5">{{ $req['jurusan'] }}</td>
 		</tr>
 		<tr>
 			<td colspan="19" style="background-color:#00b050; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:21px; vertical-align:top; ">
