@@ -17,7 +17,6 @@
 </head>
 <body>
     <table cellspacing="0"  style=" border-collapse:collapse; tborder:none; ">
-
        <thead>
        <tr style="mso-yfti-irow:2">
               <td colspan="19" >
@@ -30,7 +29,7 @@
 		<tr>
 			<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:85px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">
-            </span></span></span></span></p>
+            </span>Kode</span></span></span></p>
 			</td>
 			<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:21px; vertical-align:top; width:28px">
 			<p><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">:</span></span></span></span></p>
