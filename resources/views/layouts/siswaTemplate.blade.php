@@ -213,7 +213,7 @@
 <div class="row mt-3 mb-4">
 <div class="col-3">Berat Badan:</div>
 <div class="col-3"><input type="number" name="berat" placeholder="berat/kg" id="berat" class="berat form-control"></div>
-<div class="col-3">Jurusan:</div>
+<div class="col-3"> Program Kompetensi:</div>
 <div class="col-3">
 <select name="jurusan" id="jurusan" class="jurusan form-control">
 @foreach ($jurusan as $jurusans )

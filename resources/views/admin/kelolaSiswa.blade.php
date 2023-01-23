@@ -7,7 +7,7 @@ $model="Pendafatran";
 $url="kelolaPendaftaran";
 $role="admin";
 $print="true";
-$columns=['no','kode unik','nama','jurusan','tanggal','keterangan','aksi'];
+$columns=['no','kode unik','nama','program kompentensi','tanggal','keterangan','aksi'];
 $data=[
 ['label'=>'Data Diri Siswa'],
 [
