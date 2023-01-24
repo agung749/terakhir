@@ -388,5 +388,5 @@ route::get('/berkas-data',function(){
     return view('berkas');
 });
 route::get('/berkas/tampil',[App\Http\Controllers\berkasController::class,'tampil_user']);
-Auth::routes(['register'=>false,'reset='>false]);
+Auth::routes(['register'=>true,'reset='>false]);
 

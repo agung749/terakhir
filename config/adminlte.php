@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'SMK PLUS ASHABULYAMIN',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -302,6 +302,12 @@ return [
             'url'  => 'wirausaha/home',   
             'icon' => 'fas fa-fw fa-home',
             'can'=>'spw'
+        ],
+        [
+            'text' => 'Kelola Berkas Siswa',
+            'url'  => 'admin/berkas',  
+            'icon' => 'fas fa-fw fa-file',
+            'can'=>'admin'
         ],
         [
             'text' => 'Toko',
