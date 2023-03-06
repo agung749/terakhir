@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\staff;
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -30,7 +30,7 @@ class staffImport implements ToModel
             'password'=>Hash::make('12345678'),
             'role'=>$role
         ]);
-        return new staff([
+        return new Staff([
             'id_guru'=>$row[0],
             'nama'=>$row[2],
             'nuptk'=>$row[3],

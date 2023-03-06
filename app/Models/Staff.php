@@ -11,6 +11,5 @@ class Staff extends Model
     public $table="staff";
      public $fillable=[
         "nama","nuptk",'tgl_masuk',"tanggal_lahir","alamat","pedidikan_terakhir","jabatan","jk","foto","jenis","tempat_lahir","email","no_hp",'id_guru'
-
     ];
 }
