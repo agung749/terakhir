@@ -17,7 +17,7 @@ class staffImport implements ToModel
     public function model(array $row)
     {
      
-     
+     if($row[0]!=null){
         if($row[0]==1){
             $role=5;
         }
@@ -45,5 +45,7 @@ class staffImport implements ToModel
             'no_hp'=>$row[11],
             'tgl_masuk'=>$row[12]
         ]);
+
+    }
     }
 }
