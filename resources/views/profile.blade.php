@@ -6,7 +6,7 @@
 			<div class="col-md-12">
                 <marquee behavior="" direction="right">Selamat Datang Di SMK Ashabulyamin</marquee>
 				<h3 style="color:white" class="post-title">Profile</h3>
-                <h1  style="color:white; display:inline-block"class="post-title">Profile {{ $profiles[0] }}</h1><h2 style="float:right" id="timestamp"></h2>
+                <h1  style="color:white; display:inline-block"class="post-title">Profile {{ $profile[0]->nama }}</h1><h2 style="float:right" id="timestamp"></h2>
             </div>
 		</div>
 	</div>
