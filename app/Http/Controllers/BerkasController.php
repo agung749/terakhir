@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\berkas;
+use App\Models\Berkas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
