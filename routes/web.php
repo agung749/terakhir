@@ -190,7 +190,7 @@ Route::get('/staff', function (Request $req) {
     }
  
     if(isset($req->cari)){
-    $cari = Staff::where('judul','like','%'.$req->cari.'%')->paginate(5);
+    $cari = Staff::where('judul','like','%'.$req->cari.'%')->paginate(6);
    
     }
     else{

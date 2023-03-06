@@ -87,18 +87,17 @@
                     </div> 
                     @endif                  
                 
-                	
-		
-			
-			
 			</div>
-			
+		<DIV>
+        {{ $cari->paginate() }}
+        </DIV>	
 		</div>
 		</div>
+        
 	</section>
 
 @endsection
 @section('script')
-	]
+	
 
 @endsection
