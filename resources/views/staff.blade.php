@@ -89,7 +89,7 @@
                 
 			</div>
 		<DIV>
-        {{ $cari->paginate() }}
+      
         </DIV>	
 		</div>
 		</div>
