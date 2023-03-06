@@ -56,6 +56,9 @@
                                       <h4>  {{ $staff->judul }}</h4>
                                     </div>
                                     <div class="foto">
+                                        @if($staff->foto==null)
+                                        <?php $staff->foto="user.png"?>
+                                        @endif
                                         <img src="/images/data_guru/{{ $staff->foto }}" class="img-thumb" width="80%" alt="">
                                     </div>
                                     <div class="tanggal" style="padding:1%">
@@ -71,7 +74,7 @@
                                     </div>
                                 </div>
                                 @php($i++)
-                                @if($i%3==0)
+                                @if($i%3==1)
                             </div>
                             <div class="row">
                             @endif
