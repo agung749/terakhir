@@ -136,8 +136,8 @@ Route::get('/berita/kategori/{judul}', function ($kategori1) {
         break;
 
     }
-    $beritas = Berita::where('kategori',$kategori1)->paginate(3);
-    return view('profile',['cari'=>$beritas,'judul'=>$judul,'kategori'=>$kategori,]);
+    $beritas = Berita::where('kategori',$kategori1)->paginate(6);
+    return view('daftar-berita',['cari'=>$beritas,'judul'=>$judul,'kategori'=>$kategori,]);
     
 });
 route::post('/berubah',function (Request $req)
@@ -191,10 +191,9 @@ Route::get('/staff', function (Request $req) {
  
     if(isset($req->cari)){
     $cari = Staff::where('judul','like','%'.$req->cari.'%')->paginate(6);
-   
     }
     else{
-        $cari = Staff::paginate(5);
+        $cari = Staff::paginate(6);
     }
     return view('staff',['cari'=>$cari,'kategori'=>$kategori]);
 });
