@@ -14,7 +14,7 @@ class berkasController extends Controller
       
  
 
-            $data = berkas::latest()->get();
+            $data = Berkas::latest()->get();
 
             return DataTables::of($data)
                   ->addIndexColumn()
