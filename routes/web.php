@@ -87,10 +87,7 @@ Route::get('/staff/{judul}', function ($judul) {
     for($i=0;$i<=3;$i++){
     $kategori[$i]=  Staff::where('jenis',$staff[$i])->get()->count();
     }
- 
-    
-    $judul = str_replace("-"," ",$judul);
-    $beritas=staff::get();
+    $beritas=staff::where('id',$judul);
     return view('profile',['profile'=>$beritas,'kategori'=>$kategori]);
     
 })->name('berita');

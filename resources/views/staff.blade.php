@@ -66,7 +66,7 @@
                                        <b>{{ $staff->jenis }}
                                     </div>
                                     <div class="baca">
-                                       <a href="/staff/{{ str_replace(' ','-',$staff->nama) }}"> <button class="mt-2 btn btn-primary btn-sm">
+                                       <a href="/staff/{{ $staff->id }}"> <button class="mt-2 btn btn-primary btn-sm">
                                                 Lihat Profile
                                         </button>
                                        </a>
