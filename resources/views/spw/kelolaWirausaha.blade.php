@@ -1,9 +1,9 @@
 <?php
-$model="Admin";
-$url="kelolaAdmin";
+$model="wirausaha";
+$url="kelolaAdminSPW";
 $columns=['no','nama','aksi'];
 $tambah=true;
-$role="admin";
+$role="wirausaha";
 $inputs=[
     'nama'=>[
         'email'
@@ -21,23 +21,6 @@ $inputs=[
     'value'=>[''],
     'required'=>['required']
 ];
-$selects=[
-  'role'=>[
-    'name'=>"role",
-    'nama'=>"jenis",
-    "isi"=>[
-      'admin',
-      'eskul',
-      'spw'
-],
-'value'=>[
-  '1',
-  '2',
-  '3'
-],
-'required'=>'required'
-  ]
-]
 ?>
 @extends('layouts.app')
 @section('var')

@@ -15,18 +15,28 @@ class user
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,$r)
     {
-       
+
         if(isset(Auth::user()->role)){
-            if(Auth::user()->role!=1){
-                return redirect()->back();
+            if(Auth::user()->role==1&&$r=="admin"){
+                return $next($request);
             }
-            return $next($request);
+            else if(Auth::user()->role==2&&$r=="guru"){
+                return $next($request);
+            }
+           else if(Auth::user()->role==3&&$r=="wirausaha"){
+                return $next($request);
+            }
+           else if(Auth::user()->role==1&&$r=="kepala"){
+                return $next($request);
+            }
+            else{
+            return redirect()->back();
         }
-        else{
-            return redirect('/login');
         }
+        return redirect()->back();
+        
     
     }
 }

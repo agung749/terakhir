@@ -23,6 +23,11 @@
             print
     </button></a>
 @endif
+@if(isset($import))
+  <button class="btn col-3 bg-secondary import  mt-2 mb-4">
+            Import
+    </button>
+@endif
   </div>
   <div class="col-7">
     <b><h2>Kelola Data {{ $model  }}</h2></b>
@@ -31,6 +36,7 @@
 <style>
 
 </style>
+
 <table id="tabel-data" class="table table-striped table-bordered" width="100%"  cellspacing="0">
     <thead>
       @foreach($columns as $column )
@@ -38,6 +44,7 @@
       @endforeach
     </thead>
 </table>
+
 @if(isset($absen))
 <br>
 <div>
@@ -104,7 +111,30 @@
 </div>
 </form>
 @endsection
-
+<div class="modal fade modalImport" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title l2" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="/{{$role}}/{{ $url }}/import" enctype="multipart/form-data">
+        @csrf
+      <div class="modal-body modal-body2">
+        <tr>
+          <td>Data Import</td>
+          <td>:</td>
+          <td><input type="file" name="fileImport" class="form-control"></td>
+        </tr>
+     
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary btn-lg">Kirim</button>
+    </div>
+  </form>
+    </div>
+  </div>
+</div>
 <div class="modal fade modaledit" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -178,6 +208,9 @@ processing: true,
 serverSide: true,
 ajax: "/{{$role}}/{{$url}}/tampil",
 columns: data
+});
+$('.import').click(function(){
+  $('.modalImport').modal('show');
 });
 $('.tambah').click(function(){
   for(i=0; i<form.length; i++){

@@ -12,7 +12,7 @@ class toko extends Model
     protected $fillable=['id', 'nama', 'isi', 'lokasi','foto','owner_id'];
     public function  pemasukan()
     {
-        return $this->hasMany('App\Models\pemasukan','id','toko_id');
+        return $this->hasMany('App\Models\pemasukan','toko_id','id');
     }
     public function  owner()
     {

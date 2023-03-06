@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\staffImport;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class StaffController extends Controller
 {
+  public function import(Request $req)
+  {
+    Excel::import(new staffImport,$req->file('fileImport'));
+  }
 public function detail($detail)
 {
   $data=Staff::where('id',$detail)->get();

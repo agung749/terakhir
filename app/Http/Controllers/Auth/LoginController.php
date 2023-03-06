@@ -49,6 +49,9 @@ class LoginController extends Controller
             if($user[0]->role==3){
                 return redirect('/wirausaha/home'); 
             }
+            if($user[0]->role==2){
+                return redirect('/guru/home'); 
+            }
             else if($user[0]->role==1){
                 return redirect('/admin/home'); 
             }

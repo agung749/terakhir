@@ -3,6 +3,7 @@
 $model="Staff";
 $url="kelolaStaff";
 $tambah=true;
+$import=true;
 $role="admin";
 $print="true";
 $columns=['no','nama','jabatan','aksi'];

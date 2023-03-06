@@ -304,8 +304,14 @@ return [
             'can'=>'spw'
         ],
         [
+            'text' => 'Kelola Wira Usaha',
+            'url'  => 'wirausaha/home',   
+            'icon' => 'fas fa-fw fa-home',
+            'can'=>'spw'
+        ],
+        [
             'text' => 'Kelola Berkas Siswa',
-            'url'  => 'admin/berkas',  
+            'url'  => 'admin/kelolaBerkasSiswa',  
             'icon' => 'fas fa-fw fa-file',
             'can'=>'admin'
         ],

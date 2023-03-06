@@ -38,9 +38,16 @@ class userControllers extends Controller
   }
   public function tambah(Request $user)
   {
-    $user1 = new User;
-  
-    $user1->create(['email'=>$user->email,'name'=>$user->nama,'role'=>$user->role,'password'=>Hash::make("12345678")]);  
-    return redirect()->back()->with(['success'=>'data berhasil ditambah']);
+    $user1=User::where('email',$user->email)->exists();
+    if($user1){
+    $user1=User::where('email',$user->email);
+    $user1->update(['role'=>$user]);
+      return redirect('/admin/admin')->with(['success'=>'data berhasil ditambah']);     
+    }
+    else{
+      return redirect('/admin/admin')->with(['success'=>'data user tidak ada']); 
+    }
+
+ 
   }
 }

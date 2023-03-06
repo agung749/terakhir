@@ -10,7 +10,7 @@ class Staff extends Model
     use HasFactory;
     public $table="staff";
      public $fillable=[
-        "nama","nuptk",'tgl_masuk',"tanggal_lahir","alamat","pedidikan_terakhir","jabatan","jk","foto","jenis","tempat_lahir","email","no_hp"
+        "nama","nuptk",'tgl_masuk',"tanggal_lahir","alamat","pedidikan_terakhir","jabatan","jk","foto","jenis","tempat_lahir","email","no_hp",'id_guru'
 
     ];
 }

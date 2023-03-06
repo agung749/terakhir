@@ -1,9 +1,11 @@
 <?php $model="Pemasukan";
-$tambah=true;
 $url="pemasukan";
 $role="wirausaha";
 
-$columns=['no','bulan','tahun','pemasukan','aksi'];
+$columns=['no','nama toko','bulan','tahun','pemasukan','aksi'];
+if($isi!=null){
+$tambah=true;
+$print=true;
 $inputs=[
     'nama'=>[
          'pemasukan','foto'
@@ -79,7 +81,8 @@ $selects=[
 ],
 'required'=>'required'
 ]
-];?>
+];}
+?>
 @extends('layouts.app')
 @section('var')
 form=['pemasukan','bulan','tahun'];
@@ -89,6 +92,9 @@ data = [
     render: function (data, type, row, meta) {
         return meta.row + meta.settings._iDisplayStart + 1;
     }
+},
+{
+  'data':'nama','name':'nama'
 },
     {
         'data':'bulan','name':'bulan'

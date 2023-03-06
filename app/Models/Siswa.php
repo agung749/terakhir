@@ -9,7 +9,7 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table="siswa";
-    
+
     public $fillable=[
         "nama",
         "kelurahan",
@@ -73,4 +73,8 @@ class Siswa extends Model
         "rt",
         "rw",
         "Jalan"];
+        public function classes()
+        {
+        return $this->hasOne('\App\Models\Kelas','id','kelas');
+        }
 }

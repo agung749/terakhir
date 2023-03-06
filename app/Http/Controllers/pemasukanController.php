@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\rekapPenghasilanExport;
 use App\Models\pemasukan;
 use App\Models\toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class pemasukanController extends Controller
@@ -14,10 +17,14 @@ class pemasukanController extends Controller
     {
         $data = toko::where('owner_id',Auth::user()->id)->get()->toArray();
         $isi=[];
+        if($data!=null){
         foreach($data as $datas){
             $isi['nama'][]=$datas['nama'];
             $isi['id'][]=$datas['id'];
         }
+    }
+    else{
+    }
         return view('spw.pemasukan',['isi'=>$isi]);       
     }
     public function tambah(Request $req)
@@ -26,6 +33,7 @@ class pemasukanController extends Controller
         'tahun'=>'required'
       
     ]);
+    if(pemasukan::where('toko_id',$req->toko))
     $Pemasukan = new Pemasukan();
     $foto="";
     $video="";
@@ -38,7 +46,7 @@ class pemasukanController extends Controller
     }
  
     $user= Auth::user()->id;
-    $Pemasukan->create([
+$Pemasukan->create([
         'toko_id'=>$req->toko,
         'pemasukan'=>$req->pemasukan,
         'foto'=>$foto,
@@ -52,20 +60,35 @@ class pemasukanController extends Controller
     }
    public function tampil()
    {
-    $data = pemasukan::latest()->get();
+    $user = Auth::user();
+    $data = toko::where('owner_id',$user->id)->with('pemasukan')->get();
+    $arr=[];
+for($i=0;$i<count($data);$i++){
+    for($u=0;$u<count($data[$i]->pemasukan);$u++){
+        $arr[]=$data[$i]->pemasukan[$u];
+    }
+};
 
-    return DataTables::of($data)
+    return DataTables::of($arr)
           ->addIndexColumn()
            ->addColumn('aksi', function($row){
-                   $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-primary btn-sm">Edit</a>&nbsp;&nbsp;<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm">Hapus</a>&nbsp;&nbsp;';
+                $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-primary btn-sm">Edit</a>&nbsp;&nbsp;<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm">Hapus</a>&nbsp;&nbsp;';
                  return $btn;
 
             })->addColumn('pemasukan', function($row){
                 $btn = "Rp.".$row->pemasukan;
                 return $btn;
 
-         })
-            ->rawColumns(['aksi','pemasukan'])
+         })->addColumn('bulan', function($row){
+            $btn=$row->bulan;
+            return $btn;
+        })->addColumn('tahun', function($row){
+            $btn=$row->tahun;
+            return $btn;
+        })->addColumn('nama', function($row){
+            $toko = toko::where('id',$row->toko_id)->get();
+            return $toko[0]->nama;
+        })->rawColumns(['aksi','pemasukan','nama'])
 
             ->make(true);
    }
@@ -121,5 +144,9 @@ public function tampil2()
         $i++;
     }
     return DataTables::of($data);
+}
+public function print()
+{
+  return Excel::download(new rekapPenghasilanExport , 'rekap penghasilan toko.xlsx');   
 }
 }

@@ -93,8 +93,8 @@ class TokoController extends Controller
     {
       
  
-
-            $data = Toko::latest()->get();
+$user = Auth::user();
+            $data = Toko::where('owner_id',$user->id)->get();
 
             return DataTables::of($data)
                   ->addIndexColumn()

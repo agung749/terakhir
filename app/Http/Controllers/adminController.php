@@ -17,6 +17,10 @@ use App\Models\tahun_ajaran;
 
 class adminController extends Controller
 {
+public function kelolaBerkasSiswa()
+{
+    return view('admin.kelolaBerkasSiswa');
+}
     public function halaman($req)
     {
         return $this->$req();

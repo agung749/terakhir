@@ -18,7 +18,7 @@ $columns=['Nama Berkas','Aksi'];
 <section class="content">
 <div class="container">
 <div class="box col-md-12 col-xs-12 col-sm-12"   >
-\
+
         <table id="tabel-data" style="min-height:300px" class="table table-striped table-bordered" width="100%" cellspacing="0">
             <thead>
                 <th></th>
