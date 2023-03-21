@@ -105,15 +105,6 @@ class PendaftaranController extends Controller
     $kecamatan= Kecamatan::where('id',$req->kecamatan)->get();
     $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
-    $kelas1= kelas::where('jurusan',$req->jurusan)->where('posisi',1)->latest()->get();
-  
-    if($kelas1[0]->jumlah_terisi==$kelas1[0]->jumlah){
-        $nama = explode(' ',$kelas1[0]->nama);
-        $nama = $nama[0].' '.$nama[1].' '.($nama[2]+1);
-        kelas::create(['nama'=>$nama,'jumlah'=>35,'posisi'=>1,'jumlah_terisi'=>0,'jurusan'=>$req->jurusan]);
-        $kelas1= kelas::where('jurusan',$req->jurusan)->where('posisi',1)->where('jumlah_terisi',0)->get();
-    }
-
     $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
     Siswa::create([
         "nama"=>$req->nama,
@@ -178,7 +169,7 @@ class PendaftaranController extends Controller
         'tahun_ajaran'=>$thn_ajaran,
         'kode_pos'=>$req->kode_pos,
         'kode_unik'=>$kode_unik,
-        'kelas'=>$kelas1[0]->id
+        'kelas'=>null
         ]
     );
    $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
