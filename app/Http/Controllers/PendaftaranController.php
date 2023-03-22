@@ -67,6 +67,20 @@ class PendaftaranController extends Controller
         }
         return redirect()->back();
     }
+    public function show() {
+        $kabupatens = Kabupaten::where('province_id', '32')->get(['name', 'id']);
+        $tahun = tahun_ajaran::where('status', 1)->exists();
+        $jurusan = jurusan::get();
+        for ($i = 0; $i < count($kabupatens); $i++) {
+            $kabname[] = $kabupatens[$i]->name;
+            $kabid[] = $kabupatens[$i]->id;
+        }
+        if ($tahun) {
+            return view('pendaftaran', ['kabname' => $kabname, 'kabid' => $kabid, 'tahun_ajaran' => 1, 'jurusan' => $jurusan]);
+        } else {
+            return view('pendaftaran', ['kabname' => $kabname, 'kabid' => $kabid, 'jurusan' => $jurusan]);
+        }
+    }
    public function tambah(Request $req){
     $foto="";
     $foto_ijazah="";
@@ -255,10 +269,7 @@ class PendaftaranController extends Controller
         $kecamatan= Kecamatan::where('id',$req->kecamatan)->get();
         $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
         $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
-        $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
-        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
         $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
-       
         $siswa->update([
             "nama"=>$req->nama,
             "kelurahan"=>$req->kelurahan,
@@ -323,28 +334,7 @@ class PendaftaranController extends Controller
             'kode_pos'=>$req->kode_pos,
             'kode_unik'=>$kode_unik]
         );
-       $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
-       $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F Y');
-       $C['0']['tgl_lahir'] = $data;
-       $data = Carbon::parse($C[0]['tanggal_lahir_ayah'])->translatedFormat('d F Y');
-       $C[0]['tanggal_lahir_ayah']=$data;
-       $data = Carbon::parse($C[0]['tanggal_lahir_ibu'])->translatedFormat('d F Y');
-       $C[0]['tanggal_lahir_ibu']=$data;
-       if($C[0]['tanggal_lahir_wali']!=null){
-       $data = Carbon::parse($C[0]['tanggal_lahir_wali'])->translatedFormat('d F Y');
-       $C[0]['tanggal_lahir_wali']=$data;
-        }
-        $kelurahan=Kelurahan::where('id',$req->kelurahan)->get('name');
-        $kecamatan= Kecamatan::where('id',$req->kecamatan)->get('name');
-        $kabupaten= Kabupaten::where('id',$req->kabupaten)->get('name');
-        $C[0]['kelurahan']=$kelurahan[0]->name;
-        $C[0]['kabupaten']=$kabupaten[0]->name;
-        $C[0]['kecamatan']=$kecamatan[0]->name;
-        $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
-        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
-        $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
-         $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-        return $pdf->download($req->nama.'.pdf');
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
        
     }
     public function print(){

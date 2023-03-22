@@ -22,9 +22,6 @@
 <div class="col-12  p-5  " style="background:#ddeedd">
     <h3><center>Ubah Data Password</center></h3>
     <form action="/user/password-ubah" method="post">
- 
- 
-    
       @csrf
     <div class="col-12">
       <h4>Password Lama</h4>
