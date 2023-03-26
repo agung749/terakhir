@@ -1,3 +1,4 @@
+<?php $pem=0?>
 @extends('adminlte::page')
 @section('content')
 <div class="col-12 wrapper p-5 "  style="background:#ddeedd;overflow:scroll; height:100%">
@@ -54,6 +55,71 @@
   </div>
 </div>
 @endif
+<div class="modal fade modalRiwayat " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog  ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" >Pembayaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+        <div class="row">
+         <div class="col-md-8"> Nomer Pembayaran</div>
+         <div class="col-md-4"> Aksi </div>
+        </div>
+        <div class="jawaban">
+
+        </div>
+      </div>
+    </form>  
+    </div>
+  </div>
+</div>
+<div class="modal fade modalTerima " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog  ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" >Pembayaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+      <form id="terima">
+        @CSRF
+      @foreach ($pembayarans as $pembayaran )
+      @php($pem+=$pembayaran->nominal)
+        <div class="row">
+          <div class="col-md-12 mt-3">{{ $pembayaran->nama }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="1000"  max="{{ $pembayaran->nominal }}"></div>
+        </div>
+      @endforeach
+      <div class="row">
+        <div class="col-md-12">
+          <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <b> Total Bayar :
+          RP.<b class="nominalBayar"> 0</b></b>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+     <div class="row">
+    
+       
+       
+      
+            <button  type="submit" class=" btn btn-primary btn-md-3">Simpan</button>
+      </div>
+      </div>
+
+    </form>  
+    </div>
+  </div>
+</div>
 @if($tahun==1)
   <div class="col-1">
     <button class="kelas btn col-12 bg-warning mt-2 mb-4">
@@ -186,7 +252,7 @@
       Jenis Tempat Tinggal
     </div>
     <div class="col-md-9">
-      <select name="Jenis_tempat_tinggal" id="" class="form-control">
+      <select name="jenis_tempat_tinggal" id="" class="jenis_tempat_tinggal form-control">
         
         <option value="kosan">kosan</option>
         <option value="kontrakan">kontrakan</option>
@@ -361,7 +427,77 @@
                 console.error( error );
             } );
     $(document).ready(function(){
+
+      $('body').on('click','.terima',function(){
+        total=0;
+        id=$(this).data('id');
+        $('.uang').val("0");
+        $("#terima").attr({'action':'/admin/kelolaPendaftaran/terima/'+id,'method':'POST'});
+        $('.modalTerima').modal('show');
       
+      });
+      $('body').on('click','.riwayat',function(){
+        id = $(this).data('id')  
+        $.ajax({
+                type:'GET',
+                url:'/admin/kelolaPendaftaran/riwayat/'+id,
+                
+                success:function(data){
+                  tampil="";
+                  for(i=0;i<data.length;i++){
+                   tampil +="<div class='row mt-4'><div class='col-md-8'>"+data[i]['noPembayaran']+'</div><div class="col-md-4"><a href="/admin/kelolaPendaftaran/cetakKwitansi/'+data[i]['noPembayaran']+'" class="btn btn-success">Cetak Kwitansi</a></div></div>'
+                   }
+                   $('.jawaban').html(tampil);
+                }
+            }); 
+            $('.modalRiwayat').modal('show');
+      });
+       $('body').on('click','.cicil',function(){
+        id = $(this).data('id'); 
+        $('.uang').val("0");
+        $.ajax({
+                type:'GET',
+                url:'/admin/kelolaPendaftaran/cicilTampil/'+id,
+                success:function(datas){
+                  i=0;
+                 uang=[];
+                   $('.uang').each(function(){
+                   uang [i]= $(this).attr('name'); 
+                  i++;
+                    });
+
+                    sum=0;
+                  for(let i=0;  i<datas.length; i++){
+                   nama=datas[i]['jenis_pembayaran'];
+                   nama = nama.replace(' ','_');
+                   uang[i] = uang[i].replace(' ','_');
+                    if(uang[i]==nama){
+                    $('#'+uang[i]).attr('max',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+                    $('#'+uang[i]).attr('placeholder',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+                   
+                    }
+                    console.log(nama);
+                   console.log(uang[i]);
+                    sum += datas[i]['total_tunggakan']-datas[i]['total_bayar'];
+                  
+                  }
+                  $("#terima").attr({'action':'/admin/kelolaPendaftaran/cicil/'+id,'method':'POST'});
+
+                  $('.pemsb').text('RP. '+sum);
+                  $('.modalTerima').modal("show");
+                }
+              });
+      });
+total=0;
+ 
+      $('.uang').change(function(){
+          $('.uang').each(function(){
+            total += parseInt($(this).val());
+            $('.nominalBayar').text(total);
+          })
+          total = 0;
+        });
+     
         @yield('var')
         $('.kelas').click(function(){
           $('.modalKelas').modal('show');

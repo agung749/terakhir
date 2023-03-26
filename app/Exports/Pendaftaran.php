@@ -7,9 +7,9 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithTitle;
 
-class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithTitle, WithHeadings
+
+class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -138,10 +138,7 @@ class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithTi
     $row->tanggal_lahir_wali,
         ];
     }
-    public function title(): string
-    {
-        return "Data Pendaftar Tahun ".date('Y');
-    }
+ 
 
     public function collection()
     {

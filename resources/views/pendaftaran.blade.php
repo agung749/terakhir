@@ -131,7 +131,7 @@ $data2=[
 ],
   'selects'=>[
 'penghasilan_ayah'=>[
-    'nama'=>'Penghasilan ayah',
+    'nama'=>'Penghasilan Ayah',
     'name'=>'penghasilan_ayah',
     'value'=>[
       'Tidak Bepenghasilan',
@@ -483,7 +483,7 @@ box-shadow:  20px 20px 60px #095b0f,
       Jenis Tempat Tinggal
     </div>
     <div class="col-md-9">
-      <select name="Jenis_tempat_tinggal" id="Jenis_tempat_tinggal" class=" Jenis_tempat_tinggal form-control">
+      <select name="jenis_tempat_tinggal" id="jenis_tempat_tinggal" class=" jenis_tempat_tinggal form-control">
 
         <option value="kosan">kosan</option>
         <option value="kontrakan">kontrakan</option>

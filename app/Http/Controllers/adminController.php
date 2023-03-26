@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\data_pembayaran;
 use App\Models\jurusan;
 use Illuminate\Http\Request;
 use App\Models\Kabupaten;
@@ -31,6 +32,7 @@ public function kelolaBerkasSiswa()
     }
     public function kelolaSiswa()
     {
+     
         $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
         for($i=0; $i<count($kabupatens);$i++){
             $kabname[]=$kabupatens[$i]->name;
@@ -39,7 +41,7 @@ public function kelolaBerkasSiswa()
 
         $jurusan = jurusan::get()->toArray();
         $thn_ajaran= tahun_ajaran::where('status',0)->get();
-            return view('admin.siswa',['kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun_ajaran'=>$thn_ajaran]);
+            return view('admin.siswa',['pembayarans'=>$pembayarans,'kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun_ajaran'=>$thn_ajaran]);
      
     }
     public function kelolaFoto()
@@ -86,14 +88,15 @@ public function kelolaBerkasSiswa()
             else{
                 $tahun = 1;  
             }
-        
+            $pembayarans = data_pembayaran::where('semester',1)->orWhere('semester','7')->orWhere('semester','8')->orWhere('semester','9')->get();
+         
         $kabupatens=Kabupaten::where('province_id','32')->get(['name','id']);
         for($i=0; $i<count($kabupatens);$i++){
             $kabname[]=$kabupatens[$i]->name;
             $kabid[]=$kabupatens[$i]->id;
         }
         
-            return view('admin.kelolaSiswa',['kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun'=>$tahun]);
+            return view('admin.kelolaSiswa',['pembayarans'=>$pembayarans,'kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun'=>$tahun]);
     }
     public function berubah(Request $req)
     {
@@ -133,5 +136,8 @@ public function kelolaBerkasSiswa()
     }
     public function kelolaBerkas(){
         return view('admin.kelolaBerkas');
+    }
+    public function kelolaDataPembayaran(){
+        return view('admin.data_pembayaran');
     }
 }

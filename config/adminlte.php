@@ -370,6 +370,25 @@ return [
             'can'=>'admin'
         ],
         [
+            'text' => 'Keuangan Siswa',     
+            'icon'    => 'fas fa-fw fa-dollars',
+            'can'=>'admin',
+            'submenu'=>[
+                [
+                    'text' => 'Mater Pembayaran',
+                    'url'  => 'admin/kelolaDataPembayaran',   
+                    'icon'    => 'fas fa-fw fa-book',
+                    'can'=>'admin'
+                ],
+                [
+                    'text' => 'Data Cicilan',
+                    'url'  => 'admin/kelolaDataCicilan',   
+                    'icon'    => 'fas fa-fw fa-book',
+                    'can'=>'admin'
+                ],
+            ]
+        ],
+        [
             'text'    => 'Administrasi',
             'icon'    => 'fas fa-fw fa-users',
             'can'=>'admin',

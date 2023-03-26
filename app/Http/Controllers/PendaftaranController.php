@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\Pendaftaran;
+use App\Exports\rekapLaporanSheet;
+use App\Models\data_cicilan;
+use App\Models\data_pembayaran;
+use App\Models\data_tunggakan;
 use App\Models\jurusan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
@@ -85,6 +89,7 @@ class PendaftaranController extends Controller
     $foto="";
     $foto_ijazah="";
     $foto_skhu="";
+
    $req->validate([
        'nama'=>'required',
        'email'=>'required',
@@ -95,9 +100,8 @@ class PendaftaranController extends Controller
        'foto'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_skhu'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_ijazah'=>'nullable|max:300000|mimes:jpg,png,pdf'
-       
        ]);
-        if($req->file('foto_ijazah')){
+           if($req->file('foto_ijazah')){
             $file= $req->file('foto_ijazah');
             $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
             $file-> move('images/data_siswa',  $foto_ijazah);
@@ -120,13 +124,13 @@ class PendaftaranController extends Controller
     $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
     $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
-    Siswa::create([
+     $siswa = Siswa::create([
         "nama"=>$req->nama,
         "kelurahan"=>$req->kelurahan,
         "kecamatan"=>$req->kecamatan,
         "alamat"=>$req->jalan.' '.'RT  '.$req->rt.'RW '.$req->rw.' '.$kelurahan[0]->name.' '.$kecamatan[0]->name.$kabupaten[0]->name.' Jawa Barat',
         "no_hp"=>$req->no_hp,
-        "jenis_tempat_tinggal"=>$req->Jenis_tempat_tinggal,
+        "jenis_tempat_tinggal"=>$req->jenis_tempat_tinggal,
         "tgl_lahir"=>$req->tgl_lahir,
         "nisn"=>$req->nisn,
         "nik"=>$req->nik,
@@ -165,6 +169,9 @@ class PendaftaranController extends Controller
         "pekerjaan_wali"=>$req->pekerjaan_wali,
         "kabupaten"=>$req->kabupaten,
         "waktu"=>$req->waktu,
+        "point"=>0,
+        "jenis_siswa"=>1,
+        "total_tunggakan"=>0,
         "saudara"=>$req->saudara,
         "kebutuhan_khusus_wali"=>$req->kebutuhan_khusus_wali,
         "kebutuhan_khusus_ibu"=>$req->kebutuhan_khusus_ibu,
@@ -186,6 +193,7 @@ class PendaftaranController extends Controller
         'kelas'=>null
         ]
     );
+ 
    $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
    $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F Y');
    $C['0']['tgl_lahir'] = $data;
@@ -196,7 +204,6 @@ class PendaftaranController extends Controller
    if($C[0]['tanggal_lahir_wali']!=null){
    $data = Carbon::parse($C[0]['tanggal_lahir_wali'])->translatedFormat('d F Y');
    $C[0]['tanggal_lahir_wali']=$data;
- 
     }
     $C[0]['kecamatan']=$kecamatan[0]->name;
     $C[0]['kabupaten']=$kabupaten[0]->name;
@@ -276,7 +283,7 @@ class PendaftaranController extends Controller
             "kecamatan"=>$req->kecamatan,
             "alamat"=>$req->jalan.' '.'RT  '.$req->rt.'RW '.$req->rw.' '.$kelurahan[0]->name.' '.$kecamatan[0]->name.$kabupaten[0]->name.' Jawa Barat',
             "no_hp"=>$req->no_hp,
-            "jenis_tempat_tinggal"=>$req->Jenis_tempat_tinggal,
+            "jenis_tempat_tinggal"=>$req->jenis_tempat_tinggal,
             "tgl_lahir"=>$req->tgl_lahir,
             "nisn"=>$req->nisn,
             "nik"=>$req->nik,
@@ -337,12 +344,60 @@ class PendaftaranController extends Controller
         return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
        
     }
-    public function print(){
-        return Excel::download(new Pendaftaran,'Pendaftaran Siswa Tahun '.date('Y').'.xlsx');
+    public function cetakKwitansi($data)
+    {
+        $data = data_cicilan::where('noPembayaran',$data)->with(['tunggakan','tunggakan.siswa'])->get();
+        $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data]);
+         return $pdf->download('kwitansi.pdf');
     }
-    public function terima($detail){
+    public function print(){
+        return Excel::download(new rekapLaporanSheet,'Pendaftaran Siswa Tahun '.date('Y').'.xlsx');
+    }
+    public function terima($detail,Request $req){
     $siswa=Siswa::where('id',$detail);
     $isi=$siswa->get();
+    $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
+    $pembayarans = data_pembayaran::where('semester',1)->orWhere('semester','7')->orWhere('semester','8')->orWhere('semester','9')->get();
+    $i=0;
+    $frak = date("DmY").$detail.rand(1,100);
+    foreach($pembayarans as $pembayaran){
+  
+    $nama = str_replace(" ","_",$pembayaran->nama);
+    if($req->$nama==null){
+        $req->$nama=0;
+    }
+       if($pembayaran->nominal==$req->$nama){
+        $status=1;
+       }
+       else if($pembayaran->nominal>$req->$nama){
+        $status=0;
+    } 
+    else{
+    return redirect('/admin/kelolaPendaftaran')->withError('data salah');
+    }
+        $dataT =  data_tunggakan::create([
+            "jenis_tunggakan"=>$pembayaran->nama,
+            "id_siswa"=>$detail,
+            "tunggakan"=>$pembayaran->nominal,
+            "total_bayar"=>$req->$nama,
+            "semester"=>1,
+            "total_tunggakan"=>$pembayaran->nominal,
+            "jenis_pembayaran"=>$pembayaran->nama,
+            'status'=>$status,
+            'tahun_ajaran'=>$thn_ajaran
+        ]);
+        $dataT = $dataT->get();
+        data_cicilan::create([
+            "noPembayaran"=>$frak,
+            "id_siswa"=>$detail,
+            "id_tunggakan"=>$dataT[$i]->id,
+            'pembayaran'=>$dataT[$i]->total_bayar
+        ]);
+        
+
+        $i++;
+    }
+    $dataZ= data_cicilan::where('id_siswa',$detail)->with(['tunggakan','tunggakan.siswa'])->get();
     $kelas = Kelas::where('jurusan',$isi[0]->jurusan)->where('jumlah_terisi','<=','0');
     if($kelas->exists()){
         $x=$kelas->get();
@@ -362,8 +417,10 @@ class PendaftaranController extends Controller
             "jurusan"=>$jurusans[0]->id,
         ]);
     }
+    
     $siswa->update(['status'=>'2']);
-    return redirect()->back()->with(['success'=>'data berhasil diubah']);
+    $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ]);
+    return $pdf->download('kwitansi.pdf');
     }
     public function surat($id){
         $C = Siswa::where('id',$id)->get()->toArray(); 
@@ -461,15 +518,38 @@ class PendaftaranController extends Controller
             } 
         return $print;
     }
+    public function cicil($data)
+    {
+        # code...
+    }
+    public function cicilTampil($data)
+    {
+        return data_tunggakan::where('id_siswa',$data)->get();
+    }
+    public function riwayat($data)
+    {
+       $cicilan =  data_cicilan::where('id_siswa',$data)->get(['id','noPembayaran'])->unique('noPembayaran');
+       return $cicilan;
+    }
     public function tampil()
     {
-        $data = Siswa::where('status',0)->get();
+        $data = Siswa::where('status',0)->orWhere('status',2)->get();
         return DataTables::of($data)
               ->addIndexColumn()
                ->addColumn('aksi', function($row){
-                       $btn = '<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/terima/'.$row->id.'" class="terima btn btn-primary btn-sm"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
-                     return $btn;
-
+                if($row->status==0){     
+                $btn = '<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                }
+                else{
+                    $tunggakan = data_tunggakan::where('status',0)->count();
+                    if($tunggakan==0){
+                    $btn = '<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>';
+                    }
+                    else{
+                        $btn = '<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                    }
+                }  
+                return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
                     case 1 :
