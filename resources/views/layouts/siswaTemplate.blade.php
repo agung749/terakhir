@@ -121,8 +121,8 @@
   </div>
 </div>
 @if($tahun==1)
-  <div class="col-1">
-    <button class="kelas btn col-12 bg-warning mt-2 mb-4">
+  <div class="col-md-2">
+    <button class="kelas btn col-md-12 bg-warning mt-2 mb-4">
       STOP PPDB 
     </button>
   </div>
