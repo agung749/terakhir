@@ -53,7 +53,7 @@ class kelolaBerkasSiswaController extends Controller
   }
     public function tampil()
     {
-        $data =  Siswa::where('status',1)->with('classes')->get();
+        $data =  Siswa::where('status',1)->orWhere('status',2)->with('classes')->get();
         
         return DataTables::of($data)
         ->addIndexColumn()
