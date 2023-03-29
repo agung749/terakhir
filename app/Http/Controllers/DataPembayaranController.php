@@ -63,6 +63,7 @@ return $pesan;
       "semester"=>$req->semester,
       "nama"=>$req->nama
     ]);
+return redirect()->back();
    }
    public function hapus($req)
    {
