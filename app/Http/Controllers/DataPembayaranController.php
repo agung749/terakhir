@@ -38,7 +38,10 @@ class DataPembayaranController extends Controller
                ->rawColumns(['aksi'])
                ->make(true);
 
-   }
+   }public function detail($req){
+$pesan = data_pembayaran::where('id',$req)->get();
+return $pesan;
+}
    public function tambah(Request $req)
    {
     $req->validate([
@@ -52,13 +55,20 @@ class DataPembayaranController extends Controller
     ]);
     return redirect('/admin/kelolaDataPembayaran')->with(['success'=>'data berhasil dimasukan']);
    }
-   public function ubah(Request $req)
+   public function ubah(Request $req,$data)
    {
-    # code...
+     $data1 = data_pembayaran::where('id',$data);
+    $data1->update([
+      "nominal"=>$req->nominal,
+      "semester"=>$req->semester,
+      "nama"=>$req->nama
+    ]);
    }
-   public function hapus(Request $req)
+   public function hapus($req)
    {
-    # code...
+    $data_pembayaran = data_pembayaran::where('id',$req);
+     $data_pembayaran->delete()
+     return redirect()->back();
    }
 
 }
