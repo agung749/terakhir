@@ -2,11 +2,13 @@
 
 namespace App\Exports;
 
-use App\Models\siswa;
+use App\Models\Siswa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+
+
 
 
 class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHeadings

@@ -91,7 +91,7 @@
           <div class="col-md-12 mt-3">{{ $pembayaran->nama }}</div>
         </div>
         <div class="row">
-          <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="1000"  max="{{ $pembayaran->nominal }}"></div>
+          <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="0"  max="{{ $pembayaran->nominal }}"></div>
         </div>
       @endforeach
       <div class="row">

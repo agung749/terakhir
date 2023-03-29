@@ -157,4 +157,4 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     
 });
 
-Auth::routes(['register' => false, 'reset=' > false]);
+Auth::routes(['register' => true, 'reset=' > false]);
