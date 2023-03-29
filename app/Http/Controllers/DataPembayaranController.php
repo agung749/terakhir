@@ -68,7 +68,7 @@ return redirect()->back();
    public function hapus($req)
    {
     $data_pembayaran = data_pembayaran::where('id',$req);
-     $data_pembayaran->delete()
+     $data_pembayaran->delete();
      return redirect()->back();
    }
 
