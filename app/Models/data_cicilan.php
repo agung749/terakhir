@@ -9,7 +9,7 @@ class data_cicilan extends Model
 {
     use HasFactory;
     protected $table="data_cicilan";
-    protected $fillable=["id","noPembayaran","id_siswa","id_tunggakan","pembayaran"];
+    protected $fillable=["id","noPembayaran","id_siswa","id_tunggakan","admin","pembayaran"];
  
         public function tunggakan()
         {

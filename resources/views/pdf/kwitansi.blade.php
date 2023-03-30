@@ -120,7 +120,7 @@
                 <td>{{ "Cianjur ".date("d-M-Y") }}</td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
+                <td>Petuags Piket</td>
                 <td>&nbsp;</td>
              
                 <td>Bendahara SMK Plus Ashabulyamin</td>
@@ -150,7 +150,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
+                <td>{{$tunggakans[0]->admin}}</td>
                 <td>&nbsp;</td>
                 <td>Dadin Jamaludin, SH.MM</td>
             </tr>

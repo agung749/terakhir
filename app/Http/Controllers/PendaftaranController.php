@@ -17,6 +17,7 @@ use App\Models\tahun_ajaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 class PendaftaranController extends Controller
@@ -190,7 +191,8 @@ class PendaftaranController extends Controller
         'tahun_ajaran'=>$thn_ajaran,
         'kode_pos'=>$req->kode_pos,
         'kode_unik'=>$kode_unik,
-        'kelas'=>null
+        'kelas'=>null,
+       
         ]
     );
  
@@ -277,6 +279,8 @@ class PendaftaranController extends Controller
         $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
         $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
         $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
+     
+        $name = Auth::user()->name;
         $siswa->update([
             "nama"=>$req->nama,
             "kelurahan"=>$req->kelurahan,
@@ -339,7 +343,9 @@ class PendaftaranController extends Controller
             'status'=>0,
             'tahun_ajaran'=>$thn_ajaran,
             'kode_pos'=>$req->kode_pos,
-            'kode_unik'=>$kode_unik]
+            'kode_unik'=>$kode_unik,
+            "admin"=>$name
+            ]
         );
         return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
        
@@ -391,7 +397,8 @@ class PendaftaranController extends Controller
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
             "id_tunggakan"=>$dataT[$i]->id,
-            'pembayaran'=>$dataT[$i]->total_bayar
+            'pembayaran'=>$dataT[$i]->total_bayar,
+            'admin'=>Auth::user()->name
         ]);
         
 

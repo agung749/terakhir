@@ -535,7 +535,8 @@ box-shadow:  20px 20px 60px #095b0f,
       <div class="modal-body" style="color:black">
       Calon Siswa mengisi data dengan benar <br>
         Melakukan konfirmasi pendaftaran di sekolah dengan membawa dokumen ktp orangtua/wali dan kk serta memperlihatkan bukti pendaftaran
-       
+       <br>
+        <b>catatan : ketentuan pas foto atau foto diri berupa foto dengan ukuran 3x4 , berpakaian formal baju smp dan berlatar bebas.<b>
       </div>
       <div class="modal-footer">
        
