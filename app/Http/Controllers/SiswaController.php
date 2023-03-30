@@ -56,7 +56,6 @@ class SiswaController extends Controller
     $kecamatan= Kecamatan::where('id',$req->kecamatan)->get();
     $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
-    
     $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
     Siswa::create([
         "nama"=>$req->nama,
@@ -131,15 +130,12 @@ class SiswaController extends Controller
    $C[0]['tanggal_lahir_ibu']=$data;
    if($C[0]['tanggal_lahir_wali']!=null){
    $data = Carbon::parse($C[0]['tanggal_lahir_wali'])->translatedFormat('d F y');
-   $C[0]['tanggal_lahir_wali']=$data;
-   
-   
+   $C[0]['tanggal_lahir_wali']=$data;   
     }
-      
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F y');
-     $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
+    $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
     return $pdf->download($req->nama.'.pdf');
-   
+
 }
    public function hapus(Request $req,$hapus){
     $siswa=Siswa::where('id',$hapus);
@@ -173,7 +169,8 @@ class SiswaController extends Controller
     
     }
     public function detail($print){
-        $print = Siswa::where('id',$print)->get(["nama",
+        $print = Siswa::where('id',$print)->get([
+        "nama",
         "kelurahan",
         "kecamatan",
         "alamat",
@@ -234,11 +231,8 @@ class SiswaController extends Controller
         $kelurahans=Kecamatan::where('regency_id',$print[0]->kabupaten)->get();
             for($i=0;$i<count($kelurahans);$i++) {
                 $print[0]->kec .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
-            }
-           
-        
+            }        
             $kelurahans=Kelurahan::where('district_id',$print[0]->kecamatan)->get();
-        
             for($i=0;$i<count($kelurahans);$i++) {
                 $print[0]->kel .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
             } 
@@ -255,8 +249,8 @@ class SiswaController extends Controller
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
                     case 1 :
-                        return "OTKP";
-                        break;
+                            return "OTKP";
+                            break;
                     case 2 :
                             return "AKL";
                             break;
@@ -267,8 +261,8 @@ class SiswaController extends Controller
                             return "DKV";
                             break;
                             case 5 :
-                                return "TKJT";
-                                break;
+                            return "TKJT";
+                            break;
                    } 
                
 
