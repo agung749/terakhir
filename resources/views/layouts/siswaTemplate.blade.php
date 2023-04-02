@@ -75,8 +75,8 @@
     </div>
   </div>
 </div>
-<div class="modal fade modalTerima " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog  ">
+<div class="modal fade modalTerima  " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content col-12" > 
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" >Pembayaran</h5>
@@ -85,15 +85,35 @@
       <div class="modal-body ">
       <form id="terima">
         @CSRF
+        <?php $i=0?>
       @foreach ($pembayarans as $pembayaran )
+
       @php($pem+=$pembayaran->nominal)
+      @if($i==0)
         <div class="row">
+          <div class="col-md-5">
           <div class="col-md-12 mt-3">{{ $pembayaran->nama }}</div>
-        </div>
-        <div class="row">
+          <?php
+$pembayaran->nama = str_replace(",","_",$pembayaran->nama);
+$pembayaran->nama = str_replace(" ","_",$pembayaran->nama);
+$pembayaran->nama = str_replace(".","_",$pembayaran->nama);
+?>
           <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="0"  max="{{ $pembayaran->nominal }}"></div>
-        </div>
+         </div>
+          @php($i=1)
+      @else  
+      <div class="col-md-2"></div>
+      <div class="col-md-5">
+      <div class="col-md-12 mt-3">{{ $pembayaran->nama }}</div>
+      <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="0"  max="{{ $pembayaran->nominal }}"></div>
+      </div>
+      </div>
+        @php($i=0)
+      @endif
       @endforeach
+      @if($i==1)
+      </div>
+      @endif
       <div class="row">
         <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
@@ -107,11 +127,7 @@
       </div>
       </div>
       <div class="modal-footer">
-     <div class="row">
-    
-       
-       
-      
+     <div class="row">  
             <button  type="submit" class=" btn btn-primary btn-md-3">Simpan</button>
       </div>
       </div>
@@ -444,9 +460,11 @@
                 
                 success:function(data){
                   tampil="";
+                  console.log(data.length);
                   for(i=0;i<data.length;i++){
-                   tampil +="<div class='row mt-4'><div class='col-md-8'>"+data[i]['noPembayaran']+'</div><div class="col-md-4"><a href="/admin/kelolaPendaftaran/cetakKwitansi/'+data[i]['noPembayaran']+'" class="btn btn-success">Cetak Kwitansi</a></div></div>'
-                   }
+                   tampil +="<div class='row mt-4'><div class='col-md-8'>"+data[i]['noPembayaran']+'</div><div class="col-md-4"><a href="/admin/kelolaPendaftaran/cetakKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-success"><i class="fa fa-print"></i></a>&nbsp;<a href="/admin/kelolaPendaftaran/hapusKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-danger"><i class="fa fa-trash"></i></a></div></div>'
+                
+                  }
                    $('.jawaban').html(tampil);
                 }
             }); 
@@ -469,12 +487,14 @@
                     sum=0;
                   for(let i=0;  i<datas.length; i++){
                    nama=datas[i]['jenis_pembayaran'];
-                   nama = nama.replace(' ','_');
-                   uang[i] = uang[i].replace(' ','_');
+                   nama = nama.replace( /[.,\s]/g,'_');
+                   
+              
+                 
                     if(uang[i]==nama){
                     $('#'+uang[i]).attr('max',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
                     $('#'+uang[i]).attr('placeholder',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
-                   
+                    
                     }
                     console.log(nama);
                    console.log(uang[i]);

@@ -350,10 +350,14 @@ class PendaftaranController extends Controller
         return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
        
     }
-    public function cetakKwitansi($data)
+    public function cetakKwitansi($data1)
     {
-        $data = data_cicilan::where('noPembayaran',$data)->with(['tunggakan','tunggakan.siswa'])->get();
-        $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data]);
+        $data = data_cicilan::where('noPembayaran',$data1)->with(['tunggakan','tunggakan.siswa'])->get();
+        $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
+        $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->sum('pembayaran');
+        $tunggakan = data_tunggakan::where('id_siswa',$data[0]->id_siswa)->sum('total_tunggakan');
+        $sisa = $tunggakan - $total;
+        $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data,'total'=>$total,'tagihan'=>$sisa,'totcil'=>$totcil])->setPaper('a4','landscape');
          return $pdf->download('kwitansi.pdf');
     }
     public function print(){
@@ -362,13 +366,17 @@ class PendaftaranController extends Controller
     public function terima($detail,Request $req){
     $siswa=Siswa::where('id',$detail);
     $isi=$siswa->get();
+    
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
     $pembayarans = data_pembayaran::where('semester',1)->orWhere('semester','7')->orWhere('semester','8')->orWhere('semester','9')->get();
     $i=0;
+    $total=0;
+    $tagihan=0;
     $frak = date("DmY").$detail.rand(1,100);
     foreach($pembayarans as $pembayaran){
-  
-    $nama = str_replace(" ","_",$pembayaran->nama);
+    $nama = str_replace(",","_",$pembayaran->nama); 
+    $nama = str_replace(" ","_",$nama);
+    $nama = str_replace(".","_",$nama);
     if($req->$nama==null){
         $req->$nama=0;
     }
@@ -400,11 +408,13 @@ class PendaftaranController extends Controller
             'pembayaran'=>$dataT[$i]->total_bayar,
             'admin'=>Auth::user()->name
         ]);
-        
-
+        $total+=$dataT[$i]->total_bayar;
+        $tagihan+=$pembayaran->nominal;
         $i++;
+        
     }
     $dataZ= data_cicilan::where('id_siswa',$detail)->with(['tunggakan','tunggakan.siswa'])->get();
+    
     $kelas = Kelas::where('jurusan',$isi[0]->jurusan)->where('jumlah_terisi','<=','0');
     if($kelas->exists()){
         $x=$kelas->get();
@@ -426,7 +436,7 @@ class PendaftaranController extends Controller
     }
     
     $siswa->update(['status'=>'2']);
-    $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ]);
+    $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'tagihan'=>$tagihan,'totcil'=>$total,'total'=>$total]);
     return $pdf->download('kwitansi.pdf');
     }
     public function surat($id){
@@ -525,18 +535,78 @@ class PendaftaranController extends Controller
             } 
         return $print;
     }
-    public function cicil($data)
-    {
-        # code...
+    public function cicil($data,Request $req)
+    {   $total=0;
+        $tagihan=0;
+        $frak = date("DmY").$data.rand(1,100);
+        $pembayarans = data_tunggakan::where('id_siswa',$data)->get();
+        foreach($pembayarans as $pembayaran){
+        $nama = str_replace(",","_",$pembayaran->jenis_pembayaran); 
+        $nama = str_replace(" ","_",$nama);
+        $nama = str_replace(".","_",$nama);
+        if($req->$nama==null){
+            $req->$nama=0;
+        }
+           if($pembayaran->total_tunggakan==($req->$nama+$pembayaran->total_bayar)){
+            $status=1;
+           }
+           else if($pembayaran->total_tunggakan>$req->$nama){
+            $status=0;
+        } 
+        else{
+        return redirect('/admin/kelolaPendaftaran')->withError('data salah');
+        }
+        data_tunggakan::where('id',$pembayaran->id)->update([
+            'total_bayar'=>($pembayaran->total_bayar+$req->$nama),
+            'status'=>$status
+        ]);
+            data_cicilan::create([
+                "noPembayaran"=>$frak,
+                "id_siswa"=>$data,
+                "id_tunggakan"=>$pembayaran->id,
+                'pembayaran'=>$req->$nama,
+                'admin'=>Auth::user()->name
+            ]);
+            $total+=$req->$nama;
+            $tagihan+=$pembayaran->total_tunggakan;
+       
+        }
+        $totcil =  data_tunggakan::where('id_siswa',$data)->sum("total_bayar");
+        $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan','tunggakan.siswa'])->get();
+        $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'total'=>$total,'tagihan'=>($tagihan-$totcil),'totcil'=>$totcil])->setPaper('a4','landscape');
+         return $pdf->download('kwitansi.pdf'); 
     }
+
     public function cicilTampil($data)
     {
         return data_tunggakan::where('id_siswa',$data)->get();
     }
+    public function hapusKwitansi($data)
+    {
+        $isi = data_cicilan::where('noPembayaran',$data)->get();
+        $cek = data_cicilan::where('id_siswa',$isi[0]->id_siswa)->where('noPembayaran','!=',$data)->exists();
+        if($cek==false){
+            Siswa::where('id',$isi[0]->id_siswa)->update(['status'=>0]);
+            data_tunggakan::where('id',$isi[0]->id_siswa)->delete();
+            data_cicilan::where('noPembayaran',$data)->delete();
+        }
+       else if($cek==true){
+            foreach($isi as $is){
+               $tunggak=data_tunggakan::where('id',$is->id_tunggakan)->get('total_bayar');
+               data_tunggakan::where('id',$is->id_tunggakan)->update(['total_bayar'=>$tunggak[0]->total_bayar-$is->pembayaran]);
+               data_cicilan::where('noPembayaran',$data)->delete();
+            }
+        }
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
+    }
     public function riwayat($data)
     {
-       $cicilan =  data_cicilan::where('id_siswa',$data)->get(['id','noPembayaran'])->unique('noPembayaran');
-       return $cicilan;
+       $cicilan =  data_cicilan::where('id_siswa',$data)->get()->unique('noPembayaran');
+       $cil0=[]; 
+       foreach($cicilan as $cil){
+        $cil0 []=$cil;
+        }
+       return $cil0;
     }
     public function tampil()
     {

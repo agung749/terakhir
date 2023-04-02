@@ -96,6 +96,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/kelolaPendaftaran/print', [App\Http\Controllers\PendaftaranController::class, 'print']);
     route::get('/kelolaPendaftaran/riwayat/{id}', [App\Http\Controllers\PendaftaranController::class, 'riwayat']);
     route::get('/kelolaPendaftaran/cetakKwitansi/{id}', [App\Http\Controllers\PendaftaranController::class, 'cetakKwitansi']);
+    route::get('/kelolaPendaftaran/hapusKwitansi/{id}', [App\Http\Controllers\PendaftaranController::class, 'hapusKwitansi']); 
     route::get('/kelolaPendaftaran/cicilTampil/{id}', [App\Http\Controllers\PendaftaranController::class, 'cicilTampil']);
     route::get('/kelolaPendaftaran/surat/{id}', [App\Http\Controllers\PendaftaranController::class, 'surat']);
     route::get('/kelolaPendaftaran/rekap/', [App\Http\Controllers\PendaftaranController::class, 'rekap']);
@@ -157,4 +158,4 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     
 });
 
-Auth::routes(['register' => false, 'reset=' > false]);
+Auth::routes(['register' => true, 'reset=' > false]);
