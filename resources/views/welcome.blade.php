@@ -232,7 +232,7 @@
 							
 							<!-- <p class="hero-sub-title">We Provide Hight Quality Bootstrap Template</p> -->
 							<!-- <a href="#" class="btn btn-default btn-lg left-btn">Info Now</a> -->
-							<a href="#" class="btn btn-main btn-lg">Ayo Daftar</a>
+							<a href="/pendaftaran" class="btn btn-main btn-lg">Ayo Daftar</a>
 						</div>
 
 					</div>
