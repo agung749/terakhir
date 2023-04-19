@@ -565,7 +565,7 @@ h6 {
 .navbar-nav > li.active a:active {
   color: #237523;
 }
-@media  only screen and (min-width:901px) {
+@media (min-width:901px) {
   .navbar-default .navbar-nav > li  {
   background: transparent;
   }
@@ -589,7 +589,7 @@ h6 {
   margin-bottom: 0;
 }
 }
-@media  only screen and (max-width:900px) {
+@media  (max-width:900px) {
   .navbar-default .navbar-nav > li  {
   background: rgba(40, 40, 40, 0.95);
   }
