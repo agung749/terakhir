@@ -152,46 +152,6 @@
   }
 
 }
-@media only screen and (max-width:600px)
-{
-	.frame{
-	align-items: center;
-	width:100%;
-	height:500px
-	}
-	h3{
-	font-size: 12px
-	}
-	.portfolio-item{
-		height: 150px;
-	}
-	h2{
-		font-size: 13px;
-		margin: 0px;
-	}
-	p{
-		font-size: 10px;
-		margin: 0px;
-	}
-	.hero-work{
-		font-size: 30px;
-	}
-	.hero-title{
-		font-size: 30px;
-	}
-	.btn-main{
-		width: 80px;
-		font-size:10px;
-	}
-	.btn-main > a{
-	
-		font-size:10px;
-	}
-	.btn-lg{
-		width: 200px;
-		font-size:10px;
-	}
-}
 @media only screen and (min-width:601px)
 {
 	.img-responsive{
@@ -224,11 +184,11 @@
 <section class="home" id="home" data-stellar-background-ratio="0.4">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 col-sm-12">
 					<div class="st-home-unit">
 						<div class="hero-txt">
                             <p class="hero-work"> Best Islamic Vocational School </p>
-							<h2 class="hero-title">SMK PLUS ASHABULYAMIN </h2>
+							<h2 class="hero-title" id="juduls">SMK PLUS ASHABULYAMIN </h2>
 							
 							<!-- <p class="hero-sub-title">We Provide Hight Quality Bootstrap Template</p> -->
 							<!-- <a href="#" class="btn btn-default btn-lg left-btn">Info Now</a> -->
@@ -289,33 +249,33 @@
 					</div>
 				
 					<div class="row program p-5 text-center d-flex flex-row" >
-						<div class="col-md-3 box mr-3" style="margin-right: 2%;padding: 3%;" data-aos="flip-right" data-aos-duration="3000">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3box mr-3" style="margin-right: 2%;padding: 3%;" data-aos="flip-right" data-aos-duration="3000">
 							<img src="/images/Shalat-Jamaah.jpg"width="100%" alt="" class="program-photo">
 							<h3>Shalat Duha Bersama</h3>
 							
 						</div>
-						<div class="col-md-3 mr-5 box" style="margin-right: 2%;padding: 3%" data-aos="flip-right" data-aos-duration="3700">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3mr-5 box" style="margin-right: 2%;padding: 3%" data-aos="flip-right" data-aos-duration="3700">
 							<img src="/images/ngaji.jpg"width="100%" alt="" class="program-photo">
 							<h3>Hafal Juzh 30</h3>
 							<br>
 						</div>
-						<div class="col-md-3 box" style="padding: 3%"  data-aos="flip-right" data-aos-duration="4000">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3box" style="padding: 3%"  data-aos="flip-right" data-aos-duration="4000">
 							<img src="/images/berdoa_169.jpeg"width="100%" alt="" class="program-photo">
 							<h3>Shalat Dzuhur Ashar Bersama</h3>
 						</div>
 					</div>
 					<div class="row program p-5 text-center d-flex flex-row" >
-						<div class="col-md-3 box mr-3" data-aos="flip-right" data-aos-duration="3000"style="margin-right: 2%;padding: 3%;">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3box mr-3" data-aos="flip-right" data-aos-duration="3000"style="margin-right: 2%;padding: 3%;">
 							<img src="/images/bisnisman.png"  width="100%" alt="" class="program-photo">
 							<h3>Everyone Is Bussinessman</h3>
 							
 						</div>
-						<div class="col-md-3 mr-5 box" data-aos="flip-right" data-aos-duration="3700" style="margin-right: 2%;padding: 3%">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3mr-5 box" data-aos="flip-right" data-aos-duration="3700" style="margin-right: 2%;padding: 3%">
 							<img src="/images/ngaji.jpg"  width="100%" alt="" class="program-photo">
 							<h3>Hafal Juzh 30</h3>
 							<br>
 						</div>
-						<div class="col-md-3 box" data-aos="flip-right" data-aos-duration="4000" style="padding: 3%">
+						<div class="col-md-3  col-sm-3  col-xs-3 col-xl-3 col-lg-3box" data-aos="flip-right" data-aos-duration="4000" style="padding: 3%">
 							<img src="/images/berdoa_169.jpeg"  width="100%" alt="" class="program-photo">
 							<h3>Shalat Dzuhur Ashar Bersama</h3>
 						</div>
@@ -385,7 +345,7 @@
 						<p>Kelebihan Kami</p>
 					</div>
 					<div class="row">
-						<div class="col-md-3 ">
+						<div class="col-md-3  ">
 							<div class="st-feature">
 								<div class="st-feature-icon"><i class="fa fa-like"></i></div>
 								<strong class="st-feature-title">Agamis</strong>
@@ -616,10 +576,10 @@
 				</div>
 				@else
 				<div class="col-md-4 box " style="padding:2%" data-aos="flip-right">
-					<div class="col-md-">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<h2 style="float:left; color:black" id="timestamp"></h2>
 					</div>
-					<div id='calendar' class="col-md-12 col-sm-12"></div>
+					<div id='calendar' class="col-md-12 col-sm-12 col-xs-12"></div>
 				</div>
 				<div class="col-md-4 box " style="margin-top:2%; padding:2%;  " data-aos="flip-right">
 					<center><h3>MUSIK</h3>
