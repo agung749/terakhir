@@ -10,6 +10,7 @@
  */
 body {
   font-family: "Open Sans";
+  ovverflow-x:hidden;
   color: #808080;
   font-weight: 400;
   font-size: 14px;
