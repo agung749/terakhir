@@ -46,12 +46,13 @@
 					</div>
 				</div>
 					@if(count($cari)!=0)
-                    <div class="col-md-8">
+                    <div class="col-md-8 ">
                     @php($i=1)
-             
+                    <div class="row">           
                         @foreach ( $cari as $staff )
-                            <div class="row">
-                                <div class="col-md-4 " style="">
+                          
+                            <a href="/staff/{{ $staff->id }}">
+                                <div class="col-md-4  col-sm-4 col-xs-4 col-lg-4 col-xl-4   " style="">
                                     <div class="judul">
                                       <h4>  {{ $staff->judul }}</h4>
                                     </div>
@@ -65,14 +66,9 @@
                                        <b> {{ $staff->nama }}<br>
                                        <b>{{ $staff->jenis }}
                                     </div>
-                                    <div class="baca">
-                                       <a href="/staff/{{ $staff->id }}"> <button class="mt-2 btn btn-primary btn-sm">
-                                                Lihat Profile
-                                        </button>
-                                       </a>
-                                    
-                                    </div>
+                                
                                 </div>
+                                </a>
                                 @php($i++)
                                 @if($i%3==1)
                             </div>
