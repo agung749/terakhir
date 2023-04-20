@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SMK PLUS ASHABULYAMIN</title>
 	<link rel="icon" href="/images/logo" type="image/png">
 	<meta name="keywords" content="SMK PLUS ASHABULYAMIN">
@@ -15,7 +15,6 @@
 	<!-- Bootstrap -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/font-awesome.min.css" rel="stylesheet">
-
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link href="/css/owl.carousel.css" rel="stylesheet">
 	<link href="/css/owl.theme.css" rel="stylesheet">
@@ -53,8 +52,6 @@
 
 
 
-
-
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -65,83 +62,7 @@
 
 <body data-spy="scroll" data-target=".main-nav">
 	<style>
-	.judul > h1{
-		color:white;		
-	}
-	
-		#timestamp{
-			color:white;
-
-		}
-		.post-thumb{
-			text-align: center;
-		}
-	
-		@media only screen and (max-width:600px){
-		
-		
-		.box{
-    border-radius: 14px;
-background: #ffffff;
-box-shadow:  20px 20px 40px #cec7cf,
-             -20px -20px 60px #ffffff;
-}
-		.card-4 {
-			padding: 2%;
-			
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-		.content{
-			min-height: 700px;
-			padding-top: 15%;
-			background:#fefe
-			font-size: 14px;
-		}
-		tr{
-			margin: 10px
-		}
-		.img-thumb{
-			
-			height:100px;
-		}
-		.rekom{
-			margin-bottom:1%; 
-			border-bottom:0.5px solid black;
-		}
-	}
-	@media only screen and (min-width:601px){
-		.content{
-			min-height: 700px;
-			padding-top: 5%;
-			background:#fefe
-			font-size: 14px;
-		}
-		.img-thumb{
-			
-			height:200px;
-		}
-		.box{
-    border-radius: 14px;
-background: #ffffff;
-box-shadow:  20px 20px 40px #cec7cf,
-             -20px -20px 60px #ffffff;
-}
-		.row1{
-			margin-top: 10%;
-		}
-		.card-4 {
-		
-			height: 250px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-	
-		.tulisan{
-			font-size: 13px;
-		}
-		
-	
-	}
-/*
+		/*
  * Sept - Free Bootstrap 3 Theme/Landing page
  * Author: CantoThemes
  * Author URL: https://www.cantothemes.com/
@@ -153,7 +74,6 @@ box-shadow:  20px 20px 40px #cec7cf,
  */
 body {
   font-family: "Open Sans";
-  ovverflow-x:hidden;
   color: #808080;
   font-weight: 400;
   font-size: 14px;
@@ -613,12 +533,29 @@ h6 {
 .home .st-home-unit {
   position: relative;
 }
-.home 
--txt {
+.home .hero-txt {
   color: #fff;
   text-align: center;
 }
-
+.home .hero-txt .hero-title {
+  font-family: "Oswald";
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 70px;
+  line-height: 85px;
+  font-weight: 400;
+  letter-spacing: 8px;
+  word-spacing: 4px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  padding: 20px 10px;
+}
+.home .hero-txt .hero-work {
+  font-family: "Oswald";
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
 .home .hero-txt .hero-work:after {
   content: "";
   display: block;
@@ -709,61 +646,117 @@ h6 {
 .navbar-nav > li.active a:active {
   color: #237523;
 }
-@media only screen and  (min-width:901px) {
+@media  only screen and (min-width:901px) {
   .navbar-default .navbar-nav > li  {
   background: transparent;
   }
-    .home .hero-txt .hero-title {
-  font-family: "Oswald";
+  .grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  background: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 33.33333333%;
+  box-sizing: border-box;
+}
+.grid figure img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  max-width: 100%;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: opacity 0.3s, transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.grid figure figcaption {
   color: #fff;
   text-transform: uppercase;
-  font-size: 40px;
-  line-height: 85px;
-  font-weight: 400;
-  letter-spacing: 8px;
-  word-spacing: 4px;
-  margin-bottom: 15px;
-  margin-top: 5px;
-  padding: 20px 10px;
+  font-size: 1.25em;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
-.home .hero-txt .hero-work {
-  font-family: "Oswald";
-  font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 0;
+.grid figure figcaption > a {
+  z-index: 1000;
+  position: absolute;
+  right: 50%;
+  bottom: 50px;
+  margin-right: -67px;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 60px, 0);
+          transform: translate3d(0, 60px, 0);
+  -webkit-transition: -webkit-transform 0.35s, opacity 0.35s;
+          transition: transform 0.35s, opacity 0.35s;
 }
+.grid 
 }
-@media only screen and   (max-width:900px) {
+@media  only screen and (max-width:900px) {
   .navbar-default .navbar-nav > li  {
   background: rgba(40, 40, 40, 0.95);
   }
-  
-.home .hero-txt .hero-title {
-  font-family: "Oswald";
+  .grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  background: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 50%;
+  box-sizing: border-box;
+}
+.grid figure img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  max-width: 100%;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: opacity 0.3s, transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.grid figure figcaption {
   color: #fff;
   text-transform: uppercase;
-  font-size: 20px;
-  line-height: 85px;
-  font-weight: 400;
-  letter-spacing: 8px;
-  word-spacing: 4px;
-  margin-bottom: 15px;
-  margin-top: 5px;
-  padding: 20px 10px;
+  font-size: 1.25em;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
-.home .hero-txt .hero-work {
-  font-family: "Oswald";
-  font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 0;
+.grid figure figcaption h2 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
+.grid figure figcaption > a {
+  z-index: 1000;
+  position: absolute;
+  right: 50%;
+  bottom: 50px;
+  margin-right: -67px;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 60px, 0);
+          transform: translate3d(0, 60px, 0);
+  -webkit-transition: -webkit-transform 0.35s, opacity 0.35s;
+          transition: transform 0.35s, opacity 0.35s;
+}
+.grid 
+  .home .hero-txt .hero-title {
+    font-family: "Oswald";
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 85px;
+    font-weight: 400;
+    letter-spacing: 8px;
+    word-spacing: 4px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    padding: 20px 10px;
+  }
   h3{
-    font-size:14px
+    font-size:16px
   }
   .col-xs-3{
-    margin: 3%;
-  }
-   .col-sm-3{
     margin: 3%;
   }
 }
@@ -1197,45 +1190,7 @@ ul.styled-list.list-star li:before {
   width: 100%;
   padding: 0;
 }
-.grid figure {
-  position: relative;
-  float: left;
-  overflow: hidden;
-  background: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 33.33333333%;
-  box-sizing: border-box;
-}
-.grid figure img {
-  position: relative;
-  display: block;
-  min-height: 100%;
-  max-width: 100%;
-  opacity: 1;
-  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-          transition: opacity 0.3s, transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-.grid figure figcaption {
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.grid figure figcaption > a {
-  z-index: 1000;
-  position: absolute;
-  right: 50%;
-  bottom: 50px;
-  margin-right: -67px;
-  opacity: 0;
-  -webkit-transform: translate3d(0, 60px, 0);
-          transform: translate3d(0, 60px, 0);
-  -webkit-transition: -webkit-transform 0.35s, opacity 0.35s;
-          transition: transform 0.35s, opacity 0.35s;
-}
-.grid figure h2 {
+figure h2 {
   color: #fff;
   font-weight: 300;
   margin: 0;
@@ -1817,6 +1772,82 @@ footer.site-footer a:hover {
     width: 25%;
   }
 }
+	.judul > h1{
+		color:white;		
+	}
+	
+		#timestamp{
+			color:white;
+
+		}
+		.post-thumb{
+			text-align: center;
+		}
+	
+		@media only screen and (max-width:600px){
+		
+		
+		.box{
+    border-radius: 14px;
+background: #ffffff;
+box-shadow:  20px 20px 40px #cec7cf,
+             -20px -20px 60px #ffffff;
+}
+		.card-4 {
+			padding: 2%;
+			
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+		.content{
+			min-height: 700px;
+			padding-top: 15%;
+			background:#fefe
+			font-size: 14px;
+		}
+		tr{
+			margin: 10px
+		}
+		.img-thumb{
+			
+			height:100px;
+		}
+		.rekom{
+			margin-bottom:1%; 
+			border-bottom:0.5px solid black;
+		}
+	}
+	@media only screen and (min-width:601px){
+		.content{
+			min-height: 700px;
+			padding-top: 5%;
+			background:#fefe
+			font-size: 14px;
+		}
+		.img-thumb{
+			
+			height:200px;
+		}
+		.box{
+    border-radius: 14px;
+background: #ffffff;
+box-shadow:  20px 20px 40px #cec7cf,
+             -20px -20px 60px #ffffff;
+}
+		.row1{
+			margin-top: 10%;
+		}
+		.card-4 {
+		
+			height: 250px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+	
+		.tulisan{
+			font-size: 13px;
+		}
+		
+	
+	}
 
 	</style>
 	<header class="st-navbar">
