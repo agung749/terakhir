@@ -184,7 +184,7 @@
 <section class="home" id="home" data-stellar-background-ratio="0.4">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-xs-12 col-sm-12">
+				<div class="col-md-12 col-sm-12">
 					<div class="st-home-unit">
 						<div class="hero-txt">
                             <p class="hero-work"> Best Islamic Vocational School </p>
