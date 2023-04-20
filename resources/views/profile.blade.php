@@ -15,6 +15,9 @@
 <div class="container mt-2">
     <div class="row">
     <div class="col-md-2">
+    @if($profile[0]->foto==null)
+        <?php $profile[0]->foto="user.png"?>
+    @endif
         <img width="100%" src="/images/data_guru/{{$profile[0]->foto}}" alt="">
     </div>
     <div class="col-md-6 p-5">
@@ -75,9 +78,15 @@
                 </tr>
                 
                 @endforeach
+                <tr>
+                    <td>
+                        <h4>Daftar Pelatihan</h4>
+                    </td>
+                </tr>
         </table>
     </div>
     <div class="col-md-4 col-sm-12" style="padding-bottom: 3%">
+        <div class="col-md-12">
         <div class="widgets">
             <div class="widget">
                 <form action="/staff" method="GET" >	
@@ -98,6 +107,24 @@
                 <li><a href="/staff/kategori/Caraka">Caraka<span class="badge pull-right">{{ $kategori[3] }}</span></a></li>
             </div>	
         </div>
+    </div>
+    <div class="col-md-12 widgets">
+        <form action="">
+            <table >
+                <tr>
+                    <td><h4>Kirim Kritik Guru</h4></td>
+                </tr>
+                <tr>
+                    <td><textarea name="kritik" id=""  class="form" cols="30" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-primary btn-sm">Kirim</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
     </div>
     </div>
 </div>
