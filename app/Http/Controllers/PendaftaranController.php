@@ -357,7 +357,7 @@ class PendaftaranController extends Controller
         $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
         $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->sum('pembayaran');
         $tunggakan = data_tunggakan::where('id_siswa',$data[0]->id_siswa)->sum('total_tunggakan');
-        $sisa = $tunggakan - $totalcil;
+        $sisa = $tunggakan - $totcil;
         $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data,'nama'=>$nama,'total'=>$total,'tagihan'=>$sisa,'totcil'=>$totcil])->setPaper('a4','landscape');
          return $pdf->download('kwitansi.pdf');
     }
