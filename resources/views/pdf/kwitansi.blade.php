@@ -61,7 +61,7 @@ $u=1;
            </tr>
            <tr>
             <td>Nama</td>
-            <td>:<b>{{ $tunggakans[0]->tunggakan->siswa->nama }}</b></td>
+            <td>:<b>{{ $nama[0]->nama }}</b></td>
            </tr>
            <tr>
             <td>Jumlah Pembayaran</td>
