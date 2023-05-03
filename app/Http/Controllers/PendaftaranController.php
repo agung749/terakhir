@@ -596,7 +596,7 @@ class PendaftaranController extends Controller
             foreach($isi as $is){
                $tunggak=data_tunggakan::where('id',$is->id_tunggakan)->get('total_bayar');
                 data_tunggakan::where('id',$is->id_tunggakan)->update(['total_bayar'=>$tunggak[0]->total_bayar-$is->pembayaran]);
-               dd(data_cicilan::where('noPembayaran',$data)->delete());
+               data_cicilan::where('noPembayaran',$data)->delete();
             }
         }
         return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
