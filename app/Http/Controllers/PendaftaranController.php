@@ -357,7 +357,7 @@ class PendaftaranController extends Controller
         $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
         $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->sum('pembayaran');
         $tunggakan = data_tunggakan::where('id_siswa',$data[0]->id_siswa)->sum('total_tunggakan');
-        $sisa = $tunggakan - $total;
+        $sisa = $tunggakan - $totalcil;
         $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data,'nama'=>$nama,'total'=>$total,'tagihan'=>$sisa,'totcil'=>$totcil])->setPaper('a4','landscape');
          return $pdf->download('kwitansi.pdf');
     }
@@ -573,9 +573,8 @@ class PendaftaranController extends Controller
        
         }
         $nama = Siswa::where('id',$data)->get('nama');
-
         $totcil =  data_tunggakan::where('id_siswa',$data)->sum("total_bayar");
-        $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan','tunggakan.siswa'])->get();
+        $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan'])->get();
         $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'total'=>$total,'tagihan'=>($tagihan-$totcil),'totcil'=>$totcil])->setPaper('a4','landscape');
          return $pdf->download('kwitansi.pdf'); 
     }
@@ -590,7 +589,7 @@ class PendaftaranController extends Controller
         $cek = data_cicilan::where('id_siswa',$isi[0]->id_siswa)->where('noPembayaran','!=',$data)->exists();
         if($cek==false){
             Siswa::where('id',$isi[0]->id_siswa)->update(['status'=>0]);
-            data_tunggakan::where('id',$isi[0]->id_siswa)->delete();
+            data_tunggakan::where('id_siswa',$isi[0]->id_siswa)->delete();
             data_cicilan::where('noPembayaran',$data)->delete();
         }
        else if($cek==true){
