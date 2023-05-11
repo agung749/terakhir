@@ -400,15 +400,15 @@ class PendaftaranController extends Controller
             'tahun_ajaran'=>$thn_ajaran
         ]);
         $dataT = data_tunggakan::where('id_siswa',$detail)->latest('created_at')->first();
-        dd($dataT);
+    
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
-            "id_tunggakan"=>$dataT[0]->id,
-            'pembayaran'=>$dataT[0]->total_bayar,
+            "id_tunggakan"=>$dataT->id,
+            'pembayaran'=>$dataT->total_bayar,
             'admin'=>Auth::user()->name
         ]);
-        $total+=$dataT[0]->total_bayar;
+        $total+=$dataT->total_bayar;
         $tagihan+=$pembayaran->nominal;
         
     }
