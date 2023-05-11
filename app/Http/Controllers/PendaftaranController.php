@@ -349,7 +349,7 @@ class PendaftaranController extends Controller
     public function cetakKwitansi($data1)
     {
         $data = data_cicilan::where('noPembayaran',$data1)->with(['tunggakan'])->get();
-        dd($data)
+        dd($data);
         $nama = Siswa::where('id',$data[0]->id_siswa)->get('nama');
         $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
         $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->whereDate('created_at','<=',$data[0]->created_at)->sum('pembayaran');
