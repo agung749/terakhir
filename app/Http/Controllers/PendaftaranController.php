@@ -400,7 +400,7 @@ class PendaftaranController extends Controller
             'tahun_ajaran'=>$thn_ajaran
         ]);
         $dataT = data_tunggakan::where('id_siswa',$detail)->latest('created_at')->first();
-        dd($dataT)
+        dd($dataT);
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
