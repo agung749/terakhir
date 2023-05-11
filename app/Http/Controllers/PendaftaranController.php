@@ -403,13 +403,12 @@ class PendaftaranController extends Controller
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
-            "id_tunggakan"=>$dataT[$i]->id,
-            'pembayaran'=>$dataT[$i]->total_bayar,
+            "id_tunggakan"=>$dataT[0]->id,
+            'pembayaran'=>$dataT[0]->total_bayar,
             'admin'=>Auth::user()->name
         ]);
-        $total+=$dataT[$i]->total_bayar;
+        $total+=$dataT[0]->total_bayar;
         $tagihan+=$pembayaran->nominal;
-        $i++;
         
     }
     $dataZ= data_cicilan::where('id_siswa',$detail)->with(['tunggakan'])->get();
