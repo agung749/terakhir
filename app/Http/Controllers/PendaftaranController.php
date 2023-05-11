@@ -94,10 +94,6 @@ class PendaftaranController extends Controller
    $req->validate([
        'nama'=>'required',
        'email'=>'required',
-        'no_tel'=>'required|digits_between:12,14',
-        'no_hp'=>'required|digits_between:12,14',
-       'nisn'=>'required|unique:siswa',
-       'nik'=>'required|digits_between:16,17',
        'foto'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_skhu'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_ijazah'=>'nullable|max:300000|mimes:jpg,png,pdf'
@@ -244,11 +240,11 @@ class PendaftaranController extends Controller
             "nama"=>"required",
             "kelurahan"=>"required",
             "kecamatan"=>"required",
-            "no_hp"=>"required",
+            "no_hp"=>"nullable",
             "tgl_lahir"=>"required",
-            "nisn"=>"required|numeric|digits_between:10,11",
+            "nisn"=>"nullable|numeric|digits_between:10,11|unique:siswa",
             "jenis_tempat_tinggal"=>"required",
-            "nik"=>"required|numeric|digits_between:16,17",
+            "nik"=>"nullable|numeric|digits_between:16,17",
             "foto"=>"nullable|mimes:jpg,png|max:3000",
             "jk"=>"required",
             "foto_skhu"=>"nullable|mimes:jpg,png|max:3000",
@@ -355,13 +351,14 @@ class PendaftaranController extends Controller
         $data = data_cicilan::where('noPembayaran',$data1)->with(['tunggakan'])->get();
         $nama = Siswa::where('id',$data[0]->id_siswa)->get('nama');
         $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
-        $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->sum('pembayaran');
+        $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->whereDate('created_at','<=',$data[0]->created_at)->sum('pembayaran');
         $tunggakan = data_tunggakan::where('id_siswa',$data[0]->id_siswa)->sum('total_tunggakan');
         $sisa = $tunggakan - $totcil;
         $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$data,'nama'=>$nama,'total'=>$total,'tagihan'=>$sisa,'totcil'=>$totcil])->setPaper('a4','landscape');
          return $pdf->download('kwitansi.pdf');
     }
     public function print(){
+        
         return Excel::download(new rekapLaporanSheet,'Pendaftaran Siswa Tahun '.date('Y').'.xlsx');
     }
     public function terima($detail,Request $req){
@@ -572,6 +569,7 @@ class PendaftaranController extends Controller
             $tagihan+=$pembayaran->total_tunggakan;
        
         }
+        dd($req->$nama);
         $nama = Siswa::where('id',$data)->get('nama');
         $totcil =  data_tunggakan::where('id_siswa',$data)->sum("total_bayar");
         $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan'])->get();
