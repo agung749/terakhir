@@ -77,7 +77,7 @@ $u=1;
            </tr>
            <tr>
             <td>Terbilang</td>
-            <td>: &nbsp;{{ penyebut($total) }} Rupiah</td>
+            <td>: &nbsp;{{ penyebut($totcil) }} Rupiah</td>
            </tr>
            <tr>
             <td>Sisa Tagihan</td>
