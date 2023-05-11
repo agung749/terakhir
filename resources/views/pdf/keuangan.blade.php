@@ -52,7 +52,7 @@
             ?></td>
             @if($jml_byr-$sum!=0)
             <td>Belum Lunas</td>
-            @else
+            @elseif(($jml_byr-$sum)==0)
             <td>Lunas</td>
             @endif
     </tr>
