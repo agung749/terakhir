@@ -50,7 +50,7 @@
             echo $jml_byr;
             $jml_byr=0;
             ?></td>
-            @if($c==1)
+            @if($jml_byr-$sum!=0)
             <td>Belum Lunas</td>
             @else
             <td>Lunas</td>
@@ -70,11 +70,6 @@
        ?>
     </td>
     
-    @if($d->status==0)
-    <?php $c=1?>
-    @else
-    <?php $c=0?>
-    @endif
     @endif
     @endforeach
     @endforeach
@@ -86,7 +81,7 @@
             echo  number_format($jml_byr,2,',','.');
             $jml_byr1+=$jml_byr;
             ?></b></td>
-             @if($c==1)
+             @if($sum-$jml_byr!=0)
              <td><b>Belum Lunas</b></td>
              @else
              <td>Lunas</td>
