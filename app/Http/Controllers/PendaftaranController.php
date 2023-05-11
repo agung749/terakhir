@@ -210,7 +210,7 @@ class PendaftaranController extends Controller
     $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-    return $pdf->download($req->nama.'.pdf');
+    return redirect()->back();
    
 }
    public function hapus(Request $req,$hapus){
@@ -570,7 +570,7 @@ class PendaftaranController extends Controller
             $tagihan+=$pembayaran->total_tunggakan;
        
         }
-        dd($req->$nama);
+
         $nama = Siswa::where('id',$data)->get('nama');
         $totcil =  data_tunggakan::where('id_siswa',$data)->sum("total_bayar");
         $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan'])->get();
