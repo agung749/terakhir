@@ -210,8 +210,9 @@ class PendaftaranController extends Controller
     $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-    return redirect()->back();
-   
+     $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
+    return $pdf->download($C[0]['nama'].'.pdf');
+
 }
    public function hapus(Request $req,$hapus){
     $siswa=Siswa::where('id',$hapus);
