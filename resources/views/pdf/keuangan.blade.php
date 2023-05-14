@@ -23,7 +23,6 @@
         <td>
             Total Tunggakan
         </td>
-        <td>Status</td>
     </tr>
     @php($i=1)
     @php($sum=0)
@@ -111,11 +110,11 @@ return $hasil;
     </tr>
     <tr>
         <td colspan="2"><b><h2>TOTAL TOTAL TAGET PEMASUKAN</h2></b></td>
-        <td colspan="{{ $pem+3 }}"><b><h2>Rp. {{ number_format($jml_byr1,2,',','.') }} ( {{ terbilang($jml_byr1) }} Rupiah )</h2></b></td>
+        <td colspan="{{ $pem+3 }}"><b><h2>Rp. {{ number_format($jml_byr,2,',','.') }} ( {{ terbilang($jml_byr1) }} Rupiah )</h2></b></td>
     </tr>
     <tr>
         <td colspan="2"><b><h2>MINUS PEMASUKAN</h2></b></td>
-        <td colspan="{{ ($pem+3) }}"><b><h2>Rp. {{ number_format($jml_byr1-$sum1,2,',','.') }} ( {{ terbilang($jml_byr1-$sum1) }} Rupiah )</h2></b></td>
+        <td colspan="{{ ($pem+3) }}"><b><h2>Rp. {{ number_format($jml_byr-$sum１,2,',','.') }} ( {{ terbilang($jml_byr1-$sum1) }} Rupiah )</h2></b></td>
     </tr>
  </tbody>
 </table>
