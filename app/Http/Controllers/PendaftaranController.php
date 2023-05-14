@@ -400,8 +400,8 @@ class PendaftaranController extends Controller
             'status'=>$status,
             'tahun_ajaran'=>$thn_ajaran
         ]);
-        $dataT = data_tunggakan::where('id_siswa',$detail)->latest('created_at')->first();
-    
+        $dataT = data_tunggakan::where('id_siswa',$detail)->where("jenis_pembayaran",$pembayaran->nama)->first();
+        
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
@@ -436,7 +436,7 @@ class PendaftaranController extends Controller
     }
     
     $siswa->update(['status'=>'2']);
-    $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>$tagihan,'totcil'=>$total,'total'=>$total]);
+    $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
     return $pdf->download('kwitansi.pdf');
     }
     public function surat($id){

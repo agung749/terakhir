@@ -627,7 +627,7 @@ $('.muncul1').show();
  $('.slide1').click(function(){
 $('.muncul1').hide();
 $('.muncul2').show();
-$('.modal-footer1').html('  <button type="button" class="btn btn-primary slide2">Sebelumnya</button><button type="submit" class="btn btn-primary slide3">Kirim</button>');
+$('.modal-footer1').html('  <button type="button" class="btn btn-primary slide2">Sebelumnya</button><button type="submit" class="btn btn-primary slide3 submit">Kirim</button>');
 $('.slide2').click(function(){
   slide1();
 });
@@ -648,15 +648,18 @@ $('.printRekap').click(function () {
   $('#form').attr('method','POST');
   $('#form').attr('enctype','multipart/form-data');
   $('.modal1').modal('show');
-  $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim">Kirim</button>');
+  $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim submit">Kirim</button>');
  
 })
+$(".submit").click(function(){
+    $(".modal").modal('hide');
+});
 $('body').on('click','.hapus',function () {
 $('.l2').html('hapus data {{$model}}');
 id = $(this).data('id');
   $('.modal-body2').html('<b class="pemberitahuan"> Apakah anda yakin menghapus data  ini?<b>');
                       
-$('.modal-footer2').html('<a href="/{{$role}}/{{$url}}/hapus/'+id+'"><button type="submit" class="btn btn-primary kirim">Kirim</button></a>');
+$('.modal-footer2').html('<a href="/{{$role}}/{{$url}}/hapus/'+id+'"><button type="submit" class="btn btn-primary kirim submit">Kirim</button></a>');
 $('.modaledit').modal('show');
 
 })

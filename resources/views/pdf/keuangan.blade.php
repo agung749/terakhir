@@ -26,7 +26,6 @@
         <td>Status</td>
     </tr>
     @php($i=1)
-    @php($c=1)
     @php($sum=0)
     @php($sum1=0)
     @php($jml_byr1=0)
@@ -45,17 +44,6 @@
         echo $sum;
         $sum=0;
         ?></td>
-        <td><?php 
-            $jml_byr1+=$jml_byr;
-            echo $jml_byr;
-            $jml_byr=0;
-            ?></td>
-            @if($jml_byr-$sum!=0)
-            <td>Belum Lunas</td>
-            @elseif(($jml_byr-$sum)==0)
-            <td>Lunas</td>
-            @endif
-    </tr>
     <tr>
     <td>{{$i}}</td>
     <td>{{ $d->siswa->nama }}</td>
@@ -77,15 +65,6 @@
         echo number_format($sum,2,',','.');
         $sum1+=$sum;
         ?></td>
-        <td><b><?php 
-            echo  number_format($jml_byr,2,',','.');
-            $jml_byr1+=$jml_byr;
-            ?></b></td>
-             @if($sum-$jml_byr!=0)
-             <td><b>Belum Lunas</b></td>
-             @else
-             <td>Lunas</td>
-             @endif
     </tr>
     <?php
     function penyebut($nilai) {

@@ -21,7 +21,10 @@ class kelolaUser extends Controller
         'password' => "min:8|confirmed"
       ]);
       $user->update(['password' => Hash::make($req->password)]);
-      return redirect('/user/ubah')->with(['salah' => true]);
+      return redirect('/user/ubah')->with(['success' => "KATA SANDI BERHASIL DIUBAH "]);
+    }
+    else{
+      return redirect('/user/ubah')->withErrors(['error' => "KATA SANDI SALAH "]);
     }
   }
   public function tambah(Request $req)

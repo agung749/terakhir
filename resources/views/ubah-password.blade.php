@@ -33,7 +33,7 @@
     </div>
     <div class="col-12">
         <h4>Konfirmasi Password </h4>
-        <input type="password_confirmation" class="form-control" name="password_confirm" id="">
+        <input type="password" class="form-control" name="password_confirm" id="">
     </div>
     <div class="col-12">
         <button class="btn btn-success">Kirim</button>

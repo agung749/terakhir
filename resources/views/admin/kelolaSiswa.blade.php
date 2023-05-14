@@ -29,7 +29,7 @@ $data=[
     'value'=>[
         '','','','','','',''
     ],  
-     'required'=>['required','required','','required','required','required','']
+     'required'=>['required','required','','required','required','','required']
     ]
 ,
 
@@ -39,14 +39,14 @@ $data=[
     'name'=>'jk',
     'value'=>[1,2],
     'isi'=>['Laki-Laki','Perempuan'],
-    'required'=>'required'
+    'required'=>''
 ],
 'agama'=>[
     'nama'=>'Agama',
     'name'=>'agama',
     'value'=>['islam','Hindu','Buddha','Kristen','Katolik','Khonghucu','Kepercayaan Lokal'],
     'isi'=>['islam','Hindu','Buddha','Kristen','Katolik','Khonghucu','Kepercayaan Lokal'],
-    'required'=>'required'
+    'required'=>''
 ],
 
   'transportasi'=>[
@@ -78,14 +78,14 @@ $data=[
     'name'=>'kecamatan',
     'isi'=>['Pilih Kecamatan'],
     'value'=>[''],
-    'required'=>'required'
+    'required'=>''
 ],
 'kelurahan'=>[
     'nama'=>'kelurahan',
     'name'=>'kelurahan',
     'isi'=>['Pilih kelurahan'],
     'value'=>[''],
-    'required'=>'required'
+    'required'=>''
 ]
 ]  ,
   
@@ -107,7 +107,7 @@ $data=[
         "diisi untuk siswa tingkat 10 s.d 12","nisn","nik","foto","nomor ijazah","skhu","scan ijazah","scan skhu","kps (Kartu Perlindungan Sosial)","pkh (Program Keluarga Harapan)","kip"],
     'value'=>[
         "","","","","","","","","","",""],
-     'required'=>["","required","required","","","","","","","",""]
+     'required'=>["","","","","","","","","","",""]
 ],  
 ],
 
@@ -194,7 +194,7 @@ $data2=[
     'Tidak Berkebutuhan',
     'Berkebutuhan',
 ],
-'required'=>"required"
+'required'=>""
 ]
 ]
 ],
@@ -212,7 +212,7 @@ $data2=[
     "Nama ibu",'' ,'',''],
   'value'=>["",'','-',''],
   
-  'required'=>[ "required","required",'','required'],
+  'required'=>[ "","",'',''],
   
   ],
   'selects'=>[
@@ -236,7 +236,7 @@ $data2=[
       '4 sampai 5 juta',
       'di atas 5 juta',
 ],
-'required'=>"required"
+'required'=>""
 ],
 'pendidikan ibu'=>[
   'nama'=>'Pendidikan ibu',
@@ -278,7 +278,7 @@ $data2=[
     'Tidak Berkebutuhan',
     'Berkebutuhan',
 ],
-'required'=>"required"
+'required'=>""
 ]
 ]
 ], 
