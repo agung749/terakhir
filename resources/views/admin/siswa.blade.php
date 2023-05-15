@@ -29,7 +29,7 @@ $data=[
     'value'=>[
         '','','','','','',''
     ],  
-     'required'=>['required','required','','required','required','required','']
+     'required'=>['required','','','','','','']
     ]
 ,
 
@@ -107,7 +107,7 @@ $data=[
         "diisi untuk siswa tingkat 10 s.d 12","nisn","nik","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps (Kartu Perlindungan Sosial)","pkh (Program Keluarga Harapan)","kip"],
     'value'=>[
         "","","","","","","","","","",""],
-     'required'=>["","required","required","","","","","","","",""]
+     'required'=>["","","","","","","","","","",""]
 ],  
 ],
 
@@ -212,7 +212,7 @@ $data2=[
     "Nama ibu",'' ,'',''],
   'value'=>["",'','-',''],
   
-  'required'=>[ "required","required",'','required'],
+  'required'=>[ "","",'',''],
   
   ],
   'selects'=>[
@@ -236,7 +236,7 @@ $data2=[
       '4 sampai 5 juta',
       'di atas 5 juta',
 ],
-'required'=>"required"
+'required'=>""
 ],
 'pendidikan ibu'=>[
   'nama'=>'Pendidikan ibu',
@@ -278,7 +278,7 @@ $data2=[
     'Tidak Berkebutuhan',
     'Berkebutuhan',
 ],
-'required'=>"required"
+'required'=>""
 ]
 ]
 ], 
