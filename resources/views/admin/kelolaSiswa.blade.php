@@ -29,7 +29,7 @@ $data=[
     'value'=>[
         '','','','','','',''
     ],  
-     'required'=>['required','required','','required','required','','required']
+     'required'=>['required','','','',','','']
     ]
 ,
 
