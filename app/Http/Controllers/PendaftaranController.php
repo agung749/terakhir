@@ -235,6 +235,7 @@ class PendaftaranController extends Controller
         $foto=$siswa[0]->foto;
         $foto_ijazah=$siswa[0]->foto_ijazah;
         $foto_skhu=$siswa[0]->foto_skhu;
+        $status = $siswa->status;
         $siswa =Siswa::where('id',$ubah);
         $req->validate([
             "nama"=>"required",
@@ -334,7 +335,7 @@ class PendaftaranController extends Controller
             "rt"=>$req->rt,
             "rw"=>$req->rw,
             "Jalan"=>$req->jalan,
-            'status'=>0,
+            'status'=>$status,
             'tahun_ajaran'=>$thn_ajaran,
             'kode_pos'=>$req->kode_pos,
             'kode_unik'=>$kode_unik,
