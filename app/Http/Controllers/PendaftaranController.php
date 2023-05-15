@@ -93,7 +93,6 @@ class PendaftaranController extends Controller
 
    $req->validate([
        'nama'=>'required',
-       'email'=>'required',
        'foto'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_skhu'=>'nullable|max:300000|mimes:jpg,png,pdf',
        'foto_ijazah'=>'nullable|max:300000|mimes:jpg,png,pdf'
@@ -239,8 +238,6 @@ class PendaftaranController extends Controller
         $siswa =Siswa::where('id',$ubah);
         $req->validate([
             "nama"=>"required",
-            "kelurahan"=>"required",
-            "kecamatan"=>"required",
             "no_hp"=>"nullable",
             "tgl_lahir"=>"required",
             "nisn"=>"nullable|numeric|digits_between:10,11|unique:siswa",
@@ -625,7 +622,7 @@ class PendaftaranController extends Controller
                     $btn = '<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>';
                     }
                     else{
-                        $btn = '<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                        $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp'.'<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                     }
                 }  
                 return $btn;
