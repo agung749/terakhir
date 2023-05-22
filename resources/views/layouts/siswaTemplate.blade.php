@@ -462,8 +462,12 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                   tampil="";
                   console.log(data.length);
                   for(i=0;i<data.length;i++){
-                   tampil +="<div class='row mt-4'><div class='col-md-8'>"+data[i]['noPembayaran']+'</div><div class="col-md-4"><a href="/admin/kelolaPendaftaran/cetakKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-success"><i class="fa fa-print"></i></a>&nbsp;<a href="/admin/kelolaPendaftaran/hapusKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-danger"><i class="fa fa-trash"></i></a></div></div>'
-                
+                   tampil +="<div class='row mt-4'><div class='col-md-8'>"+data[i]['noPembayaran']+'</div><div class="col-md-4"><a href="/admin/kelolaPendaftaran/cetakKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-success"><i class="fa fa-print"></i></a></div></div>'
+                   @if(isset($id))
+                   @if($id==4)
+                   tampil+='<a href="/admin/kelolaPendaftaran/hapusKwitansi/'+data[i]['noPembayaran']+'" class="btn col-md-5 btn-danger"><i class="fa fa-trash"></i></a>'
+                   @endif
+                   @endif
                   }
                    $('.jawaban').html(tampil);
                 }
