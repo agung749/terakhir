@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Berita;
 use App\Models\data_pembayaran;
 use App\Models\jurusan;
@@ -96,7 +96,7 @@ public function kelolaBerkasSiswa()
             $kabid[]=$kabupatens[$i]->id;
         }
         
-            return view('admin.kelolaSiswa',['pembayarans'=>$pembayarans,'kabname'=>$kabname,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun'=>$tahun]);
+            return view('admin.kelolaSiswa',['pembayarans'=>$pembayarans,'kabname'=>$kabname,'id'=>Auth::user()->role,'kabid'=>$kabid,'jurusan'=>$jurusan,'tahun'=>$tahun]);
     }
     public function berubah(Request $req)
     {
