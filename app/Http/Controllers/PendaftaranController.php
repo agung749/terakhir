@@ -608,7 +608,7 @@ class PendaftaranController extends Controller
                     }
                 }  
                 if(Auth::user()->role==4){
-                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
+                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';}
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
