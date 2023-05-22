@@ -413,26 +413,6 @@ class PendaftaranController extends Controller
     }
     $dataZ= data_cicilan::where('id_siswa',$detail)->with(['tunggakan'])->get();
     $nama = Siswa::where('id',$detail)->get('nama');
-    $kelas = Kelas::where('jurusan',$isi[0]->jurusan)->where('jumlah_terisi','<=','0');
-    if($kelas->exists()){
-        $x=$kelas->get();
-        $siswa->update(['kelas'=>$x[0]->id]);
-        $kelas->update(['jumlah_terisi'=>$x[0]->jumlah_terisi+1]);
-    }
-    else{
-     $kelas = Kelas::where('jurusan',$isi[0]->jurusan)->max('id');
-        $kelas = kelas::where('id',$kelas)->get();
-        $jurusans=jurusan::where('id',$isi[0]->jurusan)->get(); 
-        $kelas = kelas::create([
-            "nama"=>"X ".$jurusans[0]->jurusan.' '.($kelas[0]->posisi+1),
-            "posisi"=>1,
-            "jumlah"=>35,
-            "angkatan"=>date('Y').'/'.date('Y',strtotime(' +1 year')),
-            "jumlah_terisi"=>1,
-            "jurusan"=>$jurusans[0]->id,
-        ]);
-    }
-    
     $siswa->update(['status'=>'2']);
     $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
     return $pdf->download('kwitansi.pdf');
@@ -614,8 +594,9 @@ class PendaftaranController extends Controller
         return DataTables::of($data)
               ->addIndexColumn()
                ->addColumn('aksi', function($row){
+                
                 if($row->status==0){     
-                $btn = '<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                $btn = '&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                 }
                 else{
                     $tunggakan = data_tunggakan::where('status',0)->count();
@@ -626,11 +607,13 @@ class PendaftaranController extends Controller
                         $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp'.'<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                     }
                 }  
+                if(Auth::user()->roles==4){
+                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
                     case 1 :
-                        return "OTKP";
+                        return "MPLB";
                         break;
                     case 2 :
                             return "AKL";
