@@ -19,7 +19,7 @@ class user
     {
 
         if(isset(Auth::user()->role)){
-            if((Auth::user()->role==4)&&$r=="admin"){
+            if((Auth::user()->role==1)&&$r=="admin"){
                 return $next($request);
             }
             
