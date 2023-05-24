@@ -607,8 +607,8 @@ class PendaftaranController extends Controller
                         $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp'.'<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                     }
                 }  
-                if(Auth::user()->role==4){
-                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';}
+             
+                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
