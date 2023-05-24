@@ -30,31 +30,6 @@
   <div class="col-6">
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
-@if(isset($tahun))
-/* @if($tahun==0)
-  <div class="col-1">
-    <button class="kelas btn col-12 bg-warning mt-2 mb-4">
-    Mulai PPDB
-    </button>
-  </div>
-</div>
-<div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content col-12" > 
-      <div class="modal-header">
-        <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body ">
-      Apakah Anda Akan Memulai PPDB  {{ date('Y').'/'.date('Y',strtotime(' +1 year'))}}?
-      </div>
-      <div class="modal-footer">
-        <a href="/admin/kelolaPendaftaran/mulai" class="btn-primary btn-md-3">Mulai</a>
-      </div>
-    </div>
-  </div>
-</div>
-@endi f*/
 <div class="modal fade modalRiwayat " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
     <div class="modal-content col-12" > 
