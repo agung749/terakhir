@@ -596,7 +596,7 @@ class PendaftaranController extends Controller
                ->addColumn('aksi', function($row){
                 
                 if($row->status==0){     
-                $btn = '&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
+                $btn = '<a class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                 }
                 else{
                     $tunggakan = data_tunggakan::where('status',0)->count();
@@ -607,8 +607,6 @@ class PendaftaranController extends Controller
                         $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp'.'<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                     }
                 }  
-             
-                    $btn·='<a class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
