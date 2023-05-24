@@ -30,6 +30,31 @@
   <div class="col-6">
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
+@if(isset($tahun))
+@if($tahun==0)
+  <div class="col-1">
+    <button class="kelas btn col-12 bg-warning mt-2 mb-4">
+    Mulai PPDB
+    </button>
+  </div>
+</div>
+<div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+      Apakah Anda Akan Memulai PPDB  {{ date('Y').'/'.date('Y',strtotime(' +1 year'))}}?
+      </div>
+      <div class="modal-footer">
+        <a href="/admin/kelolaPendaftaran/mulai" class="btn-primary btn-md-3">Mulai</a>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 <div class="modal fade modalRiwayat " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
     <div class="modal-content col-12" > 
@@ -89,6 +114,53 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @if($i==1)
       </div>
       @endif
+      <div class="row">
+        <div class="col-md-12">
+          <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <b> Total Bayar :
+          RP.<b class="nominalBayar"> 0</b></b>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+     <div class="row">  
+            <button  type="submit" class=" btn btn-primary btn-md-3">Simpan</button>
+      </div>
+      </div>
+
+    </form>  
+    </div>
+  </div>
+</div>
+@if($tahun==1)
+  <div class="col-md-2">
+    <button class="kelas btn col-md-12 bg-warning mt-2 mb-4">
+      STOP PPDB 
+    </button>
+  </div>
+</div>
+<div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog  ">
+    <div class="modal-content col-12" > 
+      <div class="modal-header">
+        <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+      Apakah Anda Yakin PPDB  {{ date('Y').'/'.date('Y',strtotime(' +1 year'))}} Telah Selesai?
+      </div>
+      <div class="modal-footer">
+        <a href="/admin/kelolaPendaftaran/berhenti" class="btn-primary btn-md-3">Berhenti</a>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+@endif
 @if(!isset($table))
 <div class="col-md-12">
 <table id="tabel-data" class="table table-striped table-bordered"  cellspacing="0" width="100%">
