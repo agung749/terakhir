@@ -31,7 +31,7 @@
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
 @if(isset($tahun))
-@if($tahun==0)
+/* @if($tahun==0)
   <div class="col-1">
     <button class="kelas btn col-12 bg-warning mt-2 mb-4">
     Mulai PPDB
@@ -54,7 +54,7 @@
     </div>
   </div>
 </div>
-@endif
+@endi f*/
 <div class="modal fade modalRiwayat " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
     <div class="modal-content col-12" > 
