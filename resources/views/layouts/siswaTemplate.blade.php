@@ -89,29 +89,6 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @if($i==1)
       </div>
       @endif
-      <div class="row">
-        <div class="col-md-12">
-          <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-         <b> Total Bayar :
-          RP.<b class="nominalBayar"> 0</b></b>
-        </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-     <div class="row">  
-            <button  type="submit" class=" btn btn-primary btn-md-3">Simpan</button>
-      </div>
-      </div>
-
-    </form>  
-    </div>
-  </div>
-</div>
-@endif
 @if(!isset($table))
 <div class="col-md-12">
 <table id="tabel-data" class="table table-striped table-bordered"  cellspacing="0" width="100%">
