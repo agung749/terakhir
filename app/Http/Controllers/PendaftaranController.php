@@ -608,7 +608,7 @@ class PendaftaranController extends Controller
                     }
                 }  
              
-                    $btn·='class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
+                    $btn·='<a class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>';
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
