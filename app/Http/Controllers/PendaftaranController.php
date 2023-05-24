@@ -415,7 +415,7 @@ class PendaftaranController extends Controller
     $nama = Siswa::where('id',$detail)->get('nama');
     $siswa->update(['status'=>'2']);
     $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
-    return $pdf->download('kwitansi.pdf');
+    return redirect()->back();
     }
     public function surat($id){
         $C = Siswa::where('id',$id)->get()->toArray(); 
