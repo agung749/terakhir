@@ -52,7 +52,7 @@ class LoginController extends Controller
             if($user[0]->role==2){
                 return redirect('/guru/home'); 
             }
-            else if($user[0]->role==1){
+            else if($user[0]->role==1||$user[0]->role==4){
                 return redirect('/admin/home'); 
             }
         }
