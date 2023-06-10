@@ -238,17 +238,9 @@ class PendaftaranController extends Controller
         $status = $siswa[0]->status;
         $siswa =Siswa::where('id',$ubah);
         $req->validate([
-            "nama"=>"required",
-            "no_hp"=>"nullable",
-            "tgl_lahir"=>"required",
-            "nisn"=>"nullable|numeric|digits_between:10,11|unique:siswa",
-            "jenis_tempat_tinggal"=>"required",
-            "nik"=>"nullable|numeric|digits_between:16,17",
-            "foto"=>"nullable|mimes:jpg,png|max:3000",
-            "jk"=>"required",
-            "foto_skhu"=>"nullable|mimes:jpg,png|max:3000",
-            "foto_ijazah"=>"nullable|mimes:jpg,png|max:3000",
-            "Ijazah"=>"nullable",
+                    
+            "foto"=>"nullable|mimes:jpg,png|max:3000"
+            
          
         ]);
             if($req->file('foto_ijazah')){
