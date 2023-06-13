@@ -26,7 +26,6 @@ class kelolaUser extends Controller
       return redirect('/user/ubah')->with(['success' => "KATA SANDI BERHASIL DIUBAH "]);
     }
     else{
-      dd($req->password);
       return redirect('/user/ubah')->withErrors(['error' => "KATA SANDI SALAH "]);
     }
   }
