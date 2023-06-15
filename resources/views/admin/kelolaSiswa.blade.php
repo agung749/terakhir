@@ -127,7 +127,7 @@ $data2=[
 ["Nama Ayah",'' ,'',''],
 'value'=>["",'','-',''],
 
-'required'=>[ "required","required",'','required'],
+'required'=>[ "","",'',''],
 
 ],
   'selects'=>[
@@ -151,7 +151,7 @@ $data2=[
       '4 sampai 5 juta',
       'di atas 5 juta',
 ],
-'required'=>"required"
+'required'=>""
 ],
 
 'pendidikan ayah'=>[
