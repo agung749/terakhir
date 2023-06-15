@@ -615,7 +615,7 @@ class PendaftaranController extends Controller
                             return "DKV";
                             break;
                             case 5 :
-                                return "TKJT";
+                                return "TJKT";
                                 break;
                    } 
                
