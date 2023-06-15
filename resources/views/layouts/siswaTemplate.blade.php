@@ -425,7 +425,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
        
         @endforeach
       </table>
-        @else if(session()->has('success')==false)
+        @elseif(session()->has('success')==false)
         <input type="hidden" id="check" value="3">
         <b>Apakah anda yakin data akan dihapus</b>
         <form action="POST" id="linkHapus">
