@@ -191,7 +191,7 @@ class PendaftaranController extends Controller
         ]
     );
    if(isset(Auth::user()->name)){
-        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil ditambahkan']);
+        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil ditambahkan');
        }
    else{
    $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
@@ -231,7 +231,7 @@ class PendaftaranController extends Controller
  
     }
     $siswa->delete();
-    return redirect()->back()->with(['success'=>"data berhasil dihaus"]);
+    return redirect()->back()->with('success',"data berhasil dihapus");
     }
     public function ubah(Request $req,$ubah){
        $siswa =Siswa::where('id',$ubah)->get();
@@ -337,7 +337,7 @@ class PendaftaranController extends Controller
             "admin"=>$name
             ]
         );
-        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
+        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil diubah');
        
     }
     public function cetakKwitansi($data1)
@@ -574,7 +574,7 @@ class PendaftaranController extends Controller
                data_cicilan::where('noPembayaran',$data)->delete();
             }
         }
-        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
+        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil diubah');
     }
     public function riwayat($data)
     {
