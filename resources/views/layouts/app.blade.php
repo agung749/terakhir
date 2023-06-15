@@ -192,7 +192,7 @@
         @endif
         @yield('var')
         @if(session()->has('success'))
-            $('.modaledit).modal('show');
+            $('.modaledit').modal('show');
         @endif
         if($('#check').val()==1){
           $('.modaledit').modal('show');
