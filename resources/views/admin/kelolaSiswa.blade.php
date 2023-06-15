@@ -29,7 +29,7 @@ $data=[
     'value'=>[
         '','','','','','',''
     ],  
-     'required'=>['required','','','','','','']
+     'required'=>['','','','','','','']
     ]
 ,
 
@@ -64,14 +64,14 @@ $data=[
       'Motor Pribadi',
       'Jalan Kaki'
 ],
-'required'=>'true'
+'required'=>''
 ],
 'kabupaten'=>[
     'nama'=>'kabupaten',
     'name'=>'kabupaten',
     'value'=>$kabid,
     'isi'=>$kabname,
-    'required'=>'required'
+    'required'=>''
 ],
 'kecamatan'=>[
     'nama'=>'kecamatan',
