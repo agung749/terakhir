@@ -407,8 +407,8 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-      <h5 class="modal-title l2" id="staticBackdropLabel" ></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <h5 class="modal-title l2" id="staticBackdropLabel" >Pesan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body modal-body2">
         @if(session()->has('success'))
