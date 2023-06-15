@@ -411,9 +411,9 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body modal-body2">
-        @if(isset($success))
+        @if(session()->has('success'))
         <input type="hidden" id="check" value="2">
-            <b>Data Berhasil Dikirm</b>
+            <b>{{session()->get('success')}}</b>
         @endif
         @if($errors->any())
         <input type="hidden" id="check" value="1">
@@ -480,7 +480,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
             }); 
             $('.modalRiwayat').modal('show');
       });
-        @if(isset($success))
+        @if(sessions()->has('success'))
             $(".modaledit").modal("show");
         @endif
        $('body').on('click','.cicil',function(){
