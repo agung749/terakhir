@@ -480,7 +480,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
             }); 
             $('.modalRiwayat').modal('show');
       });
-        @if(isse($success))
+        @if(isset($success))
             $(".modaledit").modal("show");
         @endif
        $('body').on('click','.cicil',function(){
