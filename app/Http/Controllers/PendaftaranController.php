@@ -210,8 +210,12 @@ class PendaftaranController extends Controller
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-    return $pdf->download($C[0]['nama'].'.pdf');
-
+       if(isset(Auth::user()->name)){
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil ditambahkan']);
+       }
+       else{
+        return $pdf->download($C[0]['nama'].'.pdf');
+       }
 }
    public function hapus(Request $req,$hapus){
     $siswa=Siswa::where('id',$hapus);
