@@ -397,7 +397,8 @@ class PendaftaranController extends Controller
             "id_siswa"=>$detail,
             "id_tunggakan"=>$dataT->id,
             'pembayaran'=>$dataT->total_bayar,
-            'admin'=>Auth::user()->name,'penyetor'=>$req->penyetor
+            'admin'=>Auth::user()->name,
+           'penyetor'=>$req->penyetor
         ]);
         $total+=$dataT->total_bayar;
         $tagihan+=$pembayaran->nominal;
