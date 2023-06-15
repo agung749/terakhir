@@ -117,7 +117,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @endif
     <div class="row">
            <div class="col-md-12">
-              <b>Penyetor</b> : <input type="number" class="form-control penyetor" name="penyetor">
+              <b>Penyetor</b> : <input type="text" class="form-control penyetor" name="penyetor">
 
           </div>
     </div>
