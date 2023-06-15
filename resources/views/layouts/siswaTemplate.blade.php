@@ -117,13 +117,17 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @endif
 
       <div class="row">
-                  <div class="col-md-12">
+          <div class="col-md-12">
+              <b>Penyetor</b> : <input type="number" class="form-control penyetor" name="penyetor">
+
+          </div>
+         <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-         <b> Total Bayar :
+               <b> Total Bayar :
           RP.<b class="nominalBayar"> 0</b></b>
         </div>
       </div>
