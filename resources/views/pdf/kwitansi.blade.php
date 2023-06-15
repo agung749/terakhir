@@ -108,7 +108,7 @@ $u=1;
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td>
+            <td>($tunggakans[0]->penyetor)</td>
             <td>{{ $tunggakans[0]->admin }}</td>
         </tr>
     </table>
