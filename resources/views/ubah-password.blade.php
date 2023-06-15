@@ -50,5 +50,10 @@
 @section('js')
 <script>
 
+    $(document).ready(function(){
+@if(session()->has('success')||session()->has('error')
+        $('modaledit').modal('show')
+@endif
+    })
 </script>
 @endsection
