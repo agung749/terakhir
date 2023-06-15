@@ -89,7 +89,7 @@ $u=1;
            </tr>
            <tr>
             <td>&nbsp;</td>
-            <td>Cianjur , {{ date( "m d Y", strtotime($tunggakans[0]->created_at);  }}</td>
+            <td>Cianjur , {{ date( "m d Y", strtotime($tunggakans[0]->created_at));  }}</td>
            </tr>
            <tr>
             <td>
