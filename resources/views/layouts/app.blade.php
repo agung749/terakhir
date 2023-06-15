@@ -145,7 +145,7 @@
       <div class="modal-body modal-body2">
         @if(session()->has('success'))
         <input type="hidden" id="check" value="2">
-            <b class="text-success">{{session()->has('success')}}</b>
+            <b class="text-success">{{session()->get('success')}}</b>
         @endif
         @if($errors->any())
         <input type="hidden" id="check" value="1">
