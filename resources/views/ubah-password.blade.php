@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('content')
-@if(isset($salah)||session()->has('success'))
+@if(session()->has('success')||session()->has('error'))
 <div class="modal" style="display: show" tabindex="-1" role="dialog">
 @else
 <div class="modal" style="display: hidden" tabindex="-1" role="dialog">
@@ -14,7 +14,7 @@
           </button>
         </div>
         <div class="modal-body">
-            @if(isset($salah))
+            @if(session()->has('error')))
           <p class="text-danger">password salah atau tidak sama</p>
            @elseif(session()->has('success'))
              <p class="text-success">password salah atau tidak sama</p>
