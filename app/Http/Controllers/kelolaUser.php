@@ -23,7 +23,7 @@ class kelolaUser extends Controller
       ]);
    
       $user->update(['password' => Hash::make($req->password_baru)]);
-      return redirect('/user/ubah')->with(['success' => "KATA SANDI BERHASIL DIUBAH "]);
+      return redirect('/user/ubah')->with('success',"KATA SANDI BERHASIL DIUBAH ");
     }
     else{
       return redirect('/user/ubah')->withErrors(['error' => "KATA SANDI SALAH "]);
