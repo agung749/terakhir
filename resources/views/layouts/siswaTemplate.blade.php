@@ -112,12 +112,12 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @endif
       @endforeach
       @if($i==1)
+
+      </div>
+      @endif
     <div class="row">
         <div　class="col-md-12"><input type="text" class="form-control" name="penyetor"></div>
     </div>
-      </div>
-      @endif
-
       <div class="row">
         <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
