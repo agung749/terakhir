@@ -115,10 +115,9 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
 
       </div>
       @endif
-    <div class="row">
-        <div　class="col-md-12"><input type="text" class="form-control" name="penyetor"></div>
-    </div>
+
       <div class="row">
+           <div　class="col-md-12"><input type="text" class="form-control" name="penyetor"></div>
         <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
         </div>
@@ -142,9 +141,6 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
 </div>
 @if($tahun==1)
   <div class="col-md-2">
-    <button disabled class="kelas btn col-md-12 bg-warning mt-2 mb-4">
-      STOP PPDB 
-    </button>
   </div>
 </div>
 <div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
