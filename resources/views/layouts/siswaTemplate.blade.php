@@ -540,7 +540,6 @@ total=0;
         }
         $('.kabupaten').on('change', function(){
         var kabupaten = $(this).val();
-        alert(kabupaten);
         if(kabupaten){
             $.ajax({
                 type:'POST',
