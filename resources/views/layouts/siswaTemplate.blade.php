@@ -413,7 +413,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       <div class="modal-body modal-body2">
         @if(session()->has('success'))
         <input type="hidden" id="check" value="2">
-            <b>{{session()->get('success')}}</b>
+            <b class="text-success">{{session()->get('success')}}</b>
         @endif
         @if($errors->any())
         <input type="hidden" id="check" value="1">
@@ -425,7 +425,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
        
         @endforeach
       </table>
-        @else
+        @else if(session()->has('success')==false)
         <input type="hidden" id="check" value="3">
         <b>Apakah anda yakin data akan dihapus</b>
         <form action="POST" id="linkHapus">
