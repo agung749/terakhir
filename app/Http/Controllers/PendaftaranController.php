@@ -190,7 +190,10 @@ class PendaftaranController extends Controller
        
         ]
     );
- 
+   if(isset(Auth::user()->name)){
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil ditambahkan']);
+       }
+   else{
    $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
    $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F Y');
    $C['0']['tgl_lahir'] = $data;
@@ -210,10 +213,6 @@ class PendaftaranController extends Controller
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-       if(isset(Auth::user()->name)){
-        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil ditambahkan']);
-       }
-       else{
         return $pdf->download($C[0]['nama'].'.pdf');
        }
 }
