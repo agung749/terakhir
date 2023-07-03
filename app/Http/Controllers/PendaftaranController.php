@@ -26,7 +26,7 @@ class PendaftaranController extends Controller
     {
         $thn_ajaran = tahun_ajaran::where('tahun_ajaran',date('Y').'/'.date('Y',strtotime(' +1 year')))->exists();
         if($thn_ajaran==false){
-            $tahun = tahun_ajaran::create(['tahun_ajaran'=>date('Y').'/'.date('Y',strtotime(' +1 year')),'status'=>1]);
+            $tahun = tahun_ajaran::create(['tahun_ajaran'=>date('Y').'/'.date('Y',strtotime(' +1 year')),'status'=>1]);           
             $jurusan = jurusan::get();
             foreach($jurusan as $jurusans){
                 kelas::create([
@@ -43,14 +43,14 @@ class PendaftaranController extends Controller
         else{
             return redirect()->back()->withErrors('tahun ajaran sudah ada');
         }
-    }
+    }   
     public function berhenti()
     {
         $thn_ajaran = tahun_ajaran::where('status',1);
         $thn_ajaran->update(['status'=>0]);
         $kelas2 = Kelas::where('angkatan',date('Y',strtotime(' -1 year')).'/'.date('Y'))->get();
         $kelas3 = kelas::where('angkatan',date('Y',strtotime(' -2 year')).'/'.date('Y',strtotime(' -1 year')))->get();
-        $alumni= kelas::where('angkatan',date('Y',strtotime(' -3 year')).'/'.date('Y',strtotime(' -2 year')))->get();
+        $alumni= kelas::where('angkatan',date('Y',strtotime(' -3 year')).'/'.date('Y',strtotime(' -2 year')))->get(); 
         Siswa::where('status',2)->update(['status'=>1]);
         foreach($kelas2 as $naik){
             $jurusan = jurusan::where('id',$naik->jurusan)->get();
@@ -63,7 +63,7 @@ class PendaftaranController extends Controller
             Kelas::where('id',$naik->id)->update([
                 'nama'=>"XII ".$jurusan[0]->jurusan.' '.$naik->posisi
             ]);
-
+           
         }
         foreach($alumni as $naik){
             $jurusan = jurusan::where('id',$naik->jurusan)->get();
@@ -101,14 +101,14 @@ class PendaftaranController extends Controller
             $file= $req->file('foto_ijazah');
             $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
             $file-> move('images/data_siswa',  $foto_ijazah);
-
+           
         }
-
+    
         if($req->file('foto')){
             $file= $req->file('foto');
             $foto= date('YmdHi').$file->getClientOriginalName();
             $file-> move('images/data_siswa', $foto);
-
+            
         }
         if($req->file('foto_skhu')){
             $file= $req->file('foto_skhu');
@@ -120,6 +120,12 @@ class PendaftaranController extends Controller
     $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
     $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
+    if(isset(Auth::user()->name)==false){
+        $name=null;
+    }
+    else{
+        $name=Auth::user()->name;
+    }
      $siswa = Siswa::create([
         "nama"=>$req->nama,
         "kelurahan"=>$req->kelurahan,
@@ -187,14 +193,11 @@ class PendaftaranController extends Controller
         'kode_pos'=>$req->kode_pos,
         'kode_unik'=>$kode_unik,
         'kelas'=>null,
-
+       'admin'=>$name
         ]
     );
-   if(isset(Auth::user()->name)){
-        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil ditambahkan');
-       }
-   else{
-   $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray();
+ 
+   $C = Siswa::where('kode_unik',$kode_unik)->where('nama',$req->nama)->get()->toArray(); 
    $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F Y');
    $C['0']['tgl_lahir'] = $data;
    $data = Carbon::parse($C[0]['tanggal_lahir_ayah'])->translatedFormat('d F Y');
@@ -209,12 +212,12 @@ class PendaftaranController extends Controller
     $C[0]['kabupaten']=$kabupaten[0]->name;
     $C[0]['kelurahan']=$kelurahan[0]->name;
     $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
-    $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan;
+    $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
     $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
      $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
-        return $pdf->download($C[0]['nama'].'.pdf');
-       }
+    return $pdf->download($C[0]['nama'].'.pdf');
+
 }
    public function hapus(Request $req,$hapus){
     $siswa=Siswa::where('id',$hapus);
@@ -224,14 +227,14 @@ class PendaftaranController extends Controller
     }
     if(file_exists($siswa_data[0]->foto_ijazah)){
         unlink($siswa_data[0]->foto_ijazah);
-
+ 
     }
     if(file_exists($siswa_data[0]->foto)){
         unlink($siswa_data[0]->foto);
-
+ 
     }
     $siswa->delete();
-    return redirect()->back()->with('success',"data berhasil dihapus");
+    return redirect()->back()->with(['success'=>"data berhasil dihaus"]);
     }
     public function ubah(Request $req,$ubah){
        $siswa =Siswa::where('id',$ubah)->get();
@@ -241,23 +244,31 @@ class PendaftaranController extends Controller
         $status = $siswa[0]->status;
         $siswa =Siswa::where('id',$ubah);
         $req->validate([
-
-            "foto"=>"nullable|mimes:jpg,png|max:3000"
-
-
+            "nama"=>"required",
+            "no_hp"=>"nullable",
+            "tgl_lahir"=>"required",
+            "nisn"=>"nullable|numeric|digits_between:10,11|unique:siswa",
+            "jenis_tempat_tinggal"=>"required",
+            "nik"=>"nullable|numeric|digits_between:16,17",
+            "foto"=>"nullable|mimes:jpg,png|max:3000",
+            "jk"=>"required",
+            "foto_skhu"=>"nullable|mimes:jpg,png|max:3000",
+            "foto_ijazah"=>"nullable|mimes:jpg,png|max:3000",
+            "Ijazah"=>"nullable",
+         
         ]);
             if($req->file('foto_ijazah')){
                 $file= $req->file('foto_ijazah');
                 $foto_ijazah= date('YmdHi').$file->getClientOriginalName();
                 $file-> move('images/data_siswa',  $foto_ijazah);
-
+               
             }
-
+        
             if($req->file('foto')){
                 $file= $req->file('foto');
                 $foto= date('YmdHi').$file->getClientOriginalName();
                 $file-> move('images/data_siswa', $foto);
-
+                
             }
             if($req->file('foto_skhu')){
                 $file= $req->file('foto_skhu');
@@ -269,7 +280,7 @@ class PendaftaranController extends Controller
         $kabupaten= Kabupaten::where('id',$req->kabupaten)->get();
         $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
         $kode_unik=date('d').siswa::where('status',0)->get()->count().$req->jurusan;
-
+     
         $name = Auth::user()->name;
         $siswa->update([
             "nama"=>$req->nama,
@@ -337,13 +348,13 @@ class PendaftaranController extends Controller
             "admin"=>$name
             ]
         );
-        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil diubah');
-
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
+       
     }
     public function cetakKwitansi($data1)
     {
         $data = data_cicilan::where('noPembayaran',$data1)->with(['tunggakan'])->get();
-
+ 
         $nama = Siswa::where('id',$data[0]->id_siswa)->get('nama');
         $total = data_cicilan::where('noPembayaran',$data1)->sum('pembayaran');
         $totcil = data_cicilan::where('id_siswa',$data[0]->id_siswa)->whereDate('created_at','<=',$data[0]->created_at)->sum('pembayaran');
@@ -353,13 +364,13 @@ class PendaftaranController extends Controller
          return $pdf->download('kwitansi.pdf');
     }
     public function print(){
-
+        
         return Excel::download(new rekapLaporanSheet,'Pendaftaran Siswa Tahun '.date('Y').'.xlsx');
     }
     public function terima($detail,Request $req){
     $siswa=Siswa::where('id',$detail);
     $isi=$siswa->get();
-
+    
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
     $pembayarans = data_pembayaran::where('semester',1)->orWhere('semester','7')->orWhere('semester','8')->orWhere('semester','9')->get();
     $i=0;
@@ -367,7 +378,7 @@ class PendaftaranController extends Controller
     $tagihan=0;
     $frak = date("DmY").$detail.rand(1,100);
     foreach($pembayarans as $pembayaran){
-    $nama = str_replace(",","_",$pembayaran->nama);
+    $nama = str_replace(",","_",$pembayaran->nama); 
     $nama = str_replace(" ","_",$nama);
     $nama = str_replace(".","_",$nama);
     if($req->$nama==null){
@@ -378,7 +389,7 @@ class PendaftaranController extends Controller
        }
        else if($pembayaran->nominal>$req->$nama){
         $status=0;
-    }
+    } 
     else{
     return redirect('/admin/kelolaPendaftaran')->withError('data salah');
     }
@@ -394,18 +405,17 @@ class PendaftaranController extends Controller
             'tahun_ajaran'=>$thn_ajaran
         ]);
         $dataT = data_tunggakan::where('id_siswa',$detail)->where("jenis_pembayaran",$pembayaran->nama)->first();
-
+        
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
             "id_tunggakan"=>$dataT->id,
             'pembayaran'=>$dataT->total_bayar,
-            'admin'=>Auth::user()->name,
-           'penyetor'=>$req->penyetor
+            'admin'=>Auth::user()->name
         ]);
         $total+=$dataT->total_bayar;
         $tagihan+=$pembayaran->nominal;
-
+        
     }
     $dataZ= data_cicilan::where('id_siswa',$detail)->with(['tunggakan'])->get();
     $nama = Siswa::where('id',$detail)->get('nama');
@@ -414,7 +424,7 @@ class PendaftaranController extends Controller
     return redirect()->back();
     }
     public function surat($id){
-        $C = Siswa::where('id',$id)->get()->toArray();
+        $C = Siswa::where('id',$id)->get()->toArray(); 
         $data = Carbon::parse($C['0']['tgl_lahir'])->translatedFormat(' d F Y');
         $C['0']['tgl_lahir'] = $data;
         $data = Carbon::parse($C[0]['tanggal_lahir_ayah'])->translatedFormat('d F Y');
@@ -432,7 +442,7 @@ class PendaftaranController extends Controller
         $C[0]['kabupaten']=$kabupaten[0]->name;
         $C[0]['kecamatan']=$kecamatan[0]->name;
         $C[0]['jurusan']=Jurusan::where('id',$C[0]['jurusan'])->get();
-        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan;
+        $C[0]['jurusan']= $C[0]['jurusan'][0]->jurusan; 
          $tanggal=carbon::parse(date(now()))->translatedFormat('d F Y');
           $pdf = Pdf::loadView('/pdf/pendaftaran',['req'=>$C[0],'tanggal'=>$tanggal]);
          return $pdf->download($C[0]['nama'].'.pdf');
@@ -500,13 +510,13 @@ class PendaftaranController extends Controller
             for($i=0;$i<count($kelurahans);$i++) {
                 $print[0]->kec .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
             }
-
-
+           
+        
             $kelurahans=Kelurahan::where('district_id',$print[0]->kecamatan)->get();
-
+        
             for($i=0;$i<count($kelurahans);$i++) {
                 $print[0]->kel .= "<option value='".$kelurahans[$i]->id."'>".$kelurahans[$i]->name."</option>";
-            }
+            } 
         return $print;
     }
     public function cicil($data,Request $req)
@@ -515,7 +525,7 @@ class PendaftaranController extends Controller
         $frak = date("DmY").$data.rand(1,100);
         $pembayarans = data_tunggakan::where('id_siswa',$data)->get();
         foreach($pembayarans as $pembayaran){
-        $nama = str_replace(",","_",$pembayaran->jenis_pembayaran);
+        $nama = str_replace(",","_",$pembayaran->jenis_pembayaran); 
         $nama = str_replace(" ","_",$nama);
         $nama = str_replace(".","_",$nama);
         if($req->$nama==null){
@@ -526,7 +536,7 @@ class PendaftaranController extends Controller
            }
            else if($pembayaran->total_tunggakan>$req->$nama){
             $status=0;
-        }
+        } 
         else{
         return redirect('/admin/kelolaPendaftaran')->withError('data salah');
         }
@@ -539,19 +549,18 @@ class PendaftaranController extends Controller
                 "id_siswa"=>$data,
                 "id_tunggakan"=>$pembayaran->id,
                 'pembayaran'=>$req->$nama,
-                'admin'=>Auth::user()->name,
-                'penyetor'=>$req->penyetor
+                'admin'=>Auth::user()->name
             ]);
             $total+=$req->$nama;
             $tagihan+=$pembayaran->total_tunggakan;
-
+       
         }
 
         $nama = Siswa::where('id',$data)->get('nama');
         $totcil =  data_tunggakan::where('id_siswa',$data)->sum("total_bayar");
         $dataZ= data_cicilan::where('noPembayaran',$frak)->with(['tunggakan'])->get();
         $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'total'=>$total,'tagihan'=>($tagihan-$totcil),'totcil'=>$totcil])->setPaper('a4','landscape');
-         return $pdf->download('kwitansi.pdf');
+         return $pdf->download('kwitansi.pdf'); 
     }
 
     public function cicilTampil($data)
@@ -574,12 +583,12 @@ class PendaftaranController extends Controller
                data_cicilan::where('noPembayaran',$data)->delete();
             }
         }
-        return redirect('/admin/kelolaPendaftaran')->with('success','data berhasil diubah');
+        return redirect('/admin/kelolaPendaftaran')->with(['success'=>'data berhasil diubah']);
     }
     public function riwayat($data)
     {
        $cicilan =  data_cicilan::where('id_siswa',$data)->get()->unique('noPembayaran');
-       $cil0=[];
+       $cil0=[]; 
        foreach($cicilan as $cil){
         $cil0 []=$cil;
         }
@@ -591,8 +600,8 @@ class PendaftaranController extends Controller
         return DataTables::of($data)
               ->addIndexColumn()
                ->addColumn('aksi', function($row){
-
-                if($row->status==0){
+                
+                if($row->status==0){     
                 $btn = '<a data-id="'.$row->id.'" class="hapus btn btn-danger btn-sm"><i class="fa fa-close"></i>Tolak</a>&nbsp;&nbsp;<a data-id="'.$row->id.'" class="detail btn btn-success btn-sm"><i class="fa fa-eye"></i>&nbsp;Detail</a>&nbsp;&nbsp;&nbsp;'.'<a class="terima btn btn-primary btn-sm" data-id="'.$row->id.'"><i class="fa fa-check"></i>&nbsp;Terima</a>&nbsp;&nbsp;'.'&nbsp;&nbsp;&nbsp;<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp;'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                 }
                 else{
@@ -603,7 +612,7 @@ class PendaftaranController extends Controller
                     else{
                         $btn = '<a data-id="'.$row->id.'" class="ubah btn btn-warning btn-sm"> <i class="fa fa-pen"></i>Edit</a>&nbsp;&nbsp;&nbsp'.'<a data-id="'.$row->id.'" class="riwayat btn btn-danger btn-sm">Riwayat Pembayaran</a>'.'&nbsp;&nbsp;<a data-id="'.$row->id.'" class="cicil btn btn-success btn-sm">Cicil</a>'.'<a href="/admin/kelolaPendaftaran/surat/'.$row->id.'" class="btn btn-warning btn-sm"><i class="fa fa-print"></i>Print</a>';
                     }
-                }
+                }  
                 return $btn;
                 })->addColumn('jurusan', function($row){
                    switch($row->jurusan){
@@ -620,13 +629,20 @@ class PendaftaranController extends Controller
                             return "DKV";
                             break;
                             case 5 :
-                                return "TJKT";
+                                return "TKJT";
                                 break;
-                   }
-
+                   } 
+               
 
              })->addColumn('created_at',function($row){
                 return $row->created_at->format('d M y');
+             })->addColumn('admin',function($row){
+                if($row->admin==null){
+                    return "Online";
+                }
+                else{
+                    return $row->admin;
+                }
              })->addColumn('keterangan',function($row){
                 $foto=" ";
                 if($row->foto!=""){
@@ -635,17 +651,12 @@ class PendaftaranController extends Controller
                 if($row->foto_skhu!=""){
                     $foto.="<i class='fa fa-check'><i>SKHU <br>";
                 }
-
+             
                 if($row->foto_ijazah!=""){
                     $foto.="<i class='fa fa-check'><i>Ijazah ";
                 }
                 return $foto;
-             })->addColumn('admin',function($row){
-                if($row->admin==null){
-                    return "ONLINE";
-                }
-                return $row->admin;
-             })->rawColumns(['aksi','keterangan'])
+             })->rawColumns(['aksi','keterangan','admin'])
                 ->make(true);
     }
 }

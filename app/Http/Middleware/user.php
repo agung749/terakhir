@@ -19,14 +19,16 @@ class user
     {
 
         if(isset(Auth::user()->role)){
-            if((Auth::user()->role==1||Auth::user()->role==4)&&$r=="admin"){
+            if(Auth::user()->role==1&&$r=="admin"){
                 return $next($request);
             }
-            
             else if(Auth::user()->role==2&&$r=="guru"){
                 return $next($request);
             }
            else if(Auth::user()->role==3&&$r=="wirausaha"){
+                return $next($request);
+            }
+            else if(Auth::user()->role==4&&$r=="bendahara"){
                 return $next($request);
             }
            else if(Auth::user()->role==4&&$r=="kepala"){

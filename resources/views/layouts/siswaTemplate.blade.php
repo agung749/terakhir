@@ -112,24 +112,16 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @endif
       @endforeach
       @if($i==1)
-
       </div>
       @endif
-    <div class="row">
-           <div class="col-md-12">
-              <b>Penyetor</b> : <input type="text" class="form-control penyetor" name="penyetor">
-
-          </div>
-    </div>
       <div class="row">
-
-         <div class="col-md-12">
+        <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-               <b> Total Bayar :
+         <b> Total Bayar :
           RP.<b class="nominalBayar"> 0</b></b>
         </div>
       </div>
@@ -145,8 +137,11 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   </div>
 </div>
 @if($tahun==1)
-  <div class="col-md-2">
-  </div>
+  {{-- <div class="col-md-4">
+    <button class="kelas btn col-md-12 bg-warning mt-2 mb-4">
+      STOP PPDB
+    </button>
+  </div> --}}
 </div>
 <div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
@@ -407,13 +402,13 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-      <h5 class="modal-title l2" id="staticBackdropLabel" >Pesan</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      <h5 class="modal-title l2" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body modal-body2">
-        @if(session()->has('success'))
+        @if(isset($success))
         <input type="hidden" id="check" value="2">
-            <b class="text-success">{{session()->get('success')}}</b>
+            <b>Data Berhasil Dikirm</b>
         @endif
         @if($errors->any())
         <input type="hidden" id="check" value="1">
@@ -425,7 +420,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
 
         @endforeach
       </table>
-        @elseif(session()->has('success')==false)
+        @else
         <input type="hidden" id="check" value="3">
         <b>Apakah anda yakin data akan dihapus</b>
         <form action="POST" id="linkHapus">
@@ -480,9 +475,6 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
             });
             $('.modalRiwayat').modal('show');
       });
-        @if(session()->has('success'))
-            $(".modaledit").modal("show");
-        @endif
        $('body').on('click','.cicil',function(){
         id = $(this).data('id');
         $('.uang').val("0");
@@ -498,13 +490,19 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                     });
 
                     sum=0;
-                  for(i=0;  i<datas.length; i++){
+                  for(let i=0;  i<datas.length; i++){
                    nama=datas[i]['jenis_pembayaran'];
                    nama = nama.replace( /[.,\s]/g,'_');
-                   $('#'+nama).attr('max',(datas[i]['total_tunggakan']-datas[i]['total_bayar']));
-                    $('#'+nama).attr('placeholder',(datas[i]['total_tunggakan']-datas[i]['total_bayar']));
+
+
+
+
+                    $('#'+nama).attr('max',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+                    $('#'+nama).attr('placeholder',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+
 
                     console.log(nama);
+                   console.log(uang[i]);
                     sum += datas[i]['total_tunggakan']-datas[i]['total_bayar'];
 
                   }
@@ -537,6 +535,7 @@ total=0;
         }
         $('.kabupaten').on('change', function(){
         var kabupaten = $(this).val();
+        alert(kabupaten);
         if(kabupaten){
             $.ajax({
                 type:'POST',

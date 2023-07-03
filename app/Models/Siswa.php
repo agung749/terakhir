@@ -77,8 +77,4 @@ class Siswa extends Model
         {
         return $this->hasOne('\App\Models\Kelas','id','kelas');
         }
-        public function jurusan1()
-        {
-        return $this->belongsTo('\App\Models\jurusan','jurusan','id');
-        }
 }

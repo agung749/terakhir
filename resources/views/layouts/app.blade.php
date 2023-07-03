@@ -116,7 +116,7 @@
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title l2" id="staticBackdropLabel" ></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method="POST" action="/{{$role}}/{{ $url }}/import" enctype="multipart/form-data">
         @csrf
@@ -139,13 +139,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-      <h5 class="modal-title l2" id="staticBackdropLabel" >Pesan</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      <h5 class="modal-title l2" id="staticBackdropLabel" ></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body modal-body2">
-        @if(session()->has('success'))
+        @if(isset($success))
         <input type="hidden" id="check" value="2">
-            <b class="text-success">{{session()->get('success')}}</b>
+            <b>Data Berhasil Dikirm</b>
         @endif
         @if($errors->any())
         <input type="hidden" id="check" value="1">
@@ -159,7 +159,7 @@
        
       </table>
        
-        @elseif(session()->has('success')==false)
+        @else
         <input type="hidden" id="check" value="3">
         <b>Apakah anda yakin data akan dihapus</b>
         <form action="POST" id="linkHapus">
@@ -191,9 +191,6 @@
        
         @endif
         @yield('var')
-        @if(session()->has('success'))
-            $('.modaledit').modal('show');
-        @endif
         if($('#check').val()==1){
           $('.modaledit').modal('show');
         }

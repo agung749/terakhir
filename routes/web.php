@@ -80,6 +80,14 @@ Route::group(['prefix' => '/wirausaha', 'middleware' => 'user:wirausaha'], funct
 Route::group(['prefix' => '/guru', 'middleware' => 'user:guru'], function () {
     route::get('/{admin}', [App\Http\Controllers\guruController::class, 'halaman']);
 });
+Route::group(['prefix' => '/bendahara', 'middleware' => 'user:bendahara'], function () {
+    route::get('/{admin}', [App\Http\Controllers\bendaharaController::class, 'halaman']);
+    route::get('/kelolaDataPembayaran/tampil', [App\Http\Controllers\DataPembayaranController::class, 'tampil']);
+    route::get('/kelolaDataPembayaran/detail/{detail}', [App\Http\Controllers\DataPembayaranController::class, 'detail']);
+    route::post('/kelolaDataPembayaran/tambah/', [App\Http\Controllers\DataPembayaranController::class, 'tambah']);
+    route::post('/kelolaDataPembayaran/ubah/{ubah}', [App\Http\Controllers\DataPembayaranController::class, 'ubah']);
+    route::get('/kelolaDataPembayaran/hapus/{hapus}', [App\Http\Controllers\DataPembayaranController::class, 'hapus']);
+});
 
 Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/{admin}', [App\Http\Controllers\adminController::class, 'halaman']);
@@ -150,12 +158,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/kelolaSaran/print', [App\Http\Controllers\SaranController::class, 'print']);
     route::get('/kelolaSaran/hapus/{data}', [App\Http\Controllers\SaranController::class, 'hapus']);
     route::get('/kelolaSaran/detail/{detail} ', [App\Http\Controllers\SaranController::class, 'detail']);
-    route::get('/kelolaDataPembayaran/tampil', [App\Http\Controllers\DataPembayaranController::class, 'tampil']);
-    route::get('/kelolaDataPembayaran/detail/{detail}', [App\Http\Controllers\DataPembayaranController::class, 'detail']);
-    route::post('/kelolaDataPembayaran/tambah/', [App\Http\Controllers\DataPembayaranController::class, 'tambah']);
-    route::post('/kelolaDataPembayaran/ubah/{ubah}', [App\Http\Controllers\DataPembayaranController::class, 'ubah']);
-    route::get('/kelolaDataPembayaran/hapus/{hapus}', [App\Http\Controllers\DataPembayaranController::class, 'hapus']);
-    
+   
 });
 
-Auth::routes(['register' => false, 'reset=' > false]);
+Auth::routes(['register' => true, 'reset' => false]);

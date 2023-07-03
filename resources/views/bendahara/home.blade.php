@@ -53,17 +53,26 @@
 }
 </style>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="row">
-    <button class="btn btn-md btn-primary"> Tambah Info </button>
-</div>
+
 <div class="container wapper p-5">
     <div class="row">
         <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-blue order-card">
+            <div class="card bg-c-green order-card">
                 <div class="card-block">
-                    <h6 class="m-b-20">Staff</h6>
-                    <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{ $staff['staff'] }}</span></h2>
-                    <p class="m-b-0">Wanita {{ $staff['wanita'] }} <span class="f-right">Pria {{ $staff['pria'] }}</span></p>
+                    <h6 class="m-b-20">Uang Masuk</h6>
+                    <h2 class="text-right"><i class="fa fa-users f-left"></i><span></span></h2>
+                    <p class="m-b-0"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Uang Keluar</h6>
+                    <h2 class="text-right"><i class="fa fa-arrow-down f-left"></i><span></span></h2>
+                    <p class="m-b-0"></span></p>
+
                 </div>
             </div>
         </div>
@@ -71,20 +80,9 @@
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-green order-card">
                 <div class="card-block">
-                    <h6 class="m-b-20">Pendaftar</h6>
-                    <h2 class="text-right"><i class="fa fa-edit f-left"></i><span>{{ $staff['siswa'] }}</span></h2>
-                    <p class="m-b-0">Wanita {{ $staff['siswa_wanita'] }} <span class="f-right">Pria {{ $staff['siswa_pria'] }}</span></p>
-
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-yellow order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Berita</h6>
-                    <h2 class="text-right"><i class="fa fa-newspaper-o f-left"></i><span>{{ $staff['berita'] }}</span></h2>
-                    <p class="m-b-0">Suka {{ $staff['suka'] }}<span class="f-right">tidak suka {{ $staff['tidak_suka'] }}</span></p>
+                    <h6 class="m-b-20">Gaji Staff</h6>
+                    <h2 class="text-right"><i class="fa fa-newspaper-o f-left"></i><span></span></h2>
+                    <p class="m-b-0"></span></p>
                
                 </div>
             </div>
@@ -93,8 +91,8 @@
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-pink order-card">
                 <div class="card-block">
-                    <h6 class="m-b-20">Komentar</h6>
-                    <h2 class="text-right"><i class="fa fa-comments-o f-left"></i><span>486</span></h2>
+                    <h6 class="m-b-20">Tunggakan Siswa</h6>
+                    <h2 class="text-right"><i class="fa fa-comments-o f-left"></i><span></span></h2>
                     <p class="m-b-0">&nbsp;</p>
                 </div>
             </div>
@@ -113,10 +111,10 @@ const ctx = document.getElementById('badCanvas1');
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Fasilitas', 'Guru', 'Matapelajar', 'Biaya', 'Pengajaran', 'Siswa'],
+    labels: ['Pemasukan Siswa', 'Pemasukan BOS', 'Pemasukan Sumbangan', 'Pemasukan Lainya','Gaji Staff', 'Pengeluaran Bulanan','Pembayaran Lainya'],
     datasets: [{
       label: 'Saran',
-      data: [<?= $staff['saran_fasilitas'] ?>,<?= $staff['saran_guru'] ?>, <?= $staff['saran_matpel'] ?>, <?= $staff['saran_biaya'] ?>,<?= $staff['saran_pengajaran'] ?>, <?= $staff['saran_siswa'] ?>],
+      data: [ ],
       borderWidth: 1
     }]
   },

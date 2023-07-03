@@ -137,7 +137,5 @@ public function kelolaBerkasSiswa()
     public function kelolaBerkas(){
         return view('admin.kelolaBerkas');
     }
-    public function kelolaDataPembayaran(){
-        return view('admin.data_pembayaran');
-    }
+
 }
