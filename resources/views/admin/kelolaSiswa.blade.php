@@ -7,7 +7,7 @@ $model="Pendafatran";
 $url="kelolaPendaftaran";
 $role="admin";
 $print="true";
-$columns=['no','kode unik','nama','program kompentensi','tanggal','keterangan','aksi'];
+$columns=['no','kode unik','nama','program kompentensi','tanggal','keterangan','aksi','pendaftaran'];
 $data=[
 ['label'=>'Data Diri Siswa'],
 [
@@ -28,7 +28,7 @@ $data=[
     ],
     'value'=>[
         '','','','','','',''
-    ],  
+    ],
      'required'=>['','','','','','','']
     ]
 ,
@@ -88,12 +88,12 @@ $data=[
     'required'=>''
 ]
 ]  ,
-  
+
 
 ],
 
 [
-    
+
     'inputs'=>[
     'name'=>["un_smp","nisn","nik","foto","Ijazah","skhu","foto_ijazah","foto_skhu","kps","kph","kip"
              ],
@@ -108,12 +108,12 @@ $data=[
     'value'=>[
         "","","","","","","","","","",""],
      'required'=>["","","","","","","","","","",""]
-],  
+],
 ],
 
 ];
 $data2=[
-  [ 'label'=>'Dokumen Orang Tua/Wali Siswa'], 
+  [ 'label'=>'Dokumen Orang Tua/Wali Siswa'],
   [ 'inputs'=>[
   'name'=>["nama_ayah",'tanggal_lahir_ayah','kebutuhan_khusus_ayah','pekerjaan_ayah'],
   'disabled'=>['','','readonly',''],
@@ -141,7 +141,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     'Tidak Bepenghasilan',
@@ -211,9 +211,9 @@ $data2=[
   [
     "Nama ibu",'' ,'',''],
   'value'=>["",'','-',''],
-  
+
   'required'=>[ "","",'',''],
-  
+
   ],
   'selects'=>[
 'penghasilan_ibu'=>[
@@ -226,7 +226,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     'Tidak Bepenghasilan',
@@ -281,7 +281,7 @@ $data2=[
 'required'=>""
 ]
 ]
-], 
+],
 [ 'inputs'=>[
     'name'=>["nama_wali",'tanggal_lahir_wali','kebutuhan_khusus_wali','pekerjaan_wali'],
     'disabled'=>['','','readonly',''],
@@ -295,9 +295,9 @@ $data2=[
   [
     "Nama wali",'' ,'',''],
   'value'=>["",'','-',''],
-  
+
   'required'=>[ "","",'',''],
-  
+
 ],
 'selects'=>[
 'penghasilan_wali'=>[
@@ -311,7 +311,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     "-",
@@ -447,7 +447,7 @@ data = [
     {
         'data':'nama','name':'nama'
     },
-   
+
      {
         'data':'jurusan','name':'jurusan'
     },
@@ -459,6 +459,9 @@ data = [
     },
     {
         'data':'aksi','name':'aksi'
+    },
+    {
+        'data':'admin','name':'admin'
     }
 ]
 @endsection
