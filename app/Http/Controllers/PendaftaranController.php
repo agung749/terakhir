@@ -641,9 +641,10 @@ class PendaftaranController extends Controller
                 }
                 return $foto;
              })->addColumn('admin',function($row){
-                if("admin"==null){
+                if($row->admin==null){
                     return "ONLINE";
                 }
+                return $row->admin;
              })->rawColumns(['aksi','keterangan'])
                 ->make(true);
     }
