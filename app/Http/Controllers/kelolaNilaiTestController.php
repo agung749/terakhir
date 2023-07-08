@@ -16,11 +16,17 @@ class kelolaNilaiTestController extends Controller
 {
 public function tambah($tambah,$nilai,$field) {
     $siswa=test::where('siswa_id',$tambah);
+    if($field!="nilai_diagnostik"){
+
     $nilai_total=$siswa->get('nilai_total');
     $sebelum =$siswa->get($field);
     $siswa->update(['nilai_total'=>($nilai_total[0]->nilai_total-$sebelum[0]->$field)]);
     $nilai_total=$siswa->get('nilai_total');
     $siswa->update([$field=>$nilai,'nilai_total'=>($nilai_total[0]->nilai_total+$nilai)]);
+    }
+    else{
+        $siswa->update(['nilai_diagnostik'=>$nilai]);
+    }
 }
 public function ubah($id,$jurusan,$Kelas) {
 
