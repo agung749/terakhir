@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 use App\Exports\nilaiExports;
-use App\Models\kelas;
+use App\Models\Kelas;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithTitle;
 class kelasExport implements WithMultipleSheets,WithTitle
@@ -12,27 +12,27 @@ class kelasExport implements WithMultipleSheets,WithTitle
     */
     public function sheets(): array
 {
-    $kelases = kelas::where('kelas','X')->get();
+    $Kelases = Kelas::where('Kelas','X')->get();
     $data =  [];
-        foreach($kelases as $kelas){
-            switch($kelas->jurusan){
+        foreach($Kelases as $Kelas){
+            switch($Kelas->jurusan){
                 case 1:
-                    $kelas->jurusan="MPLB";
+                    $Kelas->jurusan="MPLB";
                     break;
                 case 2:
-                    $kelas->jurusan="AKL";
+                    $Kelas->jurusan="AKL";
                     break;
                 case 3:
-                    $kelas->jurusan="Pemasaran";
+                    $Kelas->jurusan="Pemasaran";
                     break;
                 case 4 :
-                    $kelas->jurusan="DKV";
+                    $Kelas->jurusan="DKV";
                     break;
                 case 5:
-                    $kelas->jurusan="TJKT";
+                    $Kelas->jurusan="TJKT";
                     break;
             }
-         $data [$kelas->kelas.' ' . $kelas->jurusan." ".$kelas->posisi] =new nilaiExports($kelas->id);
+         $data [$Kelas->Kelas.' ' . $Kelas->jurusan." ".$Kelas->posisi] =new nilaiExports($Kelas->id);
         }
         return $data;
 }
