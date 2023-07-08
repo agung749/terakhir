@@ -30,7 +30,7 @@ public function tambah($tambah,$nilai,$field) {
     }
     else{
         $nilai2=$siswa->get($field);
-        $siswa->update([$field=>$nilai2[0]->$field]);
+        $siswa->update([$field=>$nilai]);
     }
 }
 public function ubah($id,$jurusan,$Kelas) {
