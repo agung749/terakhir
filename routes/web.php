@@ -80,6 +80,14 @@ Route::group(['prefix' => '/wirausaha', 'middleware' => 'user:wirausaha'], funct
 Route::group(['prefix' => '/guru', 'middleware' => 'user:guru'], function () {
     route::get('/{admin}', [App\Http\Controllers\guruController::class, 'halaman']);
 });
+Route::group(['prefix' => '/bendahara', 'middleware' => 'user:bendahara'], function () {
+    route::get('/{admin}', [App\Http\Controllers\bendaharaController::class, 'halaman']);
+    route::get('/kelolaDataPembayaran/tampil', [App\Http\Controllers\DataPembayaranController::class, 'tampil']);
+    route::get('/kelolaDataPembayaran/detail/{detail}', [App\Http\Controllers\DataPembayaranController::class, 'detail']);
+    route::post('/kelolaDataPembayaran/tambah/', [App\Http\Controllers\DataPembayaranController::class, 'tambah']);
+    route::post('/kelolaDataPembayaran/ubah/{ubah}', [App\Http\Controllers\DataPembayaranController::class, 'ubah']);
+    route::get('/kelolaDataPembayaran/hapus/{hapus}', [App\Http\Controllers\DataPembayaranController::class, 'hapus']);
+});
 
 Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/{admin}', [App\Http\Controllers\adminController::class, 'halaman']);
@@ -91,12 +99,16 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::post('/kelolaPendaftaran/tambah/', [App\Http\Controllers\PendaftaranController::class, 'tambah']);
     route::post('/kelolaPendaftaran/ubah/{ubah}', [App\Http\Controllers\PendaftaranController::class, 'ubah']);
     route::post('/kelolaPendaftaran/cicil/{cicil}', [App\Http\Controllers\PendaftaranController::class, 'cicil']);
-   
+
     route::get('/kelolaPendaftaran/hapus/{hapus}', [App\Http\Controllers\PendaftaranController::class, 'hapus']);
     route::get('/kelolaPendaftaran/print', [App\Http\Controllers\PendaftaranController::class, 'print']);
+    route::post('/kelolaKelas/tambah/', [App\Http\Controllers\kelolaKelasController::class, 'tambah']);
+    route::post('/kelolaKelas/ubah/{ubah}', [App\Http\Controllers\kelolaKelasController::class, 'ubah']);
+    route::get('/kelolaKelas/hapus/{hapus}', [App\Http\Controllers\kelolaKelasController::class, 'hapus']);
+    route::get('/kelolaKelas/tampil/', [App\Http\Controllers\kelolaKelasController::class, 'tampil']);
     route::get('/kelolaPendaftaran/riwayat/{id}', [App\Http\Controllers\PendaftaranController::class, 'riwayat']);
     route::get('/kelolaPendaftaran/cetakKwitansi/{id}', [App\Http\Controllers\PendaftaranController::class, 'cetakKwitansi']);
-    route::get('/kelolaPendaftaran/hapusKwitansi/{id}', [App\Http\Controllers\PendaftaranController::class, 'hapusKwitansi']); 
+    route::get('/kelolaPendaftaran/hapusKwitansi/{id}', [App\Http\Controllers\PendaftaranController::class, 'hapusKwitansi']);
     route::get('/kelolaPendaftaran/cicilTampil/{id}', [App\Http\Controllers\PendaftaranController::class, 'cicilTampil']);
     route::get('/kelolaPendaftaran/surat/{id}', [App\Http\Controllers\PendaftaranController::class, 'surat']);
     route::get('/kelolaPendaftaran/rekap/', [App\Http\Controllers\PendaftaranController::class, 'rekap']);
@@ -150,12 +162,13 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/kelolaSaran/print', [App\Http\Controllers\SaranController::class, 'print']);
     route::get('/kelolaSaran/hapus/{data}', [App\Http\Controllers\SaranController::class, 'hapus']);
     route::get('/kelolaSaran/detail/{detail} ', [App\Http\Controllers\SaranController::class, 'detail']);
-    route::get('/kelolaDataPembayaran/tampil', [App\Http\Controllers\DataPembayaranController::class, 'tampil']);
-    route::get('/kelolaDataPembayaran/detail/{detail}', [App\Http\Controllers\DataPembayaranController::class, 'detail']);
-    route::post('/kelolaDataPembayaran/tambah/', [App\Http\Controllers\DataPembayaranController::class, 'tambah']);
-    route::post('/kelolaDataPembayaran/ubah/{ubah}', [App\Http\Controllers\DataPembayaranController::class, 'ubah']);
-    route::get('/kelolaDataPembayaran/hapus/{hapus}', [App\Http\Controllers\DataPembayaranController::class, 'hapus']);
-    
+    route::get('/kelolaNilaiTest/tampil', [App\Http\Controllers\kelolaNilaiTestController::class, 'tampil']);
+    route::get('/kelolaNilaiTest/detail/{detail}', [App\Http\Controllers\kelolaNilaiTestController::class, 'detail']);
+    route::post('/kelolaNilaiTest/tambah/', [App\Http\Controllers\kelolaNilaiTestController::class, 'tambah']);
+    route::get('/kelolaNilaiTest/ubah/{data}/{dz}/{dl}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubah']);
+    route::get('/kelolaNilaiTest/ubahData/{ubah}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubahData']);
+    route::get('/kelolaNilaiTest/hapus/{hapus}', [App\Http\Controllers\kelolaNilaiTestController::class, 'hapus']);
+
 });
 
-Auth::routes(['register' => false, 'reset=' > false]);
+Auth::routes(['register' => true, 'reset' => false]);

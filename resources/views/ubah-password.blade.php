@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('content')
-@if(isset($salah))
+@if(session()->has('success')||session()->has('error'))
 <div class="modal" style="display: show" tabindex="-1" role="dialog">
 @else
 <div class="modal" style="display: hidden" tabindex="-1" role="dialog">
@@ -8,13 +8,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Pesan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>password salah atau tidak sama</p>
+            @if(session()->has('error')))
+          <p class="text-danger">password salah atau tidak sama</p>
+           @elseif(session()->has('success'))
+             <p class="text-success">password salah atau tidak sama</p>
+            @endif
         </div>
       </div>
     </div>
@@ -46,5 +50,10 @@
 @section('js')
 <script>
 
+    $(document).ready(function(){
+@if(session()->has('success')||session()->has('error'))
+        $('modaledit').modal('show')
+@endif
+    })
 </script>
 @endsection

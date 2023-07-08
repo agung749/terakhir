@@ -293,98 +293,166 @@ return [
         // Navbar items:
         [
             'text' => 'Beranda',
-            'url'  => 'admin/home',   
+            'url'  => 'admin/home',
             'icon'    => 'fas fa-fw fa-home',
             'can'=>'admin'
         ],
         [
             'text' => 'Beranda',
-            'url'  => 'wirausaha/home',   
+            'url'  => 'bendahara/home',
+            'icon'    => 'fas fa-fw fa-home',
+            'can'=>'bendahara'
+        ],
+        [
+            'text' => 'Beranda',
+            'url'  => 'wirausaha/home',
             'icon' => 'fas fa-fw fa-home',
             'can'=>'spw'
         ],
         [
             'text' => 'Kelola Wira Usaha',
-            'url'  => 'wirausaha/home',   
+            'url'  => 'wirausaha/home',
             'icon' => 'fas fa-fw fa-home',
             'can'=>'spw'
         ],
         [
             'text' => 'Kelola Berkas Siswa',
-            'url'  => 'admin/kelolaBerkasSiswa',  
+            'url'  => 'admin/kelolaBerkasSiswa',
             'icon' => 'fas fa-fw fa-file',
             'can'=>'admin'
         ],
         [
             'text' => 'Toko',
-            'url'  => 'wirausaha/toko',   
+            'url'  => 'wirausaha/toko',
             'icon' => 'fas fa-fw fa-shopping-cart',
             'can'=>'spw'
         ],
         [
+            'text' => 'Kelola Kelas',
+            'url'  => '/admin/kelolaKelas',
+            'icon' => 'fas fa-fw fa-home',
+            'can'=>'admin'
+        ],
+        [
             'text' => 'Data Pribadi',
-            'url'  => 'user/ubah',   
+            'url'  => 'user/ubah',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Pemasukan',
-            'url'  => 'wirausaha/pemasukan',   
+            'url'  => 'wirausaha/pemasukan',
             'icon' => 'fas fa-fw fa-dollar-sign',
             'can'=>'spw'
         ],
-        [
+     [
+        'text' => 'PPDB ',
+        'icon'    => 'fas fa-fw fa-book',
+        'can'=>'admin',
+        'submenu'=>[
+            [
             'text' => 'Pendaftaran',
-            'url'  => 'admin/kelolaPendaftaran',   
+            'url'  => 'admin/kelolaPendaftaran',
             'icon'    => 'fas fa-fw fa-pen',
             'can'=>'admin'
-        ],
- 
+            ],
+            [
+                'text' => 'Kelola Nilai Test dan Penjurusan',
+                'url'  => 'admin/kelolaNilaiTest',
+                'icon'    => 'fas fa-fw fa-pen',
+                'can'=>'admin'
+            ],
+        ]
+    ],
+
         [
             'text' => 'Berita',
-            'url'  => 'admin/kelolaBerita',   
+            'url'  => 'admin/kelolaBerita',
             'icon'    => 'fas fa-fw fa-newspaper',
             'can'=>'admin'
         ],
         [
             'text' => 'Gallery',
-            'url'  => 'admin/kelolaFoto',   
+            'url'  => 'admin/kelolaFoto',
             'icon'    => 'fas fa-fw fa-image',
             'can'=>'admin'
         ],
         [
             'text' => 'Profil Sekolah',
-            'url'  => 'admin/kelolaProfil',   
+            'url'  => 'admin/kelolaProfil',
             'icon'    => 'fas fa-fw fa-school',
             'can'=>'admin'
         ],
         [
             'text' => 'Kelola Berkas',
-            'url'  => 'admin/kelolaBerkas',   
+            'url'  => 'admin/kelolaBerkas',
             'icon'    => 'fas fa-fw fa-file',
             'can'=>'admin'
         ],
         [
             'text' => 'Saran',
-            'url'  => 'admin/kelolaSaran',   
+            'url'  => 'admin/kelolaSaran',
             'icon'    => 'fas fa-fw fa-comments',
             'can'=>'admin'
         ],
         [
-            'text' => 'Keuangan Siswa',     
-            'icon'    => 'fas fa-fw fa-dollars',
-            'can'=>'admin',
+            'text' => 'Keuangan Siswa',
+            'icon'    => 'fas fa-fw fa-book',
+            'can'=>'bendahara',
             'submenu'=>[
                 [
                     'text' => 'Mater Pembayaran',
-                    'url'  => 'admin/kelolaDataPembayaran',   
+                    'url'  => 'bendahara/kelolaDataPembayaran',
                     'icon'    => 'fas fa-fw fa-book',
-                    'can'=>'admin'
+
                 ],
                 [
                     'text' => 'Data Cicilan',
-                    'url'  => 'admin/kelolaDataCicilan',   
+                    'url'  => 'bendahara/kelolaDataCicilan',
                     'icon'    => 'fas fa-fw fa-book',
-                    'can'=>'admin'
+
+                ],
+            ]
+        ],
+        [
+            'text' => 'Data Keuangan',
+            'icon'    => 'fas fa-fw fa-book',
+            'can'=>'bendahara',
+            'submenu'=>[
+                [
+                    'text' => 'Mater Pengeluaran',
+                    'url'  => 'bendahara/kelolaDataPengeluaran',
+                    'icon'    => 'fas fa-fw fa-book',
+
+                ],
+                [
+                    'text' => 'Data Pengeluaran-Pemasukan',
+                    'url'  => 'bendahara/kelolanPengeluaranPemasukan',
+                    'icon'    => 'fas fa-fw fa-book',
+
+                ],
+                [
+                    'text' => 'Rekap Keuangan',
+                    'url'  => 'bendahara/kelolaDataRekap',
+                    'icon'    => 'fas fa-fw fa-book',
+
+                ],
+            ]
+        ],
+        [
+            'text' => 'Keuangan Guru',
+            'icon'    => 'fas fa-fw fa-book',
+            'can'=>'bendahara',
+            'submenu'=>[
+                [
+                    'text' => 'Data Master',
+                    'url'  => 'bendahara/kelolaMasterGaji',
+                    'icon'    => 'fas fa-fw fa-book',
+
+                ],
+                [
+                    'text' => 'Data Gaji',
+                    'url'  => 'bendahara/kelolaDataGaji',
+                    'icon'    => 'fas fa-fw fa-book',
                 ],
             ]
         ],
@@ -393,24 +461,24 @@ return [
             'icon'    => 'fas fa-fw fa-users',
             'can'=>'admin',
             'submenu' => [
-    
+
         [
             'text' => 'Kelola Siswa',
             'url'  => 'admin/kelolaSiswa',
-         
+
         ],
         [
             'text' => 'Kelola Staff',
             'url'  => 'admin/kelolaStaff',
-           
+
         ],
         [
             'text' => 'Kelola Admin',
             'url'  => 'admin/kelolaAdmin',
-            
+
         ],
     ],
-       
+
 ],
     ],
 

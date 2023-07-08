@@ -40,7 +40,7 @@
 </div>
 <div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog ">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -57,7 +57,7 @@
 @endif
 <div class="modal fade modalRiwayat " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" >Pembayaran</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -71,13 +71,13 @@
 
         </div>
       </div>
-    </form>  
+    </form>
     </div>
   </div>
 </div>
 <div class="modal fade modalTerima  " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" >Pembayaran</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -101,7 +101,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
           <div class="col-md-12"><input type="number" class="form-control uang" id="{{ str_replace(' ','_',$pembayaran->nama) }}"placeholder="{{ $pembayaran->nominal }}" name="{{ $pembayaran->nama }}" min="0"  max="{{ $pembayaran->nominal }}"></div>
          </div>
           @php($i=1)
-      @else  
+      @else
       <div class="col-md-2"></div>
       <div class="col-md-5">
       <div class="col-md-12 mt-3">{{ $pembayaran->nama }}</div>
@@ -116,6 +116,12 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       @endif
       <div class="row">
         <div class="col-md-12">
+          <b>Penyetor :</b>
+          <input type="text" class="form-control" name="penyetor" class="penyetor" id="penyetor">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <b>Total Pemabayaran :<b class="pemsb"> Rp.{{ $pem }}</b>
         </div>
       </div>
@@ -127,25 +133,25 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
       </div>
       </div>
       <div class="modal-footer">
-     <div class="row">  
+     <div class="row">
             <button  type="submit" class=" btn btn-primary btn-md-3">Simpan</button>
       </div>
       </div>
 
-    </form>  
+    </form>
     </div>
   </div>
 </div>
 @if($tahun==1)
-  <div class="col-md-2">
+  {{-- <div class="col-md-4">
     <button class="kelas btn col-md-12 bg-warning mt-2 mb-4">
-      STOP PPDB 
+      STOP PPDB
     </button>
-  </div>
+  </div> --}}
 </div>
 <div class="modal fade modalKelas " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog  ">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -184,7 +190,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
 
 <div class="modal fade modal1 " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl ">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -229,7 +235,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                 <select name="{{$select['name']}}" class="{{$select['name']}} form-control" id="" {{$select['required']}}>
                     @for($i=0; $i<=count($select['value'])-1;$i++)
                     <option value="{{$select['value'][$i]}}">{{$select['isi'][$i]}}</option>
-                  
+
                     @endfor
                 </select>
             </div>
@@ -252,9 +258,9 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         <input type="text" name="jalan" class="jalan form-control">
       </div>
     </div>
-    
+
     @endif
-    
+
     </div>
 @endfor
 <div class="col-12">
@@ -269,7 +275,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
     </div>
     <div class="col-md-9">
       <select name="jenis_tempat_tinggal" id="" class="jenis_tempat_tinggal form-control">
-        
+
         <option value="kosan">kosan</option>
         <option value="kontrakan">kontrakan</option>
          <option value="pesantren">pesantren</option>
@@ -299,9 +305,9 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
 <div class="col-3">
 <select name="jurusan" id="jurusan" class="jurusan form-control">
 @foreach ($jurusan as $jurusans )
-<option value="{{ $jurusans['id'] }}">{{ $jurusans['jurusan'] }}</option> 
+<option value="{{ $jurusans['id'] }}">{{ $jurusans['jurusan'] }}</option>
 @endforeach
-         
+
 </select>
 </div>
 </div>
@@ -335,7 +341,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   </div>
 </div>
  <div class="row mt-3 muncul2">
- 
+
  @for($k=1;$k<count($data2);$k++)
 <div class="col-4">
   @if($k==1||$k==2)
@@ -344,8 +350,8 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   <h5 >Tidak Wajib Diisi</h5> @endif
 @if(isset($data2[$k]['inputs']))
      @for($i=0;$i<=count($data2[$k]['inputs']['nama'])-1;$i++)
-    
-  
+
+
            <div class="row mt-3">
                <div class="col-5">{{$data2[$k]['inputs']['nama'][$i]}}</div>
                <div class="col-1">:</div>
@@ -372,7 +378,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                 <select name="{{$select['name']}}" class="{{$select['name']}} form-control" id="" {{$select['required']}}>
                     @for($i=0; $i<=count($select['value'])-1;$i++)
                     <option value="{{$select['value'][$i]}}">{{$select['isi'][$i]}}</option>
-                  
+
                     @endfor
                 </select>
             </div>
@@ -380,16 +386,16 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         @endforeach
      @endif
     </div>
-   
+
 @endfor
 </div>
 
 @endif
      <div class="modal-footer modal-footer1 mt-4">
-    
+
     </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -417,7 +423,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         <tr>
           <td class="text-danger">{{$error}}</td>
         </tr>
-       
+
         @endforeach
       </table>
         @else
@@ -427,7 +433,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         @endif
       </div>
       <div class="modal-footer modal-footer2">
-        
+
       </div>
       </form>
     </div>
@@ -449,15 +455,17 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
         id=$(this).data('id');
         $('.uang').val("0");
         $("#terima").attr({'action':'/admin/kelolaPendaftaran/terima/'+id,'method':'POST'});
+      total =  $('.pemsb').text();
+        $('.pemsb').text("{{ $pem }}");
         $('.modalTerima').modal('show');
-      
+
       });
       $('body').on('click','.riwayat',function(){
-        id = $(this).data('id')  
+        id = $(this).data('id')
         $.ajax({
                 type:'GET',
                 url:'/admin/kelolaPendaftaran/riwayat/'+id,
-                
+
                 success:function(data){
                   tampil="";
                   console.log(data.length);
@@ -472,11 +480,11 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                   }
                    $('.jawaban').html(tampil);
                 }
-            }); 
+            });
             $('.modalRiwayat').modal('show');
       });
        $('body').on('click','.cicil',function(){
-        id = $(this).data('id'); 
+        id = $(this).data('id');
         $('.uang').val("0");
         $.ajax({
                 type:'GET',
@@ -485,7 +493,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                   i=0;
                  uang=[];
                    $('.uang').each(function(){
-                   uang [i]= $(this).attr('name'); 
+                   uang [i]= $(this).attr('name');
                   i++;
                     });
 
@@ -493,18 +501,18 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                   for(let i=0;  i<datas.length; i++){
                    nama=datas[i]['jenis_pembayaran'];
                    nama = nama.replace( /[.,\s]/g,'_');
-                   
-              
-                 
-                    if(uang[i]==nama){
-                    $('#'+uang[i]).attr('max',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
-                    $('#'+uang[i]).attr('placeholder',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
-                    
-                    }
+
+
+
+
+                    $('#'+nama).attr('max',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+                    $('#'+nama).attr('placeholder',datas[i]['total_tunggakan']-datas[i]['total_bayar']);
+
+
                     console.log(nama);
                    console.log(uang[i]);
                     sum += datas[i]['total_tunggakan']-datas[i]['total_bayar'];
-                  
+
                   }
                   $("#terima").attr({'action':'/admin/kelolaPendaftaran/cicil/'+id,'method':'POST'});
 
@@ -514,7 +522,7 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
               });
       });
 total=0;
- 
+
       $('.uang').change(function(){
           $('.uang').each(function(){
             total += parseInt($(this).val());
@@ -522,7 +530,7 @@ total=0;
           })
           total = 0;
         });
-     
+
         @yield('var')
         $('.kelas').click(function(){
           $('.modalKelas').modal('show');
@@ -542,13 +550,13 @@ total=0;
                 url:'/admin/berubah',
                 data:'kabupaten='+kabupaten,
                 success:function(html){
-                 
+
                     $('.kecamatan').html(html);
                     $('.kelurahan').html("<option value=''>Pilih kelurahan</option>");
                 }
-            }); 
+            });
         }else{
-            $('.kecamatan').html('<option value="">Pilih Kecamatan</option>'); 
+            $('.kecamatan').html('<option value="">Pilih Kecamatan</option>');
         }
     });
     $('.keadaan_ayah').on('change', function(){
@@ -583,19 +591,19 @@ $('.keadaan_wali').on('change', function(){
 });
         $('.kecamatan').on('change', function(){
         var kelurahan = $(this).val();
-        
+
         if(kelurahan){
             $.ajax({
                 type:'POST',
                 url:'/admin/berubah',
                 data:'kecamatan='+kelurahan,
                 success:function(html){
-      
+
                     $('.kelurahan').html(html);
                 }
-            }); 
+            });
         }else{
-            $('.pilih kelurahan').html('<option value="">Pilih Kelurahan</option>'); 
+            $('.pilih kelurahan').html('<option value="">Pilih Kelurahan</option>');
         }
     });
         $.ajaxSetup({
@@ -612,7 +620,7 @@ columns: data
 });
 $('.tambah').click(function(){
   for(i=0; i<form.length; i++){
-  
+
   $('.'+form[i]).val('');
 
   $('.'+form[i]).removeAttr('disabled');
@@ -654,7 +662,7 @@ $('.printRekap').click(function () {
   $('#form').attr('enctype','multipart/form-data');
   $('.modal1').modal('show');
   $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim submit">Kirim</button>');
- 
+
 })
 $(".submit").click(function(){
     $(".modal").modal('hide');
@@ -663,7 +671,7 @@ $('body').on('click','.hapus',function () {
 $('.l2').html('hapus data {{$model}}');
 id = $(this).data('id');
   $('.modal-body2').html('<b class="pemberitahuan"> Apakah anda yakin menghapus data  ini?<b>');
-                      
+
 $('.modal-footer2').html('<a href="/{{$role}}/{{$url}}/hapus/'+id+'"><button type="submit" class="btn btn-primary kirim submit">Kirim</button></a>');
 $('.modaledit').modal('show');
 
@@ -673,7 +681,7 @@ $('body').on('click','.detail',function(){
   data=$(this).data('id');
   $('.kirim').remove();
   detail(data,2);
-  
+
 })
 function detail(data,klik){
 
@@ -686,7 +694,7 @@ success: (data) => {
   $('.kecamatan').html(data[0]['kec']);
   console.log(data[0]['kec']);
   $('.kelurahan').html(data[0]['kel']);
-  
+
 for(i=0; i<form.length; i++){
   console.log([form[i]]+ data[0][form[i]]);
     $('.'+form[i]).val(data[0][form[i]]);
@@ -698,7 +706,7 @@ for(i=0; i<form.length; i++){
       $('.kirim').attr('disabled',true);
      }
      $('.modal1').modal('show');
-      
+
 }
 $('.modal-footer1').html('  <button type="button" class="btn btn-primary slide1">Selanjutnya</button>');
 slide1();
@@ -709,6 +717,6 @@ console.log(data);
 });
 }
 });
-    
+
 </script>
 @endsection

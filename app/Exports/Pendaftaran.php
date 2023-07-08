@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
-
+use App\Models\jurusan;
 
 
 
@@ -20,14 +20,14 @@ class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHe
     public function headings(): array
     {
         return [
-         "no",
-            "nama",
+   "no",
+   "nama",
    "alamat",
    "no hp",
    "tgl lahir",
    "nisn",
    "kode unik",
-"tahun ajaran",
+   "tahun ajaran",
    "jenis tempat tinggal",
    "nik",
    "jk",
@@ -75,13 +75,30 @@ class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHe
    "tanggal lahir ibu",
    "tanggal lahir ayah",
    "tanggal lahir wali",
-        
+
         ];
     }
     public function map($row): array
     {
-        $this->i++; 
-        return [
+        $this->i++;
+        switch($row->jurusan){
+            case 1:
+                $row->jurusan="MPLB";
+                break;
+            case 2:
+                $row->jurusan="AKL";
+                break;
+            case 3:
+                $row->jurusan="Pemasaran";
+                break;
+            case 4 :
+                $row->jurusan="DKV";
+                break;
+            case 5:
+                $row->jurusan="TJKT";
+                break;
+        }
+    return [
     $this->i,
     $row->nama,
     $row->alamat,
@@ -92,7 +109,7 @@ class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHe
     $row->tahun_ajaran,
     $row->jenis_tempat_tinggal,
     $row->nik,
-   
+
     $row->jk,
     $row->Ijazah,
     $row->skhu,
@@ -140,10 +157,10 @@ class Pendaftaran implements FromCollection, WithMapping, ShouldAutoSize, WithHe
     $row->tanggal_lahir_wali,
         ];
     }
- 
+
 
     public function collection()
     {
-        return siswa::where('tahun_ajaran',date('Y').'/'.date('Y',strtotime(' +1 year')))->where('status',2)->get();
+        return siswa::where('tahun_ajaran',date('Y').'/'.date('Y',strtotime(' +1 year')))->get();
     }
 }

@@ -77,4 +77,7 @@ class Siswa extends Model
         {
         return $this->hasOne('\App\Models\Kelas','id','kelas');
         }
+        function test() {
+            return $this->hasMany('\App\Models\test','siswa_id','id');
+        }
 }

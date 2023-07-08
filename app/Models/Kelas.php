@@ -9,5 +9,8 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table="kelas";
-    protected $fillable=["id",'nama',"jumlah","jurusan","posisi","jumlah_terisi","angkatan"];
+    protected $fillable=["id",'kelas',"jumlah","jurusan","posisi","angkatan",'status'];
+    public function jurusans() {
+      return $this->belongsTo('\App\Models\jurusan','jurusan','id');
+    }
 }

@@ -53,7 +53,7 @@ return $pesan;
       "semester"=>$req->semester,
       "nama"=>$req->nama
     ]);
-    return redirect('/admin/kelolaDataPembayaran')->with(['success'=>'data berhasil dimasukan']);
+    return redirect('/bendahara/kelolaDataPembayaran')->with(['success'=>'data berhasil dimasukan']);
    }
    public function ubah(Request $req,$data)
    {
