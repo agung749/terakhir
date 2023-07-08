@@ -57,7 +57,7 @@ public function tampil(){
         if($row->posisi==0){
             $row->posisi=" ";
         }
-        return $row->kelas.' '.$row->posisi.' '.$row->jurusans->jurusan;
+        return $row->kelas.' '.$row->jurusans->jurusan.' '.$row->posisi.' ';
         })
     ->addColumn('aksi',function($row){
         return "<a href='/admin/kelolaKelas/hapus/".$row->id."' class='btn btn-danger btn-md'>Hapus</a>";
