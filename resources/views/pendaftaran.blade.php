@@ -7,8 +7,8 @@ use App\Models\Berita;
 $data=[
 ['label'=>'Data Diri Siswa'],
 [
-    
-    
+
+
     'inputs'=>[
     'name'=>[
         "nama","tempat_lahir","tgl_lahir","sd","smp","no_hp","email"
@@ -25,7 +25,7 @@ $data=[
     ],
     'value'=>[
         '','','','','','','','',''
-    ],  
+    ],
      'required'=>['required','','','','','','','','']
     ]
 ,
@@ -85,12 +85,12 @@ $data=[
     'required'=>'required'
 ]
 ]  ,
-  
+
 
 ],
 
 [
-    
+
     'inputs'=>[
     'name'=>["un_smp","nisn","nik","foto","Ijazah","skhu","foto_ijazah","foto_skhu","kps","kph","kip"
              ],
@@ -104,14 +104,14 @@ $data=[
         "nomor smp","nisn","nik　sepanjang 16 digits","foto","nomor ijazah","skhu","foto ijazah","foto skhu","kps","kph","kip"],
     'value'=>[
         "","","","","","","","","","",""],
-     'required'=>["","required","required","","","","","","","",""]
+     'required'=>["","","","","","","","","","",""]
 ],
-   
+
 ],
 
 ];
 $data2=[
-  [ 'label'=>'Dokumen Orang Tua/Wali Siswa'], 
+  [ 'label'=>'Dokumen Orang Tua/Wali Siswa'],
   [ 'inputs'=>[
   'name'=>["nama_ayah",'pekerjaan_ayah','tanggal_lahir_ayah','kebutuhan_khusus_ayah'],
   'disabled'=>['','','','readonly'],
@@ -126,7 +126,7 @@ $data2=[
   "Nama Ayah",'' ,'', ' '],
 'value'=>["",'','',''],
 
-'required'=>[ "required",'required',"required",'required'],
+'required'=>[ "",'',"",''],
 
 ],
   'selects'=>[
@@ -140,7 +140,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     'Tidak Bepenghasilan',
@@ -197,7 +197,7 @@ $data2=[
 ]
 ]
 ],
-[ 
+[
     'inputs'=>[
   'name'=>["nama_ibu","pekerjaan_ibu",'tanggal_lahir_ibu','kebutuhan_khusus_ibu'],
   'disabled'=>['','','','readonly'],
@@ -226,7 +226,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     'Tidak Bepenghasilan',
@@ -236,7 +236,7 @@ $data2=[
       '4 sampai 5 juta',
       'di atas 5 juta',
 ],
-'required'=>"required"
+'required'=>""
 ],
 
 'pendidikan ibu'=>[
@@ -282,7 +282,7 @@ $data2=[
 'required'=>"required"
 ]
 ]
-], 
+],
 ['inputs'=>[
   'name'=>["nama_wali",'pekerjaan_wali','tanggal_lahir_wali','kebutuhan_khusus_wali'],
   'disabled'=>['','','','readonly'],
@@ -311,7 +311,7 @@ $data2=[
       '2 sampai 3 juta',
       '4 sampai 5 juta',
       'di atas 5 juta',
-    
+
     ],
   'isi'=>[
     'Tidak Bepenghasilan',
@@ -380,7 +380,7 @@ $data2=[
         color:white;
     }
     h3{
-        color:white; 
+        color:white;
     }
     .box{
       border-radius: 50px;
@@ -416,7 +416,7 @@ box-shadow:  20px 20px 60px #095b0f,
    @for($i=0;$i<=count($data[$k]['inputs']['nama'])-1;$i++)
          <div class="row " style="margin-top:4%">
              <div class="col-md-3">{{$data[$k]['inputs']['nama'][$i]}}</div>
-           
+
              <div class="col-md-8"><input type="{{$data[$k]['inputs']['type'][$i]}}" name="{{$data[$k]['inputs']['name'][$i]}}" class="{{$data[$k]['inputs']['name'][$i]}} form-control" value="{{$data[$k]['inputs']['value'][$i]}}" placeholder="{{$data[$k]['inputs']['placeholder'][$i]}}" {{$data[$k]['inputs']['required'][$i]}}></div>
          </div>
   @endfor
@@ -425,7 +425,7 @@ box-shadow:  20px 20px 60px #095b0f,
 @for($i=0;$i<=count($data[$k]['textArea'])-1;$i++)
     <div class="row mt-3" style="margin-top:4%">
         <div class="col-md-3">{{$data[$k]['textArea'][$i]['nama']}}</div>
-      
+
         <div class="col-md-8"><textarea cols="30" rows="40" type="{{$data[$k]['textArea'][$i]['type']}}" id="editor" name="{{$data[$k]['textArea'][$i]['name']}}" class="{{$data[$k]['textArea'][$i]['name']}} form-control" value="{{$data[$k]['textArea'][$i]['value']}}" placeholder="{{$data[$k]['textArea'][$i]['placeholder']}}" ></textarea></div>
     </div>
 @endfor
@@ -435,12 +435,12 @@ box-shadow:  20px 20px 60px #095b0f,
    @foreach($data[$k]['selects'] as $select)
       <div class="row mt-3">
           <div class="col-md-3">{{$select['nama']}}</div>
-        
+
           <div class="col-md-8">
               <select style="margin-top:4%" name="{{$select['name']}}" class="{{$select['name']}} form-control" id="" {{$select['required']}}>
                   @for($i=0; $i<=count($select['value'])-1;$i++)
                   <option value="{{$select['value'][$i]}}">{{$select['isi'][$i]}}</option>
-                
+
                   @endfor
               </select>
           </div>
@@ -450,7 +450,7 @@ box-shadow:  20px 20px 60px #095b0f,
    @if($k==2)
    <div class="row " style="margin-top:4%">
     <div class="col-md-1">RT</div>
-  
+
     <div class="col-md-2"><input type="text" name="rt" class="rw form-control"></div>
     <div class="col-md-1">RW</div>
     <div class="col-md-2"><input type="text" name="rw" class="rt form-control"></div>
@@ -460,15 +460,15 @@ box-shadow:  20px 20px 60px #095b0f,
   </div>
   <div class="row mt-3 mb-3" style="margin-top:4%">
     <div class="col-md-3">Jalan/Kampung</div>
-  
+
     <div class="col-md-8">
       <input type="text" name="jalan" class="jalan form-control" >
     </div>
   </div>
-  
-  
+
+
   @endif
-  
+
   </div>
 @endfor
 
@@ -539,7 +539,7 @@ box-shadow:  20px 20px 60px #095b0f,
         <b>catatan : ketentuan pas foto atau foto diri berupa foto dengan ukuran 3x4 , berpakaian formal baju smp dan berlatar bebas.<b>
       </div>
       <div class="modal-footer">
-       
+
           <button type="button" class="btn btn-primary" data-dismiss="modal">Mengerti</button>
         </div>
     </div>
@@ -559,8 +559,8 @@ box-shadow:  20px 20px 60px #095b0f,
 <div class="col-md-3">Program Kompentensi</div>
 <div class="col-md-3"><select name="jurusan" id="jurusan" class="jurusan form-control">
 @foreach($jurusan as $jurusans)
-  <option value="{{ $jurusans->id }}">{{ $jurusans->jurusan }}</option>     
-@endforeach   
+  <option value="{{ $jurusans->id }}">{{ $jurusans->jurusan }}</option>
+@endforeach
 </select> </div>
 </div>
 </div>
@@ -588,11 +588,11 @@ box-shadow:  20px 20px 60px #095b0f,
 <h5 >Tidak Wajib Diisi</h5> @endif
 @if(isset($data2[$k]['inputs']))
    @for($i=0;$i<=count($data2[$k]['inputs']['nama'])-1;$i++)
-  
+
 
          <div class="row mt-3" style="margin-top:4%">
              <div class="col-md-5">{{$data2[$k]['inputs']['nama'][$i]}}</div>
-           
+
              <div class="col-md-6"><input type="{{$data2[$k]['inputs']['type'][$i]}}" name="{{$data2[$k]['inputs']['name'][$i]}}" class="{{$data2[$k]['inputs']['name'][$i]}} form-control" value="{{$data2[$k]['inputs']['value'][$i]}}" placeholder="{{$data2[$k]['inputs']['placeholder'][$i]}}" {{$data2[$k]['inputs']['required'][$i]}} {{ $data2[$k]['inputs']['disabled'][$i]}}></div>
          </div>
   @endfor
@@ -601,7 +601,7 @@ box-shadow:  20px 20px 60px #095b0f,
 @for($i=0;$i<=count($data2[$k]['textArea'])-1;$i++)
     <div class="row mt-3" style="margin-top:4%">
         <div class="col-md-5">{{$data2[$k]['textArea'][$i]['nama']}}</div>
-      
+
         <div class="col-md-6"><textarea cols="30" rows="40" type="{{$data2[$k]['textArea'][$i]['type']}}" id="editor" name="{{$data2[$k]['textArea'][$i]['name']}}" class="{{$data2[$k]['textArea'][$i]['name']}} form-control" value="{{$data2[$k]['textArea'][$i]['value']}}" placeholder="{{$data2[$k]['textArea'][$i]['placeholder']}}" ></textarea></div>
     </div>
 @endfor
@@ -611,12 +611,12 @@ box-shadow:  20px 20px 60px #095b0f,
    @foreach($data2[$k]['selects'] as $select)
       <div class="row mt-3 " style="margin-top:4%">
           <div class="col-md-5">{{$select['nama']}}</div>
-        
+
           <div class="col-md-6">
               <select name="{{$select['name']}}" class="{{$select['name']}} form-control" id="" {{$select['required']}}>
                   @for($i=0; $i<=count($select['value'])-1;$i++)
                   <option value="{{$select['value'][$i]}}">{{$select['isi'][$i]}}</option>
-                
+
                   @endfor
               </select>
           </div>
@@ -644,11 +644,11 @@ box-shadow:  20px 20px 60px #095b0f,
   </div>
 </section>
   @endsection
- 
+
 @section('script')
 <script>
 $(document).ready(function(){
-  $('.modalE').modal('show'); 
+  $('.modalE').modal('show');
 $('.muncul2').hide();
 if($('#check').val()==1){
 $('.modaledit').modal('show');
@@ -667,13 +667,13 @@ $.ajax({
 
     data:{"_token":"{{ csrf_token() }}",'kabupaten':kabupaten},
     success:function(html){
-     
+
         $('.kecamatan').html(html);
         $('.kelurahan').html("<option value=''>Pilih kelurahan</option>");
     }
-}); 
+});
 }else{
-$('.kecamatan').html('<option value="">Pilih Kecamatan</option>'); 
+$('.kecamatan').html('<option value="">Pilih Kecamatan</option>');
 }
 });
 $('.keadaan_ayah').on('change', function(){
@@ -718,9 +718,9 @@ $.ajax({
 
         $('.kelurahan').html(html);
     }
-}); 
+});
 }else{
-$('.pilih kelurahan').html('<option value="">Pilih Kelurahan</option>'); 
+$('.pilih kelurahan').html('<option value="">Pilih Kelurahan</option>');
 }
 });
 $.ajaxSetup({
