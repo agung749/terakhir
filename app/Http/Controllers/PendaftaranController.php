@@ -419,7 +419,7 @@ class PendaftaranController extends Controller
     $nama = Siswa::where('id',$detail)->get('nama');
     $siswa->update(['status'=>'2']);
     $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
-    test::create(['siswa_id'=>$detail,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0,'nilai_total'=>0]);
+    test::create(['siswa_id'=>$detail,'nilai_wawancara'=>0,'nilai_diagnostik'=>"",'nilai_btq'=>0,'nilai_total'=>0]);
     return redirect()->back();
 
     }

@@ -27,7 +27,6 @@ class nilaiExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
             $row->nilai_btq,
             $row->nilai_diagnostik,
           $row->nilai_total,
-          $row->nilai_total/3
         ];
     }
     public function collection()  {
