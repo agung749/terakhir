@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
          });
         Gate::define('admin', function($user) {
             $staff = Staff::where('email',$user->email)->get();
-            return $user->role == 4 ;
+            return $user->role == 1 || $user->role == 1 ;
         });
         //
     }

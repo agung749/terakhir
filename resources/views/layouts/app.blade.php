@@ -37,7 +37,7 @@
     </button>
 @endif
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <b><h2>Kelola Data {{ $model  }}</h2></b>
   </div>
 </div>
