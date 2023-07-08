@@ -18,15 +18,15 @@ public function tambah($tambah,$nilai,$field) {
     $siswa=test::where('siswa_id',$tambah);
     $siswa->update([$field=>$nilai]);
 }
-public function ubah($id,$jurusan,$kelas) {
+public function ubah($id,$jurusan,$Kelas) {
 
     $siswa=Siswa::where('id',$id);
     $nilai_total=$siswa->get('nilai_total');
-    $siswa->update(['kelas'=>$kelas,'jurusan'=>$jurusan,'nilai_total'=>($nilai_total[0]->nilai_total+$nilai)]);
+    $siswa->update(['Kelas'=>$Kelas,'jurusan'=>$jurusan,'nilai_total'=>($nilai_total[0]->nilai_total+$nilai)]);
 
 }
 public function ubahData($id, Request $req) {
-$ubah = kelas::where('jurusan',$id)->get();
+$ubah = Kelas::where('jurusan',$id)->get();
 return $ubah;
 }
 public function printNilai() {
@@ -55,30 +55,30 @@ public function tampil()
             $nilai = "<select class='form-control jurusan' id='jurusan".$row->id."'  data-id=" . $row->id . ">" . $opt . "</select>";
             return $nilai;
         })
-        ->addColumn('kelas', function ($row) {
-            if($row->kelas==null){
-                $opt= "<option value=''>pilih kelas</option>";
+        ->addColumn('Kelas', function ($row) {
+            if($row->Kelas==null){
+                $opt= "<option value=''>pilih Kelas</option>";
             }
             else{
             $opt="";
             }
-            $kelas = Kelas::where('kelas', 'X')->where('jurusan', $row->jurusan)->get();
+            $Kelas = Kelas::where('Kelas', 'X')->where('jurusan', $row->jurusan)->get();
 
-            foreach ($kelas as $kelases) {
+            foreach ($Kelas as $Kelases) {
 
-                $jurusan = jurusan::where('id', $kelases->jurusan)->get();
-                if ($kelases->id == $row->kelas) {
+                $jurusan = jurusan::where('id', $Kelases->jurusan)->get();
+                if ($Kelases->id == $row->Kelas) {
                     $select = "selected";
                 } else {
                     $select = "";
                 }
-                if ($kelases->posisi == 0) {
-                    $kelases->posisi = "";
+                if ($Kelases->posisi == 0) {
+                    $Kelases->posisi = "";
                 }
-                $opt .= "<option " . $select . " value='" . $kelases->id . "'>" . $kelases->kelas.' ' . $jurusan[0]->jurusan .' ' . $kelases->posisi . ' ' ."</option>";
+                $opt .= "<option " . $select . " value='" . $Kelases->id . "'>" . $Kelases->Kelas.' ' . $jurusan[0]->jurusan .' ' . $Kelases->posisi . ' ' ."</option>";
 
             }
-             return "<select class='form-control kelas' id='kelas" . $row->id . "' data-id=" . $row->id . ">" . $opt . "</select>";
+             return "<select class='form-control Kelas' id='Kelas" . $row->id . "' data-id=" . $row->id . ">" . $opt . "</select>";
         })
         ->addColumn('nilai_btq', function ($row) {
             return "<input type='number' class='form form-control nilai' name='nilai_btq' min='1' max='100' id='" . $row->id . "' value='" . $row->test[0]->nilai_wawancara . "'>";
@@ -87,7 +87,7 @@ public function tampil()
         })->addColumn('nilai_diagnostik', function ($row) {
             return "<input type='number' class='form form-control nilai' name='nilai_diagnostik' min='1' max='100' id='" . $row->id . "' value='" . $row->test[0]->nilai_diagnostik . "'>";
         })
-        ->rawColumns(['nilai_wawancara','nilai_btq','nilai_diagnostik', 'jurusan', 'kelas'])
+        ->rawColumns(['nilai_wawancara','nilai_btq','nilai_diagnostik', 'jurusan', 'Kelas'])
         ->make(true);
 }
 
