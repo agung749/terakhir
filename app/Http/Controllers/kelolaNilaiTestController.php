@@ -88,7 +88,7 @@ public function tampil()
         })->addColumn('nilai_wawancara', function ($row) {
             return "<input type='number' class='form form-control nilai' name='nilai_wawancara' min='1' max='100' id='" . $row->id . "' value='" . $row->test[0]->nilai_wawancara. "'>";
         })->addColumn('nilai_diagnostik', function ($row) {
-            return "<input type='number' class='form form-control nilai' name='nilai_diagnostik' min='1' max='100' id='" . $row->id . "' value='" .  $row->test[0]->nilai_diagnostik . "'>";
+            return "<textarea type='number' class='form form-control nilai' rows='50' name='nilai_diagnostik'  id='" . $row->id . "' value='" .  $row->test[0]->nilai_diagnostik . "'></textarea>";
         })
         ->rawColumns(['nilai_wawancara','nilai_btq','nilai_diagnostik', 'jurusan', 'Kelas'])
         ->make(true);
