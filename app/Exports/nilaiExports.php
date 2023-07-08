@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use App\Models\Siswa;
-use App\Models\kelas;
+use App\Models\Kelas;
 class nilaiExports implements FromCollection, WithHeadings, WithMapping, WithTitle,ShouldAutoSize
 {
     /**
@@ -16,28 +16,28 @@ class nilaiExports implements FromCollection, WithHeadings, WithMapping, WithTit
     protected $id;
     protected $no;
     function title() : string {
-        $kelas =kelas::where('id',$this->id)->get();
-        switch($kelas[0]->jurusan){
+        $Kelas =Kelas::where('id',$this->id)->get();
+        switch($Kelas[0]->jurusan){
             case 1:
-                $kelas[0]->jurusan="MPLB";
+                $Kelas[0]->jurusan="MPLB";
                 break;
             case 2:
-                $kelas[0]->jurusan="AKL";
+                $Kelas[0]->jurusan="AKL";
                 break;
             case 3:
-                $kelas[0]->jurusan="Pemasaran";
+                $Kelas[0]->jurusan="Pemasaran";
                 break;
             case 4 :
-                $kelas[0]->jurusan="DKV";
+                $Kelas[0]->jurusan="DKV";
                 break;
             case 5:
-                $kelas[0]->jurusan="TJKT";
+                $Kelas[0]->jurusan="TJKT";
                 break;
         }
-        if($kelas[0]->posisi==0){
-            $kelas[0]->posisi="";
+        if($Kelas[0]->posisi==0){
+            $Kelas[0]->posisi="";
         }
-        $o = $kelas[0]->kelas.' ' . $kelas[0]->jurusan." ".$kelas[0]->posisi;
+        $o = $Kelas[0]->Kelas.' ' . $Kelas[0]->jurusan." ".$Kelas[0]->posisi;
     return $o;
     }
     public function __construct($id)
@@ -46,7 +46,7 @@ class nilaiExports implements FromCollection, WithHeadings, WithMapping, WithTit
     }
     public function collection()
     {
-        return $siswa=siswa::where('kelas',$this->id)->get();
+        return $siswa=siswa::where('Kelas',$this->id)->get();
     }
     public function headings(): array
     {
@@ -93,7 +93,7 @@ class nilaiExports implements FromCollection, WithHeadings, WithMapping, WithTit
    "pekerjaan wali",
    "kabupaten",
    "waktu",
-   "kelas",
+   "Kelas",
    "saudara",
    "kode pos",
    "kebutuhan khusus wali",
@@ -172,7 +172,7 @@ class nilaiExports implements FromCollection, WithHeadings, WithMapping, WithTit
             $row->pekerjaan_wali,
             $row->kabupaten,
             $row->waktu,
-            $row->kelas,
+            $row->Kelas,
             $row->saudara,
             $row->kode_pos,
             $row->kebutuhan_khusus_wali,
