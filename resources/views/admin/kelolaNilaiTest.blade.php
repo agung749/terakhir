@@ -3,7 +3,7 @@ $model="Kelola Nilai Test Dan Penjurusan";
 $url="kelolaNilaiTest";
 $role="admin";
 $printNilai="true";
-$columns=['no','nama','jurusan','kelas','nilai wawancara','nilai btq','nilai diagnostik'];
+$columns=['no','nama','jurusan','Kelas','nilai wawancara','nilai btq','nilai diagnostik'];
 
 ?>
 @extends('layouts.app')
@@ -69,16 +69,16 @@ $("body").on('change', '.jurusan', function(){
                     n = (1 + i);
                 }
 
-                opt += "<option value='" + datas[i]['id'] + "'>" + datas[i]['kelas'] + ' ' + ' ' + nama+ " " + n + "</option>";
+                opt += "<option value='" + datas[i]['id'] + "'>" + datas[i]['Kelas'] + ' ' + ' ' + nama+ " " + n + "</option>";
             }
 
 
 
-            $('#kelas'+data_id).html(opt);
+            $('#Kelas'+data_id).html(opt);
         }
     });
 });
-$("body").on('change', '.kelas', function(){
+$("body").on('change', '.Kelas', function(){
     alert('haha')
     var data = $(this).attr('data-id')
     var data1 = $("#jurusan"+$(this).data('id')).val();
