@@ -420,7 +420,9 @@ class PendaftaranController extends Controller
     $nama = Siswa::where('id',$detail)->get('nama');
     $siswa->update(['status'=>'2']);
     $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
+    test::create(['siswa_id'=>$detail,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
     return redirect()->back();
+
     }
     public function surat($id){
         $C = Siswa::where('id',$id)->get()->toArray();
@@ -599,10 +601,6 @@ class PendaftaranController extends Controller
 
         $data = Siswa::where('status',0)->orWhere('status',2)->with('test')->get();
         $siswa =  Siswa::where('status',2)->get();
-
-        foreach($siswa as $siswas){
-        test::create(['siswa_id'=>$siswas->id,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
-        }
         return DataTables::of($data)
               ->addIndexColumn()
                ->addColumn('aksi', function($row){
