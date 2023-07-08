@@ -17,7 +17,15 @@
       Print Rekap
     </button>
 @endif
+@if(isset($printNilai))
+   <a href="/{{$role}}/{{$url}}/printNilai"  ><button class="btn col-3 bg-primary  mt-2 mb-4">
+            print nilai
+    </button></a>
 
+   <a href="/{{$role}}/{{$url}}/printAbsen"  ><button class="btn col-3 bg-primary  mt-2 mb-4">
+            print absen
+    </button></a>
+@endif
 @if(isset($print))
    <a href="/{{$role}}/{{$url}}/print"  ><button class="btn col-3 bg-primary  mt-2 mb-4">
             print
@@ -57,7 +65,7 @@
 
 <div class="modal fade modal1 " id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl ">
-    <div class="modal-content col-12" > 
+    <div class="modal-content col-12" >
       <div class="modal-header">
         <h5 class="modal-title l1" id="staticBackdropLabel" ></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -65,7 +73,7 @@
       <div class="modal-body">
         <form id="form"  enctype="multipart/form-data">
           @csrf
- 
+
      @if(isset($inputs))
      @for($i=0;$i<=count($inputs['nama'])-1;$i++)
            <tr>
@@ -93,7 +101,7 @@
                 <select name="{{$select['name']}}" class="{{$select['name']}} form-control" id="" {{$select['required']}}>
                     @for($i=0; $i<=count($select['value'])-1;$i++)
                     <option value="{{$select['value'][$i]}}">{{$select['isi'][$i]}}</option>
-                  
+
                     @endfor
                 </select>
             </td>
@@ -102,10 +110,10 @@
      @endif
 
      <div class="modal-footer modal-footer1">
-    
+
     </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -126,7 +134,7 @@
           <td>:</td>
           <td><input type="file" name="fileImport" class="form-control"></td>
         </tr>
-     
+
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary btn-lg">Kirim</button>
@@ -156,9 +164,9 @@
         </tr>
         @endforeach
 
-       
+
       </table>
-       
+
         @elseif(session()->has('success')==false)
         <input type="hidden" id="check" value="3">
         <b>Apakah anda yakin data akan dihapus</b>
@@ -166,7 +174,7 @@
         @endif
       </div>
       <div class="modal-footer modal-footer2">
-        
+
       </div>
       </form>
     </div>
@@ -188,7 +196,7 @@
             .catch( error => {
                 console.error( error );
             } );
-       
+
         @endif
         @yield('var')
         @if(session()->has('success'))
@@ -217,7 +225,7 @@ $('.import').click(function(){
 });
 $('.tambah').click(function(){
   for(i=0; i<form.length; i++){
-  
+
   $('.'+form[i]).val('');
 
   $('.'+form[i]).removeAttr('disabled');
@@ -229,7 +237,7 @@ $('.l1').html('Tambah Data {{$model}}')
 $('.modal1').modal('show');
 
   $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim">Kirim</button>');
- 
+
 
 });
 $('body').on('click','.ubah',function(){
@@ -248,13 +256,13 @@ $('.printRekap').click(function () {
   $('#form').attr('enctype','multipart/form-data');
   $('.modal1').modal('show');
   $('.modal-footer1').html('  <button type="submit" class="btn btn-primary kirim">Kirim</button>');
- 
+
 })
 $('body').on('click','.hapus',function () {
 $('.l2').html('hapus data {{$model}}');
 id = $(this).data('id');
   $('.modal-body2').html('<b class="pemberitahuan"> Apakah anda yakin menghapus data  ini?<b>');
-                      
+
 $('.modal-footer2').html('<a href="/{{$role}}/{{$url}}/hapus/'+id+'"><button type="submit" class="btn btn-primary kirim">Kirim</button></a>');
 $('.modaledit').modal('show');
 
@@ -264,10 +272,10 @@ $('body').on('click','.detail',function(){
   data=$(this).data('id');
   $('.kirim').remove();
   detail(data,2);
-  
+
 })
 function detail(data,klik){
-  
+
 $.ajax({
 url: "/{{$role}}/{{$url}}/detail/"+data,
 cache:false,
@@ -293,7 +301,7 @@ for(i=0; i<form.length; i++){
      }
      $('.modal1').modal('show');
     }
-   
+
 }
 
 },
@@ -303,6 +311,6 @@ console.log(data);
 });
 }
 });
-    
+
 </script>
 @endsection

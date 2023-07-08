@@ -2,8 +2,8 @@
 $model="Kelola Nilai Test Dan Penjurusan";
 $url="kelolaNilaiTest";
 $role="admin";
-$print="true";
-$columns=['no','nama','jurusan','kelas','nilai'];
+$printNilai="true";
+$columns=['no','nama','jurusan','kelas','nilai wawancara','nilai btq','nilai diagnostik'];
 
 ?>
 @extends('layouts.app')
@@ -27,10 +27,27 @@ data = [
         'data':'kelas','name':'kelas'
     },
     {
-        'data':'nilai','name':'nilai'
+        'data':'nilai_wawancara','name':'nilai_wawancara'
+    },
+    {
+        'data':'nilai_btq','name':'nilai_btq'
+    },
+    {
+        'data':'nilai_diagnostik','name':'nilai_diagnostik'
     },
 ]
 
+$("body").on('focusOut', '.nilai',function(){
+    var data = $(this).data('id');
+    var data1 = $(this).attr('name');
+    data2 =  $(this).val()
+    $.ajax({
+        url: "/{{ $role}}/{{ $url}}/tambah/" + data+"/"+data2+"/"+data1,
+        cache: false,
+        contentType: false,
+        processData: false,
+    })
+});
 $("body").on('change', '.jurusan', function(){
     var data = $(this).val();
     var data1 = $(this).html();

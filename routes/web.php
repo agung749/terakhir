@@ -165,10 +165,12 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
 
     route::get('/kelolaNilaiTest/tampil', [App\Http\Controllers\kelolaNilaiTestController::class, 'tampil']);
     route::get('/kelolaNilaiTest/detail/{detail}', [App\Http\Controllers\kelolaNilaiTestController::class, 'detail']);
-    route::post('/kelolaNilaiTest/tambah/', [App\Http\Controllers\kelolaNilaiTestController::class, 'tambah']);
+    route::get('/kelolaNilaiTest/tambah/{nilai}/{field}', [App\Http\Controllers\kelolaNilaiTestController::class, 'tambah']);
     route::get('/kelolaNilaiTest/ubah/{data}/{dz}/{dl}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubah']);
     route::get('/kelolaNilaiTest/ubahData/{ubah}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubahData']);
     route::get('/kelolaNilaiTest/hapus/{hapus}', [App\Http\Controllers\kelolaNilaiTestController::class, 'hapus']);
+    route::get('/kelolaNilaiTest/printNilai/', [App\Http\Controllers\kelolaNilaiTestController::class, 'printNilai']);
+    route::get('/kelolaNilaiTest/printAbsen/', [App\Http\Controllers\kelolaNilaiTestController::class, 'printAbsen']);
 });
 
 Auth::routes(['register' => true, 'reset' => false]);
