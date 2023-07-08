@@ -599,6 +599,7 @@ class PendaftaranController extends Controller
 
         $data = Siswa::where('status',0)->orWhere('status',2)->with('test')->get();
         $siswa =  Siswa::where('status',2)->get();
+        dd($siswa);
         foreach($siswa as $siswas){
         test::create(['siswa_id',$siswas->id,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
         }
