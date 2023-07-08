@@ -15,7 +15,7 @@ class nilaiExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
     */
     protected $i=1;
     function headings() : array {
-        return ["No","Nama","Nilai Wawancara","Nilai BTQ", "Nilai Diagnostik","Total Nilai","Rata-Rata"];
+        return ["No","Nama","Nilai Wawancara","Nilai BTQ", "Nilai Diagnostik","Total Nilai","Rata-Rata","Catatan"];
     }
     public function map($row):array
     {
@@ -27,6 +27,8 @@ class nilaiExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
             $row->nilai_btq,
             $row->nilai_diagnostik,
           $row->nilai_total,
+          $row->nilai_total/2,
+          $row->catatan,
         ];
     }
     public function collection()  {

@@ -3,7 +3,7 @@ $model="Kelola Nilai Test Dan Penjurusan";
 $url="kelolaNilaiTest";
 $role="admin";
 $printNilai="true";
-$columns=['no','nama','jurusan','Kelas','nilai wawancara','nilai btq','nilai diagnostik'];
+$columns=['no','nama','jurusan','Kelas','nilai wawancara','nilai btq','nilai diagnostik','catatan','aksi'];
 
 ?>
 @extends('layouts.app')
@@ -35,6 +35,12 @@ data = [
     {
         'data':'nilai_diagnostik','name':'nilai_diagnostik'
     },
+    {
+        'data':'catatan','name':'catatan'
+    },
+    {
+        'data':'aksi','name':'aksi'
+    }
 ]
 
 $("body").on('focusout', '.nilai',function(){

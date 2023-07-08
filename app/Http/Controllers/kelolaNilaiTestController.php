@@ -16,7 +16,7 @@ class kelolaNilaiTestController extends Controller
 {
 public function tambah($tambah,$nilai,$field) {
     $siswa=test::where('siswa_id',$tambah);
-    if($field!="nilai_diagnostik"){
+    if($field=="nilai_btq"||$field=="nilai_wawancara"){
 
     $nilai_total=$siswa->get('nilai_total');
     $sebelum =$siswa->get($field);
@@ -24,8 +24,13 @@ public function tambah($tambah,$nilai,$field) {
     $nilai_total=$siswa->get('nilai_total');
     $siswa->update([$field=>$nilai,'nilai_total'=>($nilai_total[0]->nilai_total+$nilai)]);
     }
+    else if($field=="catatan"){
+        $nilai2=$siswa->get($field);
+        $siswa->update([$field=>$nilai2[0]->$field." ".$nilai]);
+    }
     else{
-        $siswa->update(['nilai_diagnostik'=>$nilai]);
+        $nilai2=$siswa->get($field);
+        $siswa->update([$field=>$nilai2[0]->$field]);
     }
 }
 public function ubah($id,$jurusan,$Kelas) {
@@ -94,9 +99,13 @@ public function tampil()
         })->addColumn('nilai_wawancara', function ($row) {
             return "<input type='number' class='form form-control nilai' name='nilai_wawancara' min='1' max='100' id='" . $row->id . "' value='" . $row->test[0]->nilai_wawancara. "'>";
         })->addColumn('nilai_diagnostik', function ($row) {
-            return "<textarea type='number' class='form form-control nilai' rows='50' name='nilai_diagnostik'  id='" . $row->id . "' value='" .  $row->test[0]->nilai_diagnostik . "'></textarea>";
+            return "<textarea class='form form-control nilai' rows='10' name='nilai_diagnostik'  id='" . $row->id . "' >".$row->test[0]->nilai_diagnostik."</textarea>";
+        })->addColumn('catatan', function ($row) {
+            return "<textarea class='form form-control nilai' rows='10' name='catatan'  id='" . $row->id . "' >".$row->test[0]->catatan."</textarea>";
+        })->addColumn('aksi', function ($row) {
+            return "<a class='btn btn-primary' href='/admin/kelolaNilaiTest/print/'".$row->id.">Cetak</a>";
         })
-        ->rawColumns(['nilai_wawancara','nilai_btq','nilai_diagnostik', 'jurusan', 'Kelas'])
+        ->rawColumns(['nilai_wawancara','nilai_btq','nilai_diagnostik', 'jurusan', 'Kelas','catatan','aksi'])
         ->make(true);
 }
 
