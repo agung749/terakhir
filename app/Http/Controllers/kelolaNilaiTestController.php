@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
-use App\Models\Jurusan;
+use App\Models\jurusan;
 use App\Models\test;
 use App\Exports\nilaiExport;
 use App\Exports\kelasExport;

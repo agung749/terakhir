@@ -13,6 +13,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelas;
 use App\Models\Kelurahan;
 use App\Models\Siswa;
+use App\Models\test;
 use App\Models\tahun_ajaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
