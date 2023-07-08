@@ -25,6 +25,9 @@ class user
             else if(Auth::user()->role==2&&$r=="guru"){
                 return $next($request);
             }
+            else if(Auth::user()->role==4){
+                return $next($request);
+            }
            else if(Auth::user()->role==3&&$r=="wirausaha"){
                 return $next($request);
             }
@@ -39,7 +42,7 @@ class user
         }
         }
         return redirect()->back();
-        
-    
+
+
     }
 }

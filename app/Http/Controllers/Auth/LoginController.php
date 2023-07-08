@@ -43,22 +43,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     protected function login(Request $req){
-       
+
 
         if (Auth::attempt(['email' => $req->email, 'password' => $req->password])) {
             $user = User::where('email',$req->email)->get();
             $staff = Staff::where('email',$req->email)->get();
             if($user[0]->role==3){
-                return redirect('/wirausaha/home'); 
+                return redirect('/wirausaha/home');
             }
             if($user[0]->role==2){
-                return redirect('/guru/home'); 
+                return redirect('/guru/home');
             }
             else if($user[0]->role==1){
-                return redirect('/admin/home'); 
+                return redirect('/admin/home');
             }
             else if($user[0]->role==4 && $staff[0]->jabatan=="Bendahara"){
-                return redirect('/bendahara/home'); 
+                return redirect('/bendahara/home');
+            }
+            else if($user[0]->role==4 ){
+                return redirect('/admin/home');
             }
         }
         else{
