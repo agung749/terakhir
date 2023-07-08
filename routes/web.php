@@ -162,13 +162,13 @@ Route::group(['prefix' => '/admin', 'middleware' => 'user:admin'], function () {
     route::get('/kelolaSaran/print', [App\Http\Controllers\SaranController::class, 'print']);
     route::get('/kelolaSaran/hapus/{data}', [App\Http\Controllers\SaranController::class, 'hapus']);
     route::get('/kelolaSaran/detail/{detail} ', [App\Http\Controllers\SaranController::class, 'detail']);
+
     route::get('/kelolaNilaiTest/tampil', [App\Http\Controllers\kelolaNilaiTestController::class, 'tampil']);
     route::get('/kelolaNilaiTest/detail/{detail}', [App\Http\Controllers\kelolaNilaiTestController::class, 'detail']);
     route::post('/kelolaNilaiTest/tambah/', [App\Http\Controllers\kelolaNilaiTestController::class, 'tambah']);
     route::get('/kelolaNilaiTest/ubah/{data}/{dz}/{dl}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubah']);
     route::get('/kelolaNilaiTest/ubahData/{ubah}', [App\Http\Controllers\kelolaNilaiTestController::class, 'ubahData']);
     route::get('/kelolaNilaiTest/hapus/{hapus}', [App\Http\Controllers\kelolaNilaiTestController::class, 'hapus']);
-
 });
 
 Auth::routes(['register' => true, 'reset' => false]);
