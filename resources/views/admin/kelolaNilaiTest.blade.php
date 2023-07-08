@@ -24,7 +24,7 @@ data = [
         'data':'jurusan','name':'jurusan'
     },
     {
-        'data':'kelas','name':'kelas'
+        'data':'Kelas','name':'Kelas'
     },
     {
         'data':'nilai_wawancara','name':'nilai_wawancara'
