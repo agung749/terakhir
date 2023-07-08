@@ -595,7 +595,12 @@ class PendaftaranController extends Controller
     }
     public function tampil()
     {
+
         $data = Siswa::where('status',0)->orWhere('status',2)->with('test')->get();
+        $siswa =  Siswa::where('status',2)->get();
+        foreach($siswa as $siswas){
+        test::create(['siswa_id',$siswas->id,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
+        }
         return DataTables::of($data)
               ->addIndexColumn()
                ->addColumn('aksi', function($row){
