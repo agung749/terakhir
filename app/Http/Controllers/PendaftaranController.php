@@ -368,7 +368,6 @@ class PendaftaranController extends Controller
     public function terima($detail,Request $req){
     $siswa=Siswa::where('id',$detail);
     $isi=$siswa->get();
-
     $thn_ajaran = date('Y').'/'.date('Y',strtotime(' +1 year'));
     $pembayarans = data_pembayaran::where('semester',1)->orWhere('semester','7')->orWhere('semester','8')->orWhere('semester','9')->get();
     $i=0;
@@ -420,7 +419,7 @@ class PendaftaranController extends Controller
     $nama = Siswa::where('id',$detail)->get('nama');
     $siswa->update(['status'=>'2']);
     $pdf = Pdf::loadView('/pdf/kwitansi',['tunggakans'=>$dataZ,'nama'=>$nama,'tagihan'=>($tagihan-$total),'totcil'=>$total,'total'=>$total]);
-    test::create(['siswa_id'=>$detail,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
+    test::create(['siswa_id'=>$detail,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0,'nilai_total'=>0]);
     return redirect()->back();
 
     }

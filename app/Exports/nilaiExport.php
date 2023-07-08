@@ -31,7 +31,7 @@ class nilaiExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
         ];
     }
     public function collection()  {
-        return test::orderByRaw('nilai_total')->get();
+        return test::orderByRaw('nilai_total')->with('siswa')->get();
     }
     public function title() : string{
         return "Data Nilai Test";

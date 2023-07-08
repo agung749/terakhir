@@ -30,10 +30,6 @@ class AuthServiceProvider extends ServiceProvider
          Gate::define('spw', function($user) {
              return $user->role == 3;
          });
-         Gate::define('bendahara', function($user) {
-            $staff = Staff::where('email',$user->email)->get();
-            return $user->role == 4 && $staff[0]->jabatan == "Bendahara" ;
-        });
         Gate::define('admin', function($user) {
             $staff = Staff::where('email',$user->email)->get();
             return $user->role == 4 ;

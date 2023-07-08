@@ -37,8 +37,9 @@ data = [
     },
 ]
 
-$("body").on('focusOut', '.nilai',function(){
-    var data = $(this).data('id');
+$("body").on('focusout', '.nilai',function(){
+
+    var data = $(this).attr('id');
     var data1 = $(this).attr('name');
     data2 =  $(this).val()
     $.ajax({
@@ -69,7 +70,7 @@ $("body").on('change', '.jurusan', function(){
                     n = (1 + i);
                 }
 
-                opt += "<option value='" + datas[i]['id'] + "'>" + datas[i]['Kelas'] + ' ' + ' ' + nama+ " " + n + "</option>";
+                opt += "<option value='" + datas[i]['id'] + "'>" + datas[i]['kelas'] + ' ' + ' ' + nama+ " " + n + "</option>";
             }
 
 
@@ -79,7 +80,7 @@ $("body").on('change', '.jurusan', function(){
     });
 });
 $("body").on('change', '.Kelas', function(){
-    alert('haha')
+
     var data = $(this).attr('data-id')
     var data1 = $("#jurusan"+$(this).data('id')).val();
     var data2 = $(this).val()
