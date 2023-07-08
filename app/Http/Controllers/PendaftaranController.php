@@ -601,7 +601,7 @@ class PendaftaranController extends Controller
         $siswa =  Siswa::where('status',2)->get();
 
         foreach($siswa as $siswas){
-        test::create(['siswa_id',$siswas->id,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
+        test::create(['siswa_id'=>$siswas->id,'nilai_wawancara'=>0,'nilai_diagnostik'=>0,'nilai_btq'=>0]);
         }
         return DataTables::of($data)
               ->addIndexColumn()
