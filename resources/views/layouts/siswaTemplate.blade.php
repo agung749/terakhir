@@ -350,8 +350,6 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
   <h5 >Tidak Wajib Diisi</h5> @endif
 @if(isset($data2[$k]['inputs']))
      @for($i=0;$i<=count($data2[$k]['inputs']['nama'])-1;$i++)
-
-
            <div class="row mt-3">
                <div class="col-5">{{$data2[$k]['inputs']['nama'][$i]}}</div>
                <div class="col-1">:</div>
@@ -521,9 +519,10 @@ $pembayaran->nama = str_replace(".","_",$pembayaran->nama);
                 }
               });
       });
-total=0;
 
+      total = 0;
       $('.uang').change(function(){
+        total=0;
           $('.uang').each(function(){
             total += parseInt($(this).val());
             $('.nominalBayar').text(total);

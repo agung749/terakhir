@@ -396,6 +396,7 @@ class PendaftaranController extends Controller
     else{
     return redirect('/admin/kelolaPendaftaran')->withError('data salah');
     }
+
          data_tunggakan::create([
             "jenis_tunggakan"=>$pembayaran->nama,
             "id_siswa"=>$detail,
@@ -407,17 +408,17 @@ class PendaftaranController extends Controller
             'status'=>$status,
             'tahun_ajaran'=>$thn_ajaran
         ]);
-        $dataT = data_tunggakan::where('id_siswa',$detail)->where("jenis_pembayaran",$pembayaran->nama)->first();
+        $dataT = data_tunggakan::where('id_siswa',$detail)->where("jenis_pembayaran",$pembayaran->nama)->get();
 
         data_cicilan::create([
             "noPembayaran"=>$frak,
             "id_siswa"=>$detail,
-            "id_tunggakan"=>$dataT->id,
-            'pembayaran'=>$dataT->total_bayar,
+            "id_tunggakan"=>$dataT[0]->id,
+            'pembayaran'=>$dataT[0]->total_bayar,
             'admin'=>Auth::user()->name,
            'penyetor'=>$req->penyetor
         ]);
-        $total+=$dataT->total_bayar;
+        $total+=$dataT[0]->total_bayar;
         $tagihan+=$pembayaran->nominal;
 
     }
