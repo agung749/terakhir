@@ -241,6 +241,12 @@ class PendaftaranController extends Controller
         unlink($siswa_data[0]->foto);
 
     }
+    $test = test::where('siswa_id',$hapus);
+    $test->delete();
+    $data_tunggakan  = data_tunggakan::where('id_siswa',$hapus);
+    $data_tunggakan->delete();
+    $data_tunggakan  = data_tunggakan::where('id_siswa',$hapus);
+    $data_tunggakan->delete();
     $siswa->delete();
     return redirect()->back()->with('success',"data berhasil dihapus");
     }
